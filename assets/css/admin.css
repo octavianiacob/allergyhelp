@@ -1,0 +1,193 @@
+:root {
+	--ah-green: #5fcf80;
+	--ah-dark: #343a40;
+	--ah-card-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+@font-face {
+	font-family: Segoe UI;
+	src: url(../fonts/segoeui.ttf);
+}
+@font-face {
+	font-family: Segoe UI;
+	src: url(../fonts/segoeuibold.ttf);
+	font-weight: 700;
+}
+/*****************************************************/
+.login, .login body {
+	width: 100%;
+	height: 100%;
+}
+.login body {
+	background: var(--ah-dark);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	min-height: 100%;
+	display: table;
+}
+.login form {
+	max-width: 400px;
+	width: 90%;
+	margin: 0 auto;
+}
+.login .cover {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+.login .brand {
+	max-width: 200px;
+	width: 100%;
+}
+.login input {
+	max-width: 300px;
+	width: 100%;
+	background: #fdfdfd;
+	outline: none;
+	border: none;
+	font-size: 14px;
+	padding: 10px 20px;
+	border: 1px solid rgba(0, 0, 0, .1);
+}
+.login ::placeholder {
+ 	color: 1px solid rgba(0, 0, 0, .1);
+}
+.login #login-form input[type="text"] {
+	margin-top: 25px;
+	margin-bottom: -1px;
+	border-radius: 10px 10px 0 0;
+}
+.login button[type="submit"] {
+	max-width: 300px;
+	width: 100%;
+	padding: 5px;
+	border: none;
+	background: var(--ah-green);
+	color: white;
+	cursor: pointer;
+	font-weight: 700;
+	border-radius: 0 0 10px 10px;
+	margin-bottom: 15px;
+}
+.login .wrong {
+	margin-top: 5px;
+	margin-bottom: -15px;
+	font-weight: 700;
+	color: #ff3145;
+}
+.login a.title {
+	color: black;
+	text-decoration: none;
+	display: block;
+	text-transform: uppercase;
+	font-weight: 700;
+	line-height: 1.1;
+}
+.login a.title small {
+	text-transform: none;
+	font-weight: 400;
+}
+/*****************************************************/
+html {
+	min-height: 100%;
+	position: relative;
+}
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.navbar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+}
+.navbar-nav .dropdown-menu {
+	position: absolute;
+}
+.navbar-dark .navbar-nav .nav-link {
+	color: rgba(255,255,255,.9);
+	font-size: 90%;
+	font-weight: 700;
+}
+.dropdown-menu-right {
+	right: 0;
+	left: auto;
+}
+.navbar-links {
+	background: var(--ah-green);
+	width: 100vw;
+	margin: .5rem -1rem -.5rem -1rem;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07);
+}
+.navbar-links-fixed {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1030;
+	margin: 0;
+}
+.navbar-links a {
+	font-size: 90%;
+	color: white;
+	font-weight: 700;
+}
+.navbar-links a:hover {
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.8);
+}
+main {
+	margin-top: 93px;
+	padding-bottom: 5rem;
+}
+.navbar-brand {
+	margin: -5px;
+}
+.navbar-brand img {
+	height: 40px;
+}
+.avatar {
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+	float: left;
+	margin-top: -2px;
+	border-radius: 50%;
+}
+.jumbotron {
+	background: #fff;
+}
+.box-shadow {
+	box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+}
+.card-body h1 {
+	font-weight: 700;
+}
+.last-changes .list-group-item {
+	line-height: 1.2;
+	padding: .75rem .75rem;
+}
+.last-changes .avatar {
+	width: 40px;
+	height: 40px;
+	margin-right: 15px;
+	margin-top: 0;
+}
+footer {
+	padding: .5rem 0;
+	color: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	font-size: 80%;
+	background: #fff;
+	box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.07);
+}
+footer a {
+	text-decoration: none;
+	color: inherit;
+}
+footer a:hover {
+	text-decoration: none;
+	color: inherit;
+}
