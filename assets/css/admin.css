@@ -155,9 +155,13 @@ main {
 }
 .jumbotron {
 	background: #fff;
+	border-radius: 0;
 }
 .box-shadow {
 	box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+}
+.card {
+	margin: .5rem 0;
 }
 .card-body h1 {
 	font-weight: 700;
@@ -190,4 +194,18 @@ footer a {
 footer a:hover {
 	text-decoration: none;
 	color: inherit;
+}
+.admin {
+	line-height: 1.2;
+}
+.admin .admin-name {
+	font-weight: 700;
+	display: block;
+	font-size: 1.5rem;
+}
+.admin .admin-avatar {
+	margin-top: 0;
+	width: 40%;
+	height: auto;
+	float: none;
 }

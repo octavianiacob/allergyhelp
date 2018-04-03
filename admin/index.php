@@ -15,7 +15,7 @@
 	if (isset($_REQUEST['submitlog'])) 
 	{ 
 		extract($_REQUEST);
-		$login = $admin->check_login($username, $password);
+		$login = $admin->check_login($email, $password);
 		if ($login == 1) header("location:index.php");
 		else if ($login == -1) $_SESSION['allergyhelp_admin_login_not_admin'] = true;
 		else $_SESSION['allergyhelp_admin_login_fail'] = true;
@@ -56,7 +56,7 @@
 					unset($_SESSION['allergyhelp_admin_login_not_admin']);
 				}
 			?>
-			<input type="text" name="username" id="log-username" placeholder="Nume de utilizator" required="" autocomplete="off" autofocus="">
+			<input type="text" name="email" id="log-email" placeholder="Adresă de email" required="" autocomplete="off" autofocus="">
 			<input type="password" name="password" id="log-password" placeholder="Parolă" required="">
 			<button type="submit" name="submitlog">Logare</button>
 		</form>
@@ -72,6 +72,8 @@
 	}
 	else 
 	{
+		if(isset($_GET['p']))
+			$p = $_GET['p'];
 ?>
 <!DOCTYPE html>
 <html lang="ro">
@@ -111,12 +113,15 @@
 				<a class="py-2 d-none d-md-inline-block" href="#">Alergii</a>
 				<a class="py-2 d-none d-md-inline-block" href="#">Tratamente</a>
 				<a class="py-2 d-none d-md-inline-block" href="#">Pagini</a>
-				<a class="py-2 d-none d-md-inline-block" href="#">Administratori</a>
+				<a class="py-2 d-none d-md-inline-block" href="?p=admins">Administratori</a>
 			</div>
 		</div>
 	</nav>
 
-
+	<?php
+		if(empty($p)) // Pagina principala
+		{
+	?>
 	<main role="main">
 		<section class="jumbotron text-center">
 			<div class="container">
@@ -231,6 +236,21 @@
 			</div>
 		</div>
 	</main>
+	<?php
+		}
+		else if($p === "admins")
+		{
+	?>
+	<main role="main">
+		<div class="container pt-4">
+			<div class="row">
+				<?php $admin->get_admins(); ?>
+			</div>
+		</div>
+	</main>
+	<?php
+		}
+	?>
 	<footer>
 		Realizat pentru <strong><a href="https://fiicode.asii.ro/" target="_blank" rel="noopener">FIICode 2018</a></strong> de către echipa <strong>Discode</strong>.
 	</footer>

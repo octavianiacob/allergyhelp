@@ -102,14 +102,21 @@
 				return $diff == 1 ? 'acum un an' : 'acum ' . $diff . ' '. $prepoz .' ani';
 			}
 		}
+		public function get_avatar($id)
+		{
+			if(file_exists("../assets/img/avatars/".$id.".jpg")) $avatar = $id;
+			else $avatar = 0;
+			$source = "../assets/img/avatars/" . $avatar . ".jpg?=" . filemtime('../assets/img/avatars/'.$avatar.'.jpg');
+			return $source;
+		}
 	}
 	class Admin extends Utils
 	{	
-		public function check_login($username, $password)
+		public function check_login($email, $password)
 		{
-			$username = mysqli_real_escape_string($this->db, $username);
+			$email = mysqli_real_escape_string($this->db, $email);
 			$password = sha1($password);
-			$sql="SELECT id, admin FROM users WHERE username='$username' AND password='$password'";
+			$sql="SELECT id, admin FROM users WHERE email='$email' AND password='$password'";
 			
 			$result = mysqli_query($this->db,$sql);
 			$user_data = mysqli_fetch_array($result);
@@ -130,6 +137,25 @@
 				return 1;
 			}
 			else return 0;
+		}
+		public function get_admins()
+		{
+			$sql = "SELECT * FROM users WHERE admin = 1 ORDER BY lastname ASC, firstname ASC";
+			$result = mysqli_query($this->db, $sql);
+			while($row = mysqli_fetch_assoc($result))
+			{
+				echo '
+				<div class="col-md-4">
+					<div class="card box-shadow admin">
+						<div class="card-body p-4 text-center">
+							<img class="avatar admin-avatar mb-3" src="'.$this->get_avatar($row["id"]).'" />
+							<span class="admin-name">'.$row["firstname"].' '.$row["lastname"].'</span>
+							<small class="text-muted">'.$row["email"].'</small>
+						</div>
+					</div>
+				</div>
+				';
+			}
 		}
 		public function get_session()
 		{
@@ -157,13 +183,6 @@
 		public function get_lastname($id)
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT lastname FROM users WHERE id = '$id'"));
-		}
-		public function get_avatar($id)
-		{
-			if(file_exists("../assets/img/avatars/".$id.".jpg")) $avatar = $id;
-			else $avatar = 0;
-			$source = "../assets/img/avatars/" . $avatar . ".jpg?=" . filemtime('../assets/img/avatars/'.$avatar.'.jpg');
-			return $source;
 		}
 	}
 ?>
