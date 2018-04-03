@@ -109,7 +109,7 @@
 		<div class="navbar-links">
 			<div class="container d-flex flex-column flex-md-row justify-content-between">
 				<a class="py-2 d-none d-md-inline-block" href="#">Setări site</a>
-				<a class="py-2 d-none d-md-inline-block" href="#">Utilizatori</a>
+				<a class="py-2 d-none d-md-inline-block" href="?p=users">Utilizatori</a>
 				<a class="py-2 d-none d-md-inline-block" href="#">Alergii</a>
 				<a class="py-2 d-none d-md-inline-block" href="#">Tratamente</a>
 				<a class="py-2 d-none d-md-inline-block" href="#">Pagini</a>
@@ -129,7 +129,7 @@
 					<div class="col-md">
 						<div class="card box-shadow">
 							<div class="card-body">
-								<h1>0</h1>
+								<h1><?php echo $admin->count_users(); ?></h1>
 								<p class="card-text">
 									Utilizatori înregistrați
 								</p>
@@ -204,36 +204,33 @@
 						</div>
 						<div class="card-body p-1">
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item">
-									<img class="avatar float-left" src="../assets/img/avatars/1.jpg?=1460364161" />
-									<strong>Alexandru Toderică</strong>
-									<br><small class="time text-muted">acum 5 minute</small>
-								</li>
-								<li class="list-group-item">
-									<img class="avatar float-left" src="../assets/img/avatars/1.jpg?=1460364161" />
-									<strong>Alexandru Toderică</strong>
-									<br><small class="time text-muted">acum 5 minute</small>
-								</li>
-								<li class="list-group-item">
-									<img class="avatar float-left" src="../assets/img/avatars/1.jpg?=1460364161" />
-									<strong>Alexandru Toderică</strong>
-									<br><small class="time text-muted">acum 5 minute</small>
-								</li>
-								<li class="list-group-item">
-									<img class="avatar float-left" src="../assets/img/avatars/1.jpg?=1460364161" />
-									<strong>Alexandru Toderică</strong>
-									<br><small class="time text-muted">acum 5 minute</small>
-								</li>
-								<li class="list-group-item">
-									<img class="avatar float-left" src="../assets/img/avatars/1.jpg?=1460364161" />
-									<strong>Alexandru Toderică</strong>
-									<br><small class="time text-muted">acum 5 minute</small>
-								</li>
+								<?php $admin->get_logins(); ?>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+	</main>
+	<?php
+		}
+		else if($p === "users")
+		{
+	?>
+	<main role="main">
+		<div class="container pt-4">
+			<table id="users-table" class="table table-bordered table-hover table-sm">
+				<thead>
+					<tr>
+						<th>Nume</th>
+						<th>Email</th>
+						<th>Data înregistrării</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $admin->get_users(); ?>
+				</tbody>
+			</table>
 		</div>
 	</main>
 	<?php

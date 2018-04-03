@@ -102,6 +102,24 @@
 				return $diff == 1 ? 'acum un an' : 'acum ' . $diff . ' '. $prepoz .' ani';
 			}
 		}
+	}
+	class User extends Utils
+	{
+		public function get_fullname($id)
+		{
+			$sql = "SELECT firstname, lastname FROM users WHERE id = $id";
+			$result = mysqli_query($this->db,$sql);
+			$user_data = mysqli_fetch_array($result);
+			return $user_data['firstname']." ".$user_data['lastname'];
+		}
+		public function get_firstname($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT firstname FROM users WHERE id = '$id'"));
+		}
+		public function get_lastname($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT lastname FROM users WHERE id = '$id'"));
+		}
 		public function get_avatar($id)
 		{
 			if(file_exists("../assets/img/avatars/".$id.".jpg")) $avatar = $id;
@@ -110,7 +128,7 @@
 			return $source;
 		}
 	}
-	class Admin extends Utils
+	class Admin extends User
 	{	
 		public function check_login($email, $password)
 		{
@@ -131,12 +149,41 @@
 				
 				$ip = $this->get_ip_address();
 				$id = $user_data['id'];
-				$sql="UPDATE users SET ip='$ip', laston='".date('Y-m-d H:i:s', time())."' WHERE id='$id'";
+				$sql="INSERT INTO logins SET userid='$id', ip='$ip', date='".date('Y-m-d H:i:s', time())."'";
 				mysqli_query($this->db, $sql);
 				
 				return 1;
 			}
 			else return 0;
+		}
+		public function get_logins()
+		{
+			$sql = "SELECT * FROM logins ORDER BY date DESC LIMIT 5";
+			$result = mysqli_query($this->db, $sql);
+			while($row = mysqli_fetch_assoc($result))
+			{
+				echo '
+				<li class="list-group-item">
+					<img class="avatar float-left" src="'.$this->get_avatar($row["userid"]).'" />
+					<strong>'.$this->get_fullname($row["userid"]).'</strong>
+					<br><small class="time text-muted">'.$this->time_passed($row["date"]).'</small>
+				</li>
+				';
+			}
+		}
+		public function get_users()
+		{
+			$sql = "SELECT * FROM users ORDER BY lastname ASC, firstname ASC";
+			$result = mysqli_query($this->db, $sql);
+			while($row = mysqli_fetch_assoc($result))
+			{
+				echo '
+				<tr>
+					<td>'.$row["lastname"].' '.$row["firstname"].'</td>
+					<td>'.$row["email"].'</td>
+					<td>'.$row["regtime"].'</td>
+				</tr>';
+			}
 		}
 		public function get_admins()
 		{
@@ -157,6 +204,10 @@
 				';
 			}
 		}
+		public function count_users()
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM users"));
+		}
 		public function get_session()
 		{
 			return isset($_SESSION['allergyhelp_admin_login']);
@@ -165,24 +216,6 @@
 		{
 			$_SESSION['allergyhelp_admin_login'] = FALSE;
 			session_destroy();
-		}
-	}
-	class User extends Utils
-	{
-		public function get_fullname($id)
-		{
-			$sql = "SELECT firstname, lastname FROM users WHERE id = $id";
-			$result = mysqli_query($this->db,$sql);
-			$user_data = mysqli_fetch_array($result);
-			return $user_data['firstname']." ".$user_data['lastname'];
-		}
-		public function get_firstname($id)
-		{
-			return $this->mysqli_result(mysqli_query($this->db, "SELECT firstname FROM users WHERE id = '$id'"));
-		}
-		public function get_lastname($id)
-		{
-			return $this->mysqli_result(mysqli_query($this->db, "SELECT lastname FROM users WHERE id = '$id'"));
 		}
 	}
 ?>

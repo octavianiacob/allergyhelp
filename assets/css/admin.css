@@ -209,3 +209,6 @@ footer a:hover {
 	height: auto;
 	float: none;
 }
+#users-table td, #users-table th {
+	padding: .5rem;
+}
