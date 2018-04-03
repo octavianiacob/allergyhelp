@@ -174,7 +174,13 @@ footer p, h5 {
 @media (max-width: 768px) {
   .carousel-caption {
     top: 45%;
+  } }
+
+@media (max-width: 768px){
+  .arrows{
+  top: 45%;
   }
+}
 
   .carousel-caption h1 {
     font-size: 350%;
