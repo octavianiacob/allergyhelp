@@ -171,6 +171,48 @@
 				';
 			}
 		}
+		public function get_actions()
+		{
+			$sql = "SELECT * FROM actions ORDER BY date DESC LIMIT 5";
+			$result = mysqli_query($this->db, $sql);
+			while($row = mysqli_fetch_assoc($result))
+			{
+				echo '
+				<li class="list-group-item">
+					<img class="avatar float-left" src="'.$this->get_avatar($row["userid"]).'" />
+					<strong>'.$this->get_fullname($row["userid"]).'</strong> '.$row["action"].'
+					<br><small class="time text-muted">'.$this->time_passed($row["date"]).'</small>
+				</li>
+				';
+			}
+		}
+		public function add_action($adminid, $action)
+		{
+			$sql="INSERT INTO actions SET userid='$adminid', action='$action', date='".date('Y-m-d H:i:s', time())."'";
+			return mysqli_query($this->db, $sql);
+		}
+		public function add_user($adminid, $email, $pass, $lastname, $fistname)
+		{
+			$email = mysqli_real_escape_string($this->db, $email);
+			$lastname = mysqli_real_escape_string($this->db, $lastname);
+			$firstname = mysqli_real_escape_string($this->db, $fistname);
+			
+			$pass = sha1($pass);
+			$sql = "SELECT * FROM users WHERE email='$email'";
+			
+			$check =  $this->db->query($sql);
+			$count_row = $check->num_rows;
+
+			if ($count_row == 0)
+			{
+				$sql = "INSERT INTO users SET email='$email', password='$pass', lastname='$lastname', firstname='$firstname', regtime='".date('Y-m-d H:i:s', time())."'";
+				$result = mysqli_query($this->db,$sql);
+
+				if($result) $this->add_action($adminid, "a înregistrat un utilizator");
+				return $result;
+			}
+			else return false;
+		}
 		public function get_users()
 		{
 			$sql = "SELECT * FROM users ORDER BY lastname ASC, firstname ASC";

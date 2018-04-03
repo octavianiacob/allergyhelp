@@ -20,6 +20,17 @@
 		else if ($login == -1) $_SESSION['allergyhelp_admin_login_not_admin'] = true;
 		else $_SESSION['allergyhelp_admin_login_fail'] = true;
 	}
+	if (isset($_REQUEST['add_user']))
+	{
+		extract($_REQUEST);
+		$register = $admin->add_user($id, $reg_email, $reg_password, $reg_lastname, $reg_firstname);
+		if ($register)
+		{
+			$_SESSION['allergyhelp_admin_add_user_success'] = true;
+		}
+		else $_SESSION['allergyhelp_admin_add_user_fail'] = true;
+		header("index.php?p=users");
+	}
 	if (!$admin->get_session())
 	{
 ?>
@@ -168,31 +179,7 @@
 						</div>
 						<div class="card-body p-1">
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item">
-									<img class="avatar float-left" src="../assets/img/avatars/1.jpg?=1460364161" />
-									<strong>Alexandru Toderică</strong> a adăugat un administrator nou
-									<br><small class="time text-muted">acum 5 minute</small>
-								</li>
-								<li class="list-group-item">
-									<img class="avatar float-left" src="../assets/img/avatars/1.jpg?=1460364161" />
-									<strong>Alexandru Toderică</strong> a adăugat un administrator nou
-									<br><small class="time text-muted">acum 5 minute</small>
-								</li>
-								<li class="list-group-item">
-									<img class="avatar float-left" src="../assets/img/avatars/1.jpg?=1460364161" />
-									<strong>Alexandru Toderică</strong> a adăugat un administrator nou
-									<br><small class="time text-muted">acum 5 minute</small>
-								</li>
-								<li class="list-group-item">
-									<img class="avatar float-left" src="../assets/img/avatars/1.jpg?=1460364161" />
-									<strong>Alexandru Toderică</strong> a adăugat un administrator nou
-									<br><small class="time text-muted">acum 5 minute</small>
-								</li>
-								<li class="list-group-item">
-									<img class="avatar float-left" src="../assets/img/avatars/1.jpg?=1460364161" />
-									<strong>Alexandru Toderică</strong> a adăugat un administrator nou
-									<br><small class="time text-muted">acum 5 minute</small>
-								</li>
+								<?php $admin->get_actions(); ?>
 							</ul>
 						</div>
 					</div>
@@ -217,8 +204,73 @@
 		else if($p === "users")
 		{
 	?>
+	<div class="modal fade" id="modal_add_user">
+		<div class="modal-dialog"  role="document">
+			<form action="" method="post" name="add_user">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Înregistrează utilizator</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="reg-email" class="form-control-label">Email:</label>
+							<input type="email" class="form-control" name="reg_email" id="reg-email" placeholder="Adresă de email" required>
+						</div>
+						<div class="form-group">
+							<label for="reg-password" class="form-control-label">Parola:</label>
+							<input type="password" class="form-control" name="reg_password" id="reg-password" placeholder="Parolă" pattern=".{6,}" required title="Parola trebuie să aibă minim 6 caractere.">
+						</div>
+						<div class="form-group">
+							<label for="reg-lastname" class="form-control-label">Nume:</label>
+							<input type="text" class="form-control" name="reg_lastname" id="reg-lastname" placeholder="Nume" required>
+						</div>
+						<div class="form-group">
+							<label for="reg-firstname" class="form-control-label">Prenume:</label>
+							<input type="text" class="form-control" name="reg_firstname" id="reg-firstname" placeholder="Prenume" required>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary" type="submit" name="add_user">Înregistrează</button>
+						<button class="btn btn-secondary" data-dismiss="modal">Închide</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 	<main role="main">
 		<div class="container pt-4">
+			<?php
+				if (isset($_SESSION['allergyhelp_admin_add_user_success']))
+				{
+					echo '
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						Utilizatorul a fost înregistrat cu succes!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_user_success'] = false;
+					unset($_SESSION['allergyhelp_admin_add_user_success']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_add_user_fail']))
+				{
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						Există deja un utilizator cu acest email!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_user_fail'] = false;
+					unset($_SESSION['allergyhelp_admin_add_user_fail']);
+				}
+			?>
+			<a class="btn add-user btn-sm btn-block" data-toggle="modal" data-target="#modal_add_user">Înregistrează utilizator</a>
 			<table id="users-table" class="table table-bordered table-hover table-sm">
 				<thead>
 					<tr>

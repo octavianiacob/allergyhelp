@@ -209,6 +209,25 @@ footer a:hover {
 	height: auto;
 	float: none;
 }
+#users-table {
+	background: #fff;
+}
 #users-table td, #users-table th {
 	padding: .5rem;
+}
+.add-user {
+	border: none;
+	background: var(--ah-green);
+	color: #fff !important;
+	cursor: pointer;
+	font-weight: 700;
+	border-radius: 0;
+}
+.btn-primary, .btn-primary:hover, .btn-primary:active {
+	background-color: var(--ah-green);
+	border-color: var(--ah-green);
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+	outline:none;
+	box-shadow:none;
 }
