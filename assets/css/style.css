@@ -19,13 +19,14 @@ body {
 }
 
 .nav-link {
-  font-size: 1.1em !important;
+  font-size: 1.1em;
 }
 
 /* --- Carousel --> */
 
-.carousel-inner {
-  height: 560px;
+.c-wrapper {
+  width: 90%;
+  margin: auto;
 }
 
 .carousel-inner img {
@@ -35,7 +36,7 @@ body {
 
 .carousel-caption {
   position: absolute;
-  top: 50%;
+  top: 65%;
   transform: translateY(-50%);
 }
 
@@ -43,14 +44,13 @@ body {
   font-size: 500%;
   text-transform: uppercase;
   text-shadow: 1px 1px 15px #000;
-  padding-bottom: 30px;
 }
 
 .carousel-caption h3 {
   font-size: 200%;
   font-weight: 500;
   text-shadow: 1px 1px 10px #000;
-  padding-bottom: 40px;
+  padding-bottom: 1rem;
 }
 
 .btn-primary {
@@ -73,6 +73,16 @@ body {
   background-color: #444;
 }
 */
+
+/*--- Red&Green Carousel Indicators -->
+
+.carousel-indicators li {
+  background-color: red;
+}
+
+.carousel-indicators .active {
+  background-color: greenyellow;
+}*/
 
 /* --- Jumbotron --> */
 
@@ -163,15 +173,11 @@ h5 {
     font-size: 4em;
     padding: 2rem;
   }
-  @media (max-width: 768px) {
-    .carousel-caption {
-      top: 45%;
-    }
-  }
-  @media (max-width: 768px) {
-    .arrows {
-      top: 45%;
-    }
+}
+
+@media (max-width: 768px) {
+  .carousel-caption {
+    top: 45%;
   }
   .carousel-caption h1 {
     font-size: 350%;
