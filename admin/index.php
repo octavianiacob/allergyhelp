@@ -26,20 +26,30 @@
 		$register = $admin->add_user($id, $reg_email, $reg_password, $reg_lastname, $reg_firstname);
 		if ($register) $_SESSION['allergyhelp_admin_add_user_success'] = true;
 		else $_SESSION['allergyhelp_admin_add_user_fail'] = true;
-		header("index.php?p=users");
 	}
 	if (isset($_GET['makeadmin']))
 	{
-		$makeadmin = $admin->set_admin($id, $_GET['makeadmin']);
+		$userid = $_GET['makeadmin'];
+		$makeadmin = $admin->set_admin($id, $userid);
 		if ($makeadmin) $_SESSION['allergyhelp_admin_add_admin_success'] = true;
 		else $_SESSION['allergyhelp_admin_add_admin_fail'] = true;
-		header("index.php?p=users");
+		header("location:index.php?p=users");
 	}
-	if (!$admin->get_admin_session())
+	if (isset($_GET['revokeadmin']))
 	{
+		$userid = $_GET['revokeadmin'];
+		$revokeadmin = $admin->revoke_admin($id, $userid);
+		if ($revokeadmin) $_SESSION['allergyhelp_admin_remove_admin_success'] = true;
+		else $_SESSION['allergyhelp_admin_remove_admin_fail'] = true;
+		header("location:index.php?p=users");
+	}
+	if ($admin->get_admin_session())
+	{
+		if(!$admin->isadmin($id))
+		{
 ?>
 <!DOCTYPE html>
-<html lang="ro" class="login">
+<html lang="ro">
 
 <head>
 	<meta charset="utf-8">
@@ -53,42 +63,41 @@
 	<link href="../assets/css/admin.css" rel="stylesheet">
 </head>
 
-<body>
-	<div class="cover">
-		<form action="" method="post" name="register" id="login-form">
-			<a href="../"><img class="brand" src="../assets/img/logo-green.png" /></a>
-			<?php
-				if (isset($_SESSION['allergyhelp_admin_login_fail']))
-				{
-					echo '<p class="wrong">Date de logare incorecte!</p>';
-					$_SESSION['allergyhelp_admin_login_fail'] = false;
-					unset($_SESSION['allergyhelp_admin_login_fail']);
-				}
-				if (isset($_SESSION['allergyhelp_admin_login_not_admin']))
-				{
-					echo '<p class="wrong">Nu sunteți administrator!</p>';
-					$_SESSION['allergyhelp_admin_login_not_admin'] = false;
-					unset($_SESSION['allergyhelp_admin_login_not_admin']);
-				}
-			?>
-			<input type="text" name="email" id="log-email" placeholder="Adresă de email" required="" autocomplete="off" autofocus="">
-			<input type="password" name="password" id="log-password" placeholder="Parolă" required="">
-			<button type="submit" name="submitlog">Logare</button>
-		</form>
-	</div>
+<body class="bg-light">
 	
-	<script src="../assets/js/jquery/jquery.min.js"></script>
-	<script src="../assets/js/bootstrap/bootstrap.min.js"></script>
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="container">
+    		<a class="navbar-brand" href="."><img src="../assets/img/logo-green.png" /></a>
+    		<ul class="navbar-nav">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img class="avatar" src="<?php echo $user->get_avatar($id); ?>"><?php echo $user->get_firstname($id); ?>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="?q=logout">Delogare</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<p class="no-admin text-center">Drepturile de administrator ți-au fost revocate. <a href="index.php?q=logout">Click aici pentru delogare.</a></p>
 
+	<footer>
+		Realizat pentru <strong><a href="https://fiicode.asii.ro/" target="_blank" rel="noopener">FIICode 2018</a></strong> de către echipa <strong>Discode</strong>.
+	</footer>
+	<script src="../assets/js/jquery/jquery.min.js"></script>
+	<script src="../assets/js/popper/popper.min.js"></script>
+	<script src="../assets/js/bootstrap/bootstrap.min.js"></script>
+	<script src="../assets/js/script.js"></script>
+	
 </body>
 
 </html>
 <?php
-	}
-	else 
-	{
-		if(isset($_GET['p']))
-			$p = $_GET['p'];
+		}
+		else
+		{
+			if(isset($_GET['p'])) $p = $_GET['p'];
 ?>
 <!DOCTYPE html>
 <html lang="ro">
@@ -298,6 +307,32 @@
 					$_SESSION['allergyhelp_admin_add_admin_fail'] = false;
 					unset($_SESSION['allergyhelp_admin_add_admin_fail']);
 				}
+				if (isset($_SESSION['allergyhelp_admin_remove_admin_success']))
+				{
+					echo '
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						Ai revocat drepturile de administrator ale utilizatorului cu succes!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_remove_admin_success'] = false;
+					unset($_SESSION['allergyhelp_admin_remove_admin_success']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_remove_admin_fail']))
+				{
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						A apărut o problemă la revocarea drepturilor de administrator!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_remove_admin_fail'] = false;
+					unset($_SESSION['allergyhelp_admin_remove_admin_fail']);
+				}
 			?>
 			<h1>Administratori</h1>
 			<hr class="mt-0 mb-3" />
@@ -336,6 +371,60 @@
 </body>
 
 </html>
+
+<?php
+		}
+	}
+	else 
+	{
+		
+?>
+<!DOCTYPE html>
+<html lang="ro" class="login">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="theme-color" content="#cf5454">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Discode">
+	<title>AllergyHelp</title>
+
+	<link rel="icon" type="image/x-icon" href="../assets/img/icon.png" />
+	<link href="../assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/css/admin.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="cover">
+		<form action="" method="post" name="register" id="login-form">
+			<a href="../"><img class="brand" src="../assets/img/logo-green.png" /></a>
+			<?php
+				if (isset($_SESSION['allergyhelp_admin_login_fail']))
+				{
+					echo '<p class="wrong">Date de logare incorecte!</p>';
+					$_SESSION['allergyhelp_admin_login_fail'] = false;
+					unset($_SESSION['allergyhelp_admin_login_fail']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_login_not_admin']))
+				{
+					echo '<p class="wrong">Nu sunteți administrator!</p>';
+					$_SESSION['allergyhelp_admin_login_not_admin'] = false;
+					unset($_SESSION['allergyhelp_admin_login_not_admin']);
+				}
+			?>
+			<input type="text" name="email" id="log-email" placeholder="Adresă de email" required="" autocomplete="off" autofocus="">
+			<input type="password" name="password" id="log-password" placeholder="Parolă" required="">
+			<button type="submit" name="submitlog">Logare</button>
+		</form>
+	</div>
+	
+	<script src="../assets/js/jquery/jquery.min.js"></script>
+	<script src="../assets/js/bootstrap/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+
 <?php
 	}
 ?>

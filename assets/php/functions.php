@@ -225,7 +225,7 @@
 					<td>'.$row["email"].'</td>
 					<td>'.$row["regtime"].'</td>
 					<td>';
-				if($row["admin"]) echo '';
+				if($row["admin"]) echo '<a class="text-danger" href="?revokeadmin='.$row["id"].'" />Înlătură drepturile de admin.</a>';
 				else echo '<a href="?makeadmin='.$row["id"].'" />Fă-l administrator</a>';
 				echo '
 					</td>
@@ -241,7 +241,7 @@
 				echo '
 				<div class="admin">
 					<div class="card box-shadow">
-						<div class="card-body p-4 text-center">
+						<div class="card-body p-3 text-center">
 							<img class="avatar admin-avatar mb-3" src="'.$this->get_avatar($row["id"]).'" />
 							<span class="admin-name">'.$row["firstname"].' '.$row["lastname"].'</span>
 							<small class="text-muted">'.$row["email"].'</small>
@@ -257,6 +257,14 @@
 			$result = mysqli_query($this->db, $sql);
 
 			if($result) $this->add_action($adminid, "a adăugat un administrator");
+			return $result;
+		}
+		public function revoke_admin($adminid, $userid)
+		{
+			$sql = "UPDATE users SET admin = 0 WHERE id = '$userid'";
+			$result = mysqli_query($this->db, $sql);
+
+			if($result) $this->add_action($adminid, "a șters un administrator");
 			return $result;
 		}
 		public function isadmin($id)
