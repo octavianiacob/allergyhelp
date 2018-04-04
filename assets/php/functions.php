@@ -215,7 +215,7 @@
 		}
 		public function get_users()
 		{
-			$sql = "SELECT * FROM users ORDER BY lastname ASC, firstname ASC";
+			$sql = "SELECT * FROM users ORDER BY regtime DESC";
 			$result = mysqli_query($this->db, $sql);
 			while($row = mysqli_fetch_assoc($result))
 			{
@@ -224,18 +224,23 @@
 					<td>'.$row["lastname"].' '.$row["firstname"].'</td>
 					<td>'.$row["email"].'</td>
 					<td>'.$row["regtime"].'</td>
+					<td>';
+				if($row["admin"]) echo '';
+				else echo '<a href="?makeadmin='.$row["id"].'" />Fă-l administrator</a>';
+				echo '
+					</td>
 				</tr>';
 			}
 		}
 		public function get_admins()
 		{
-			$sql = "SELECT * FROM users WHERE admin = 1 ORDER BY lastname ASC, firstname ASC";
+			$sql = "SELECT * FROM users WHERE admin = 1 ORDER BY regtime ASC";
 			$result = mysqli_query($this->db, $sql);
 			while($row = mysqli_fetch_assoc($result))
 			{
 				echo '
-				<div class="col-md-4">
-					<div class="card box-shadow admin">
+				<div class="admin">
+					<div class="card box-shadow">
 						<div class="card-body p-4 text-center">
 							<img class="avatar admin-avatar mb-3" src="'.$this->get_avatar($row["id"]).'" />
 							<span class="admin-name">'.$row["firstname"].' '.$row["lastname"].'</span>
@@ -246,15 +251,27 @@
 				';
 			}
 		}
+		public function set_admin($adminid, $userid)
+		{
+			$sql = "UPDATE users SET admin = 1 WHERE id = '$userid'";
+			$result = mysqli_query($this->db, $sql);
+
+			if($result) $this->add_action($adminid, "a adăugat un administrator");
+			return $result;
+		}
+		public function isadmin($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT admin FROM users WHERE id = '$id'"));
+		}
 		public function count_users()
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM users"));
 		}
-		public function get_session()
+		public function get_admin_session()
 		{
 			return isset($_SESSION['allergyhelp_admin_login']);
 		}
-		public function logout() 
+		public function admin_logout() 
 		{
 			$_SESSION['allergyhelp_admin_login'] = FALSE;
 			session_destroy();

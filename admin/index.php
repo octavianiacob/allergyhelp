@@ -9,7 +9,7 @@
 
 	if (isset($_GET['q']))
 	{
-		$admin->logout();
+		$admin->admin_logout();
 		header("location:index.php");
 	}
 	if (isset($_REQUEST['submitlog'])) 
@@ -24,14 +24,18 @@
 	{
 		extract($_REQUEST);
 		$register = $admin->add_user($id, $reg_email, $reg_password, $reg_lastname, $reg_firstname);
-		if ($register)
-		{
-			$_SESSION['allergyhelp_admin_add_user_success'] = true;
-		}
+		if ($register) $_SESSION['allergyhelp_admin_add_user_success'] = true;
 		else $_SESSION['allergyhelp_admin_add_user_fail'] = true;
 		header("index.php?p=users");
 	}
-	if (!$admin->get_session())
+	if (isset($_GET['makeadmin']))
+	{
+		$makeadmin = $admin->set_admin($id, $_GET['makeadmin']);
+		if ($makeadmin) $_SESSION['allergyhelp_admin_add_admin_success'] = true;
+		else $_SESSION['allergyhelp_admin_add_admin_fail'] = true;
+		header("index.php?p=users");
+	}
+	if (!$admin->get_admin_session())
 	{
 ?>
 <!DOCTYPE html>
@@ -120,11 +124,10 @@
 		<div class="navbar-links">
 			<div class="container d-flex flex-column flex-md-row justify-content-between">
 				<a class="py-2 d-none d-md-inline-block" href="#">Setări site</a>
-				<a class="py-2 d-none d-md-inline-block" href="?p=users">Utilizatori</a>
+				<a class="py-2 d-none d-md-inline-block<?php if ((isset($p) ? $p : null) == "users") echo ' active'; ?>" href="?p=users">Utilizatori</a>
 				<a class="py-2 d-none d-md-inline-block" href="#">Alergii</a>
 				<a class="py-2 d-none d-md-inline-block" href="#">Tratamente</a>
 				<a class="py-2 d-none d-md-inline-block" href="#">Pagini</a>
-				<a class="py-2 d-none d-md-inline-block" href="?p=admins">Administratori</a>
 			</div>
 		</div>
 	</nav>
@@ -269,7 +272,40 @@
 					$_SESSION['allergyhelp_admin_add_user_fail'] = false;
 					unset($_SESSION['allergyhelp_admin_add_user_fail']);
 				}
+				if (isset($_SESSION['allergyhelp_admin_add_admin_success']))
+				{
+					echo '
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						Ai adăugat un administrator cu succes!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_admin_success'] = false;
+					unset($_SESSION['allergyhelp_admin_add_admin_success']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_add_admin_fail']))
+				{
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						A apărut o problemă la adăugarea administratorului!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_admin_fail'] = false;
+					unset($_SESSION['allergyhelp_admin_add_admin_fail']);
+				}
 			?>
+			<h1>Administratori</h1>
+			<hr class="mt-0 mb-3" />
+			<div class="row mb-4">
+				<?php $admin->get_admins(); ?>
+			</div>
+			<h1>Utilizatori</h1>
+			<hr class="mt-0 mb-3" />
 			<a class="btn add-user btn-sm btn-block" data-toggle="modal" data-target="#modal_add_user">Înregistrează utilizator</a>
 			<table id="users-table" class="table table-bordered table-hover table-sm">
 				<thead>
@@ -277,24 +313,13 @@
 						<th>Nume</th>
 						<th>Email</th>
 						<th>Data înregistrării</th>
+						<th>Acțiuni</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php $admin->get_users(); ?>
 				</tbody>
 			</table>
-		</div>
-	</main>
-	<?php
-		}
-		else if($p === "admins")
-		{
-	?>
-	<main role="main">
-		<div class="container pt-4">
-			<div class="row">
-				<?php $admin->get_admins(); ?>
-			</div>
 		</div>
 	</main>
 	<?php

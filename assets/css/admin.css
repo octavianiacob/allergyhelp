@@ -196,12 +196,21 @@ footer a:hover {
 	color: inherit;
 }
 .admin {
-	line-height: 1.2;
+	position: relative;
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	line-height: 1;
+    flex: 0 0 20%;
+    max-width: 20%;
 }
 .admin .admin-name {
 	font-weight: 700;
 	display: block;
-	font-size: 1.5rem;
+	font-size: 1rem;
+}
+.admin small {
+	font-size: 70%;
 }
 .admin .admin-avatar {
 	margin-top: 0;
@@ -230,4 +239,12 @@ footer a:hover {
 .btn:focus, .btn:active:focus, .btn.active:focus {
 	outline:none;
 	box-shadow:none;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+}
+#users-table a {
+	color: var(--ah-green);
+	font-weight: 700;
+	font-size: 80%;
 }
