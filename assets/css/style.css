@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 @import url('https://fonts.google.com/?selection.family=Roboto:400,500,700,900');
-
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   font-family: 'Roboto', 'Poppins', sans-serif;
   color: #222;
 }
 
-
 /* --- Navbar --> */
+
 .navbar {
-  padding .8rem;
+  padding: .8rem;
 }
 
 .navbar-nav li {
@@ -19,13 +19,14 @@ html, body {
 }
 
 .nav-link {
-  font-size: 1.1em !important;
+  font-size: 1.1em;
 }
 
 /* --- Carousel --> */
 
-.carousel-inner{
-height: 560px;
+.c-wrapper {
+  width: 90%;
+  margin: auto;
 }
 
 .carousel-inner img {
@@ -35,23 +36,21 @@ height: 560px;
 
 .carousel-caption {
   position: absolute;
-  top: 50%;
-  transform:  translateY(-50%);
+  top: 65%;
+  transform: translateY(-50%);
 }
 
 .carousel-caption h1 {
   font-size: 500%;
   text-transform: uppercase;
-  text-shadow: 1px 1px 15px #000 ;
-  padding-bottom: 30px;
-
+  text-shadow: 1px 1px 15px #000;
 }
 
 .carousel-caption h3 {
-  font-size:200%;
+  font-size: 200%;
   font-weight: 500;
-  text-shadow: 1px 1px 10px #000 ;
-  padding-bottom: 40px;
+  text-shadow: 1px 1px 10px #000;
+  padding-bottom: 1rem;
 }
 
 .btn-primary {
@@ -59,16 +58,12 @@ height: 560px;
   border: 1px solid black;
 }
 
-.btn-primary: hover {
-  background-color: green;
-}
- a{
-  text-decoration: none !important;
+.carousel-caption a {
+  text-decoration: none;
   color: inherit;
 }
 
-
-/* --- Carousel Indicators --> 
+/* --- Black Carousel Indicators -->
 .carousel-indicators li {
   background-color: #999;
   background-color: rgba(70,70,70,.25);
@@ -79,15 +74,15 @@ height: 560px;
 }
 */
 
+/*--- Red&Green Carousel Indicators -->
 
-/* ---About page--- */
-.container-fluid{
-  height: 560px;
+.carousel-indicators li {
+  background-color: red;
 }
-.container-fluid img{
-  height: 100%;
-  width: 100%;
-}
+
+.carousel-indicators .active {
+  background-color: greenyellow;
+}*/
 
 /* --- Jumbotron --> */
 
@@ -113,7 +108,9 @@ height: 560px;
   margin-bottom: 1rem;
 }
 
-.fa-allergies, .fa-user-md, .fa-heart {
+.fa-allergies,
+.fa-user-md,
+.fa-heart {
   color: #5fcf80;
   font-size: 8em;
   padding-bottom: 2rem;
@@ -147,16 +144,17 @@ height: 560px;
 .fa-twitter:hover,
 .fa-google-plus-g:hover,
 .fa-youtube:hover {
-  color:#5fcf80;
+  color: #5fcf80;
 }
 
 /*---Footer -->*/
 
 footer {
-  background-color: #485859; !important;
+  background-color: #485859;
 }
 
-footer p, h5 {
+footer p,
+h5 {
   color: white;
 }
 
@@ -168,71 +166,60 @@ footer p, h5 {
   color: #5fcf80;
 }
 
-
 /*---Media Queries -->*/
+
 @media (max-width: 992px) {
   .social a {
     font-size: 4em;
     padding: 2rem;
   }
-  }
+}
+
 @media (max-width: 768px) {
   .carousel-caption {
     top: 45%;
   }
-
   .carousel-caption h1 {
     font-size: 350%;
-
   }
-
   .carousel-caption h3 {
-    font-size:140%;
+    font-size: 140%;
     font-weight: 400;
     padding-bottom: .2rem;
   }
-
   .carousel-caption .btn {
     font-size: 95%;
     padding: 8px 14px;
   }
-
   .display-4 {
     font-size: 200%;
   }
-
   .social a {
     font-size: 2.5em;
     padding: 1.2rem;
   }
 }
+
 @media (max-width: 576px) {
   .carousel-caption {
     top: 40%;
   }
-
   .carousel-caption h1 {
     font-size: 250%;
-
   }
-
   .carousel-caption h3 {
-    font-size:110%;
+    font-size: 110%;
   }
-
   .carousel-caption .btn {
     font-size: 90%;
     padding: 4px 8px;
   }
-
   .carousel-indicators {
     display: none;
   }
-
   .display-4 {
     font-size: 160%;
   }
-
   .social a {
     font-size: 2em;
     padding: .7rem;
@@ -240,6 +227,7 @@ footer p, h5 {
 }
 
 /*---Firefox Bug Fix -->*/
+
 .carousel-item {
   transition: -webkit-transform 0.5s ease;
   transition: transform 0.5s ease;
@@ -247,13 +235,16 @@ footer p, h5 {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
 }
+
 /*--- Fixed Background Image -->*/
+
 figure {
   position: relative;
   width: 100%;
   height: 60%;
-  margin: 0!important;
+  margin: 0 !important;
 }
+
 .fixed-wrap {
   clip: rect(0, auto, auto, 0);
   position: absolute;
@@ -262,6 +253,7 @@ figure {
   width: 100%;
   height: 100%;
 }
+
 #fixed {
   background-image: url('img/mac.png');
   position: fixed;
@@ -273,25 +265,24 @@ figure {
   background-size: cover;
   background-position: center center;
   -webkit-transform: translateZ(0);
-          transform: translateZ(0);
+  transform: translateZ(0);
   will-change: transform;
 }
+
 /*--- Bootstrap Padding Fix -->*/
+
 [class*="col-"] {
-    padding: 1rem;
+  padding: 1rem;
 }
 
-#logo{
-  width:10rem;
-  height:3.4rem;
+#logo {
+  width: 10rem;
+  height: 3.4rem;
 }
 
-.footer-allergyhelp img{
+.footer-allergyhelp img {
   width: 10rem;
 }
-
-
-
 
 /*
 Extra small (xs) devices (portrait phones, less than 576px)
@@ -309,11 +300,3 @@ Large (lg) devices (desktops, 992px and up)
 Extra (xl) large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) { ... }
 */
-
-
-
-
-
-
-
-
