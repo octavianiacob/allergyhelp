@@ -6,7 +6,7 @@ html,
 body {
   height: 100%;
   width: 100%;
-  font-family: 'Roboto', 'Poppins', sans-serif;
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
   background: #fff;
   color: #666666;
 }
@@ -34,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
@@ -62,8 +62,10 @@ h6 {
   margin: 0;
 }
 
+/* --- Login Button --> */
+
 .container #nav-menu-container .btn-get-started {
-  font-family: "Poppins", sans-serif;
+  font-family: "Segoe UI", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 16px;
@@ -77,13 +79,11 @@ h6 {
   color: #fff;
 }
 
-.container #nav-menu-container .btn-get-started:hover
-{
+.container #nav-menu-container .btn-get-started:hover {
   background-color: #5fcf80;
-  
 }
-.container #nav-menu-container .btn-get-started:hover:before
-{
+
+.container #nav-menu-container .btn-get-started:hover:before {
   visibility: hidden;
 }
 
@@ -133,7 +133,7 @@ h6 {
   text-decoration: none;
   display: inline-block;
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: "Segoe UI", sans-serif;
   font-weight: 300;
   text-transform: uppercase;
   font-size: 15px;
@@ -198,7 +198,7 @@ h6 {
 }
 
 #carousel .btn-get-started {
-  font-family: "Poppins", sans-serif;
+  font-family: "Segoe UI", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 16px;
@@ -330,7 +330,7 @@ h6 {
 }
 
 #contact .form button[type="submit"] {
-  font-family: "Poppins", sans-serif;
+  font-family: "Segoe UI", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   font-size: 16px;
