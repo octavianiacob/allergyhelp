@@ -2,69 +2,191 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
-    <!-- CSS -->
-    <link href="assets/css/style.css" rel="stylesheet" />
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+  <!-- CSS -->
+  <link href="assets/css/style.css" rel="stylesheet" />
+  <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
 
-    <title>AllergyHelp</title>
+  <title>AllergyHelp</title>
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-        
+  <!-- Navigation -->
+  <header id="header" class="aboutHeader">
+    <div class="container">
 
-            <a class="navbar-brand" href="index.html">
-                <img id="logo" src="assets/img/logo-verde-negru.png">
-            </a>
+      <div id="logo">
+        <a href="./index.html">
+          <img src="./assets/img/logo-mic.png">
+        </a>
+      </div>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li>
+            <a href="index.html">Acasa</a>
+          </li>
+          <li class="menu-active">
+            <a href="#">Despre noi</a>
+          </li>
+          <li>
+            <a href="#">Servicii</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Acasa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Servicii</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Echipa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
+  <!--- 2 Column Section -->
+  <div id="margin" class="container-fluid padding">
+    <div class="row padding">
+      <div class="col-md-12 col-lg-6">
+        <h2>Cine suntem?</h2>
+        <p>Corned beef frankfurter tenderloin beef ribs beef. Cow buffalo alcatra jowl drumstick biltong meatball bresaola shank
+          spare ribs strip steak turkey.</p>
 
+        <p>Meatloaf salami filet mignon brisket pork belly flank kielbasa. Shoulder chuck hamburger, cupim cow bacon kielbasa
+          t-bone chicken shankle.</p>
+        <br>
+      </div>
+      <div class="col-lg-6">
+        <img src="assets/img/placeholder3.png" class="img-fluid">
+      </div>
+    </div>
+    <hr class="my-4">
+  </div>
+
+   <div class="container-fluid padding">
+    <div class="row padding">
+      <div class="col-md-12 col-lg-6">
+        <h2>Ce vrem sa facem?</h2>
+        <p>Corned beef frankfurter tenderloin beef ribs beef. Cow buffalo alcatra jowl drumstick biltong meatball bresaola shank
+          spare ribs strip steak turkey.</p>
+
+        <p>Meatloaf salami filet mignon brisket pork belly flank kielbasa. Shoulder chuck hamburger, cupim cow bacon kielbasa
+          t-bone chicken shankle.</p>
+        <br>
+      </div>
+      <div class="col-lg-6">
+        <img src="assets/img/placeholder3.png" class="img-fluid">
+      </div>
+    </div>
+    <hr class="my-4">
+  </div>
+
+  <!--Team-->
+  <section id="team">
+      <div class="container wow fadeInUp">
+        <div class="section-header">
+          <h3 class="section-title">Echipa</h3>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="./assets/img/avatars/2.jpg" alt=""></div>
+              <h4>Iacob Octavian</h4>
+              <div class="aboutsocial">
+                <a target="_blank" class="icon" href="https://www.facebook.com/octavzz"><i class="ion-social-facebook"></i></a>
+                <a target="_blank" class="icon" href="https://www.instagram.com/octavzz/?hl=en"><i class="ion-social-instagram"></i></a>
+              </div>
             </div>
-    </nav>
+          </div>
 
-<div class="container-fluid">
+          <div class="col-lg-3 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="./assets/img/avatars/4.jpg" alt=""></div>
+              <h4>Negru Parascheva</h4>
+              <div class="aboutsocial">
+                <a target="_blank" class="icon" href="https://www.facebook.com/parascheva.negru"><i class="ion-social-facebook"></i></a>
+                <a target="_blank" class="icon" href="https://www.instagram.com/paraschevanegru/"><i class="ion-social-instagram"></i></a>
+              </div>
+            </div>
+          </div>
 
-            <img src="assets/img/placeholder3.png">
+          <div class="col-lg-3 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="./assets/img/avatars/3.jpg" alt=""></div>
+              <h4>Scurtu Claudiu</h4>
+              <div class="aboutsocial">
+                <a   target="_blank" class="icon" href="https://www.facebook.com/claudiu.scurtu.3"><i class="ion-social-facebook"></i></a>
+                <a target="_blank" class="icon" href="https://www.instagram.com/claudiuscurtu/?hl=en"><i class="ion-social-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="./assets/img/avatars/1.jpg" alt=""></div>
+              <h4>Toderica Alexandru</h4>
+              <div class="aboutsocial">
+                <a target="_blank" class="icon" href="https://www.facebook.com/alexandru.toderica"><i class="ion-social-facebook"></i></a>
+                <a target="_blank" class="icon" href="https://www.instagram.com/toderrrica/"><i class="ion-social-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!--team==>
 
 
+  <!--- Footer -->
+  <footer class="footer-allergyhelp">
+    <div class="container-fluid padding">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <img src="assets/img/logo-alb-alb.png" id="footer-logo">
+        </div>
 
+        <div class="col-md-6">
+          <hr class="light">
+          <p>+40712345678</p>
+          <p>email@email.com</p>
+          <p>Str. Strazilor, Iasi</p>
+          <p>Iasi, Romania</p>
+        </div>
 
+        <div class="col-md-6">
+
+          <hr class="light">
+          <p>+40712345678</p>
+          <p>email@email.com</p>
+          <p>Str. Strazilor, Iasi</p>
+          <p>Iasi, Romania</p>
+        </div>
+
+        <div class="col-12">
+          <hr class="light">
+          <h5>&copy; AllergyHelp 2018</h5>
+        </div>
+      </div>
     </div>
-    </div>    
-    </div>
+  </footer>
 
+  <!-- Scripts -->
 
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <!-- Popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- JavaScript -->
+  <script src="./assets/js/main.js"></script>
+</body>
 
-
-    </body>
-    </html>
+</html>

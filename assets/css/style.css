@@ -545,6 +545,146 @@ figure {
   width: 10rem;
 }
 
+
+
+/*--About--> */
+.title{
+  text-align: left;
+}
+.about{
+  text-align: center;
+}
+.nav-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu ul {
+  position: absolute;
+  display: none;
+  top: 100%;
+  left: 0;
+  z-index: 99;
+}
+
+.nav-menu li {
+  float: left;
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-menu ul {
+  top: 0;
+  left: 100%;
+}
+
+#nav-menu-container {
+  float: right;
+  margin: 0;
+}
+
+.nav-menu a {
+  padding: 0 8px 10px 8px;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 15px;
+  outline: none;
+}
+
+.nav-menu>li {
+  margin-left: 20px;
+}
+
+.nav-menu>li>a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #5fcf80;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.nav-menu a:hover:before,
+.nav-menu li:hover>a:before,
+.nav-menu .menu-active>a:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.aboutHeader{
+  background-color: #484e53;
+}
+
+.section-header .section-title {
+    font-size: 32px;
+    color: #111;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 35px;
+}
+
+#team .member .pic img {
+    max-width: 65%;
+    border-radius: 50%;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+#team .member {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h4{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    margin: 18px 0 20px 0;
+    padding: 0;
+}
+
+
+.aboutsocial a{
+  display: inline-block;
+width: 25px;
+}
+.social a i.ion-social-facebook{
+  width: 24px;
+}
+
+.icon{
+  color: #666666;
+}
+
+#margin{
+  margin-top: 120px;
+}
+
+i.ion-social-facebook{
+  font-size: 35px;
+}
+i.ion-social-instagram{
+  font-size: 35px;
+}
+
+/*about*/
+
 /*
 Extra small (xs) devices (portrait phones, less than 576px)
 No media query since this is the default in Bootstrap
