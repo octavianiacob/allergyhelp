@@ -126,6 +126,43 @@ h6 {
   margin: 0;
 }
 
+.sandwich {
+  font-family: "Segoe UI", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 25px;
+  transition: 0.5s;
+  margin: 5px;
+  background: black;
+  opacity: 1;
+  border: 1px solid black;
+  display: none;
+}
+
+.sandwich:hover {
+  font-family: "Segoe UI", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline;
+  padding: 10px 15px;
+  border-radius: 25px;
+  transition: 0.5s;
+  margin: 5px;
+  background: #5fcf80;
+  opacity: 1;
+  border: 2px solid black;
+}
+
+.fa-bars {
+  color: #fff;
+}
+
 /* --- Navbar Styling --> */
 
 .nav-menu a {
@@ -418,6 +455,9 @@ h6 {
   .social a {
     font-size: 2.5em;
     padding: 1.2rem;
+  }
+  .sandwich {
+    display: inline-block;
   }
 }
 
