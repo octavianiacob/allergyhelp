@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -56,7 +56,7 @@
   <!-- Carousel V2 -->
   <section id="carousel">
     <div class="carousel-container">
-      <h1>AllergyHelp</h1>
+      <h1 class="display-2">AllergyHelp</h1>
       <h2>Protejeaza-te impotriva alergiilor</h2>
       <a href="#" class="btn-get-started">Inscrie-te acum</a>
     </div>
@@ -238,61 +238,110 @@
         <img src="assets/img/placeholder3.png" class="img-fluid">
       </div>
     </div>
-    <hr class="my-4">
   </div>
 
   <!--- Social Media -->
-  <div class="container-fluid padding">
-    <div class="row text-center padding">
-      <div class="col-12">
-        <h2>Connect</h2>
-      </div>
-      <div class="col-12 social padding">
-        <a href="#">
-          <i class="fab fa-facebook"></i>
-        </a>
-        <a href="#">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#">
-          <i class="fab fa-google-plus-g"></i>
-        </a>
-        <a href="#">
-          <i class="fab fa-youtube"></i>
-        </a>
+
+  <section id="contact">
+
+    <div class="social-links">
+      <div class="container-fluid padding">
+        <div class="row text-center padding">
+          <div class="col-12">
+            <h1>Contacteaza-ne</h1>
+          </div>
+          <div class="col-12 social padding">
+            <a href="#">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-google-plus-g"></i>
+            </a>
+            <a href="#">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <!--- Contact Us -->
+    <div class="container">
+      <div class="row justify-content-center">
+
+        <div class="col-lg-3 col-md-4">
+
+          <div class="info">
+            <div>
+              <i class="fas fa-map-marker"></i>
+              <p>Str. Strazilor, Iasi, Romania</p>
+            </div>
+
+            <div>
+              <i class="fas fa-envelope"></i>
+              <p>discodeteam@gmail.com</p>
+            </div>
+
+            <div>
+              <i class="fas fa-phone"></i>
+              <p>+40 723 456 789</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-5 col-md-8">
+          <div class="form">
+            <div id="sendmessage">Va multumim pentru feedback!</div>
+            <div id="errormessage"></div>
+            <form action="" method="post" role="form" class="contactForm">
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Nume" data-rule="minlen:4" data-msg="Va rugam introduceti minim 4 caractere"
+                />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" data-msg="Va rugam introduceti un email valid."
+                />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Titlu" data-rule="minlen:4" data-msg="Va rugam introduceti minim 4 caractere"
+                />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Va rugam sa completati acest camp"
+                  placeholder="Mesaj"></textarea>
+                <div class="validation"></div>
+              </div>
+              <div class="text-center">
+                <button type="submit">Trimite</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!--- Footer -->
-  <footer class="footer-allergyhelp">
-    <div class="container-fluid padding">
-      <div class="row text-center">
-        <div class="col-md-12">
-          <img src="assets/img/logo-alb-alb.png" id="footer-logo">
-        </div>
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container"></div>
+    </div>
 
-        <div class="col-md-6">
-          <hr class="light">
-          <p>+40712345678</p>
-          <p>email@email.com</p>
-          <p>Str. Strazilor, Iasi</p>
-          <p>Iasi, Romania</p>
-        </div>
-
-        <div class="col-md-6">
-
-          <hr class="light">
-          <p>+40712345678</p>
-          <p>email@email.com</p>
-          <p>Str. Strazilor, Iasi</p>
-          <p>Iasi, Romania</p>
-        </div>
-
-        <div class="col-12">
-          <hr class="light">
-          <h5>&copy; AllergyHelp 2018</h5>
-        </div>
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright
+        <strong>AllergyHelp</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Aplicatie realizata de
+        <a href="#">Discode Team</a>
       </div>
     </div>
   </footer>

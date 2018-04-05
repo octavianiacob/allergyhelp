@@ -162,10 +162,6 @@ h6 {
 }
 
 #carousel h1 {
-  margin: 30px 0 10px 0;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 56px;
   text-transform: uppercase;
   color: #fff;
 }
@@ -229,7 +225,7 @@ h6 {
   margin: 1rem;
 }
 
-/* --- Social Media --> */
+/* --- Social Media Links --> */
 
 .social a {
   font-size: 4.5em;
@@ -259,23 +255,96 @@ h6 {
   color: #5fcf80;
 }
 
+/* --- Contact Us --> */
+
+#contact {
+  background: #f7f7f7;
+  padding: 80px 0 40px 0;
+}
+
+#contact .info p {
+  padding: 0 0 10px 30px;
+  margin-bottom: 20px;
+  line-height: 22px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+#contact .form #sendmessage {
+  color: #5fcf80;
+  border: 1px solid #5fcf80;
+  display: none;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+#contact .form #errormessage {
+  color: red;
+  display: none;
+  border: 1px solid red;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+#contact .form #sendmessage.show,
+#contact .form #errormessage.show,
+#contact .form .show {
+  display: block;
+}
+
+#contact .form .validation {
+  color: red;
+  display: none;
+  margin: 0 0 20px;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+#contact .form button[type="submit"] {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 10px;
+  color: #fff;
+  background: #5fcf80;
+  border: 2px solid #fff;
+}
+
+#contact .fa-map-marker,
+.fa-envelope,
+.fa-phone {
+  font-size: 2em;
+  color: #5fcf80;
+}
+
 /*---Footer -->*/
 
-footer {
-  background-color: #485859;
+#footer {
+  background: #485859;
+  padding: 30px 0;
+  color: #fff;
+  font-size: 14px;
 }
 
-footer p,
-h5 {
-  color: white;
+#footer .copyright {
+  text-align: center;
 }
 
-#footer-logo {
-  width: 16rem;
-}
-
-.footer-allergyhelp hr {
-  color: #5fcf80;
+#footer .credits {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #ccc;
 }
 
 /*---Media Queries -->*/
