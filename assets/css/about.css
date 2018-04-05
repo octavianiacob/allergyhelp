@@ -1,0 +1,76 @@
+/*--About--> */
+.title{
+  text-align: left;
+}
+.about{
+  text-align: center;
+}
+.nav-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu ul {
+  position: absolute;
+  display: none;
+  top: 100%;
+  left: 0;
+  z-index: 99;
+}
+
+.nav-menu li {
+  float: left;
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-menu ul {
+  top: 0;
+  left: 100%;
+}
+
+#nav-menu-container {
+  float: right;
+  margin: 0;
+}
+/* --- Navbar Styling --> */
+
+.nav-menu a {
+  padding: 0 8px 10px 8px;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 15px;
+  outline: none;
+}
+
+.nav-menu>li {
+  margin-left: 20px;
+}
+
+.nav-menu>li>a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #5fcf80;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.nav-menu a:hover:before,
+.nav-menu li:hover>a:before,
+.nav-menu .menu-active>a:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
