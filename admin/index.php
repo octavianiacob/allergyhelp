@@ -88,7 +88,7 @@
 	<script src="../assets/js/jquery/jquery.min.js"></script>
 	<script src="../assets/js/popper/popper.min.js"></script>
 	<script src="../assets/js/bootstrap/bootstrap.min.js"></script>
-	<script src="../assets/js/script.js"></script>
+	<script src="../assets/js/admin.js"></script>
 	
 </body>
 
@@ -366,7 +366,7 @@
 	<script src="../assets/js/jquery/jquery.min.js"></script>
 	<script src="../assets/js/popper/popper.min.js"></script>
 	<script src="../assets/js/bootstrap/bootstrap.min.js"></script>
-	<script src="../assets/js/script.js"></script>
+	<script src="../assets/js/admin.js"></script>
 
 </body>
 
