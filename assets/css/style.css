@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 @import url('https://fonts.google.com/?selection.family=Roboto:400,500,700,900');
+.btn-outline-secondary {
+    color: #6c757d;
+    background-color: transparent;
+    background-image: none;
+    border-color: #6c757d;
+}
+.btn-primary {
+    color: #6c757d;
+    background-color: transparent;
+    border-color: #6c757d;
+}
 /* --- General Style --> */
 
 html,
