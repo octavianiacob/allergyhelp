@@ -11,6 +11,11 @@
     background-color: transparent;
     border-color: #6c757d;
 }
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
 /* --- General Style --> */
 
 html,
@@ -36,7 +41,7 @@ a:focus {
 
 p {
   padding: 0;
-  margin: 0 0 30px 0;
+  margin: 1 0 30px 0;
 }
 
 h1,
