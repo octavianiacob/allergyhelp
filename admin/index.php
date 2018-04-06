@@ -53,7 +53,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="theme-color" content="#cf5454">
+	<meta name="theme-color" content="#343a40">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Discode">
 	<title>AllergyHelp</title>
@@ -65,21 +65,6 @@
 
 <body class="bg-light">
 	
-	<nav class="navbar navbar-dark bg-dark">
-		<div class="container">
-    		<a class="navbar-brand" href="."><img src="../assets/img/logo-green.png" /></a>
-    		<ul class="navbar-nav">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<img class="avatar" src="<?php echo $user->get_avatar($id); ?>"><?php echo $user->get_firstname($id); ?>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="?q=logout">Delogare</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</nav>
 	<p class="no-admin text-center">Drepturile de administrator ți-au fost revocate. <a href="index.php?q=logout">Click aici pentru delogare.</a></p>
 
 	<footer>
@@ -104,7 +89,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="theme-color" content="#cf5454">
+	<meta name="theme-color" content="#343a40">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Discode">
 	<title>AllergyHelp</title>
@@ -240,26 +225,34 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<div class="form-group">
-							<label for="reg-email" class="form-control-label">Email:</label>
-							<input type="email" class="form-control" name="reg_email" id="reg-email" placeholder="Adresă de email" required>
+						<div class="form-group row">
+							<label for="reg-email" class="form-control-label col-sm-2 col-form-label">Email:</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" name="reg_email" id="reg-email" placeholder="Adresă de email" required>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="reg-password" class="form-control-label">Parola:</label>
-							<input type="password" class="form-control" name="reg_password" id="reg-password" placeholder="Parolă" pattern=".{6,}" required title="Parola trebuie să aibă minim 6 caractere.">
+						<div class="form-group row">
+							<label for="reg-password" class="form-control-label col-sm-2 col-form-label">Parola:</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" name="reg_password" id="reg-password" placeholder="Parolă" pattern=".{6,}" required title="Parola trebuie să aibă minim 6 caractere.">
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="reg-lastname" class="form-control-label">Nume:</label>
-							<input type="text" class="form-control" name="reg_lastname" id="reg-lastname" placeholder="Nume" required>
+						<div class="form-group row">
+							<label for="reg-lastname" class="form-control-label col-sm-2 col-form-label">Nume:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="reg_lastname" id="reg-lastname" placeholder="Nume" required>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="reg-firstname" class="form-control-label">Prenume:</label>
-							<input type="text" class="form-control" name="reg_firstname" id="reg-firstname" placeholder="Prenume" required>
+						<div class="form-group row">
+							<label for="reg-firstname" class="form-control-label col-sm-2 col-form-label">Prenume:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="reg_firstname" id="reg-firstname" placeholder="Prenume" required>
+							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-primary" type="submit" name="add_user">Înregistrează</button>
-						<button class="btn btn-secondary" data-dismiss="modal">Închide</button>
+						<button class="btn btn-sm btn-primary ml-auto" type="submit" name="add_user">Înregistrează</button>
+						<button class="btn btn-sm btn-secondary mr-auto" data-dismiss="modal">Închide</button>
 					</div>
 				</div>
 			</form>
@@ -399,7 +392,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="theme-color" content="#cf5454">
+	<meta name="theme-color" content="#343a40">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Discode">
 	<title>AllergyHelp</title>

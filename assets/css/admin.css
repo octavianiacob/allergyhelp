@@ -322,6 +322,23 @@ button:focus, button:active {
 .table-responsive table {
 	margin-bottom: 0;
 }
+.modal-header {
+	background: var(--ah-dark);
+	color: white;
+	padding: 5px 15px;
+}
+.modal-header .modal-title {
+	margin: 0 auto;
+}
+.modal-header .close {
+	color: #fff;
+	position: absolute;
+	right: 15px;
+	top: 5px;
+}
+.modal-content {
+	border-radius: 0;
+}
 @media screen and (max-width: 1199px)
 {
 	.admin {
