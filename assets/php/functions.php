@@ -241,8 +241,8 @@
 				echo '
 				<div class="admin">
 					<div class="card box-shadow">
-						<div class="card-body p-3 text-center">
-							<img class="avatar admin-avatar mb-3" src="'.$this->get_avatar($row["id"]).'" />
+						<div class="card-body p-3">
+							<img class="avatar admin-avatar" src="'.$this->get_avatar($row["id"]).'" />
 							<span class="admin-name">'.$row["firstname"].' '.$row["lastname"].'</span>
 							<small class="text-muted">'.$row["email"].'</small>
 						</div>

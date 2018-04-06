@@ -116,27 +116,40 @@
 
 <body class="bg-light">
 	
-	<nav class="navbar navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
-    		<a class="navbar-brand" href="."><img src="../assets/img/logo-green.png" /></a>
-    		<ul class="navbar-nav">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<img class="avatar" src="<?php echo $user->get_avatar($id); ?>"><?php echo $user->get_firstname($id); ?>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="?q=logout">Delogare</a>
-					</div>
-				</li>
-			</ul>
+			<a class="navbar-brand m-auto" href="."><img src="../assets/img/logo-green.png" /></a>
+			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="icon-bar top-bar"></span>
+				<span class="icon-bar middle-bar"></span>
+				<span class="icon-bar bottom-bar"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item d-lg-none"><a class="nav-link" href="#">Setări site</a></li>
+					<li class="nav-item d-lg-none"><a class="nav-link<?php if ((isset($p) ? $p : null) == "users") echo ' active'; ?>" href="?p=users">Utilizatori</a></li>
+					<li class="nav-item d-lg-none"><a class="nav-link" href="#">Alergii</a></li>
+					<li class="nav-item d-lg-none"><a class="nav-link" href="#">Tratamente</a></li>
+					<li class="nav-item d-lg-none"><a class="nav-link" href="#">Pagini</a></li>
+					<div class="separator d-lg-none"></div>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<img class="avatar" src="<?php echo $user->get_avatar($id); ?>"><?php echo $user->get_firstname($id); ?>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="?q=logout">Delogare</a>
+						</div>
+					</li>
+				</ul>
+			</div>
 		</div>
 		<div class="navbar-links">
-			<div class="container d-flex flex-column flex-md-row justify-content-between">
-				<a class="py-2 d-none d-md-inline-block" href="#">Setări site</a>
-				<a class="py-2 d-none d-md-inline-block<?php if ((isset($p) ? $p : null) == "users") echo ' active'; ?>" href="?p=users">Utilizatori</a>
-				<a class="py-2 d-none d-md-inline-block" href="#">Alergii</a>
-				<a class="py-2 d-none d-md-inline-block" href="#">Tratamente</a>
-				<a class="py-2 d-none d-md-inline-block" href="#">Pagini</a>
+			<div class="container d-flex flex-column flex-lg-row justify-content-between">
+				<a class="py-2 d-none d-lg-inline-block" href="#">Setări site</a>
+				<a class="py-2 d-none d-lg-inline-block<?php if ((isset($p) ? $p : null) == "users") echo ' active'; ?>" href="?p=users">Utilizatori</a>
+				<a class="py-2 d-none d-lg-inline-block" href="#">Alergii</a>
+				<a class="py-2 d-none d-lg-inline-block" href="#">Tratamente</a>
+				<a class="py-2 d-none d-lg-inline-block" href="#">Pagini</a>
 			</div>
 		</div>
 	</nav>
@@ -149,7 +162,7 @@
 		<section class="jumbotron text-center">
 			<div class="container">
 				<div class="row">
-					<div class="col-md">
+					<div class="col-sm">
 						<div class="card box-shadow">
 							<div class="card-body">
 								<h1><?php echo $admin->count_users(); ?></h1>
@@ -159,7 +172,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md">
+					<div class="col-sm">
 						<div class="card box-shadow">
 							<div class="card-body">
 								<h1>0</h1>
@@ -169,7 +182,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md">
+					<div class="col-sm">
 						<div class="card box-shadow">
 							<div class="card-body">
 								<h1>0</h1>
@@ -341,20 +354,22 @@
 			</div>
 			<h1>Utilizatori</h1>
 			<hr class="mt-0 mb-3" />
-			<a class="btn add-user btn-sm btn-block" data-toggle="modal" data-target="#modal_add_user">Înregistrează utilizator</a>
-			<table id="users-table" class="table table-bordered table-hover table-sm">
-				<thead>
-					<tr>
-						<th>Nume</th>
-						<th>Email</th>
-						<th>Data înregistrării</th>
-						<th>Acțiuni</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php $admin->get_users(); ?>
-				</tbody>
-			</table>
+			<a class="btn add-user btn-block" data-toggle="modal" data-target="#modal_add_user">Înregistrează utilizator</a>
+			<div class="table-responsive">
+				<table id="users-table" class="table table-bordered table-hover table-sm">
+					<thead>
+						<tr>
+							<th>Nume</th>
+							<th>Email</th>
+							<th>Data înregistrării</th>
+							<th>Acțiuni</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $admin->get_users(); ?>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</main>
 	<?php

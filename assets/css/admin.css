@@ -99,6 +99,59 @@ body {
 	right: 0;
 	left: 0;
 }
+.navbar-toggler {
+	position: absolute;
+	left: 13px;
+	padding: 9px 10px;
+	top: 13px;
+	border-radius: 4px;
+	background: transparent;
+	border: none;
+}
+.navbar-toggler .icon-bar {
+	display: block;
+	width: 22px;
+	height: 2px;
+	background-color: white;
+	border-radius: 1px;
+	-webkit-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+}
+.navbar-toggler .top-bar {
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	-webkit-transform-origin: 10% 10%;
+	-ms-transform-origin: 10% 10%;
+	transform-origin: 10% 10%;
+}
+.navbar-toggler .middle-bar {
+	margin-top: 4px;
+	opacity: 0;
+	margin-bottom: 4px;
+}
+.navbar-toggler .bottom-bar {
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	-webkit-transform-origin: 10% 90%;
+	-ms-transform-origin: 10% 90%;
+	transform-origin: 10% 90%;
+}
+.navbar-toggler.collapsed .top-bar {
+	-webkit-transform: rotate(0);
+	-ms-transform: rotate(0);
+	transform: rotate(0);
+}
+.navbar-toggler.collapsed .middle-bar {
+	opacity: 1;
+}
+.navbar-toggler.collapsed .bottom-bar {
+	-webkit-transform: rotate(0);
+	-ms-transform: rotate(0);
+	transform: rotate(0);
+}
 .navbar-nav .dropdown-menu {
 	position: absolute;
 }
@@ -113,9 +166,12 @@ body {
 }
 .navbar-links {
 	background: var(--ah-green);
-	width: 100vw;
+	width: 100%;
 	margin: .5rem -1rem -.5rem -1rem;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07);
+	position: absolute;
+	margin-top: 0;
+	top: 56px;
 }
 .navbar-links-fixed {
 	position: fixed;
@@ -129,7 +185,10 @@ body {
 .navbar-links a {
 	font-size: 90%;
 	color: white;
-	font-weight: 700;
+	font-weight: 400;
+}
+.navbar-links a.active {
+	font-weight: 700 !important;
 }
 .navbar-links a:hover {
 	text-decoration: none;
@@ -141,6 +200,7 @@ main {
 }
 .navbar-brand {
 	margin: -5px;
+	padding: 0;
 }
 .navbar-brand img {
 	height: 40px;
@@ -203,6 +263,7 @@ footer a:hover {
 	line-height: 1;
     flex: 0 0 20%;
     max-width: 20%;
+    text-align: center;
 }
 .admin .admin-name {
 	font-weight: 700;
@@ -217,12 +278,14 @@ footer a:hover {
 	width: 40%;
 	height: auto;
 	float: none;
+	margin-bottom: 1rem;
 }
 #users-table {
 	background: #fff;
 }
 #users-table td, #users-table th {
 	padding: .5rem;
+	white-space: nowrap;
 }
 .add-user {
 	border: none;
@@ -236,9 +299,9 @@ footer a:hover {
 	background-color: var(--ah-green);
 	border-color: var(--ah-green);
 }
-.btn:focus, .btn:active:focus, .btn.active:focus {
-	outline:none;
-	box-shadow:none;
+button:focus, button:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
@@ -250,4 +313,89 @@ footer a:hover {
 }
 .no-admin {
 	margin-top: 66px;
+}
+.separator {
+	border-top: 1px solid rgba(255, 255, 255, 0.5);
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.table-responsive table {
+	margin-bottom: 0;
+}
+@media screen and (max-width: 1199px)
+{
+	.admin {
+		line-height: .9;
+	}
+	.admin .admin-name {
+		font-size: .8rem;
+	}
+	.admin small {
+		font-size: 60%;
+	}
+}
+@media screen and (max-width: 992px)
+{
+	html {
+		font-size: 75%;
+	}
+	.container {
+		min-width: 100% !important;
+	}
+	.navbar {
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07);
+		position: fixed;
+		z-index: 1030;
+		font-size: 1.2rem;
+	}
+	h1, h2, h3 {
+		font-size: 1.5rem;
+	}
+	main {
+		margin-top: 56px;
+	}
+	.navbar-nav {
+		padding-top: 10px;
+		padding-bottom: 5px;
+	}
+	.nav-link {
+		font-weight: 400 !important;
+	}
+	.navbar-nav .nav-item:last-child .nav-link, .nav-link.active {
+		font-weight: 700 !important;
+	}
+	.navbar-nav .dropdown-menu {
+		position: relative;
+		width: 100%;
+	}
+	.card {
+		margin: .25rem 0;
+	}
+	.admin {
+		flex: unset;
+		max-width: unset;
+		text-align: left;
+		line-height: 1.2;
+	}
+	.admin .admin-avatar {
+		float: left;
+		width: auto;
+		height: 31px;
+		margin-bottom: 0;
+	}
+	.admin .admin-name {
+		font-size: 1.2rem;
+	}
+	.admin small {
+		font-size: 1rem;
+	}
+	.jumbotron {
+		padding: 2rem 1rem;
+		margin-bottom: 2rem;
+	}
+	.last-changes .avatar {
+		width: 27px;
+		height: 27px;
+		margin-right: 10px;
+	}
 }
