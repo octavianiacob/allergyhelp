@@ -120,6 +120,10 @@
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT lastname FROM users WHERE id = '$id'"));
 		}
+		public function get_email($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT email FROM users WHERE id = '$id'"));
+		}
 		public function get_avatar($id)
 		{
 			if(file_exists("../assets/img/avatars/".$id.".jpg")) $avatar = $id;
@@ -212,6 +216,24 @@
 				return $result;
 			}
 			else return false;
+		}
+		public function edit_profile($id, $email, $pass = "", $lastname, $fistname)
+		{
+			if(!empty($pass))
+			{
+				$pass = sha1($pass);
+				$sql = "UPDATE users SET password='$pass' WHERE id = '$id'";
+				$result = mysqli_query($this->db, $sql);
+				if($result) $_SESSION['allergyhelp_admin_change_pass_success'] = true;
+				else $_SESSION['allergyhelp_admin_change_pass_fail'] = true;
+			}
+			$email = mysqli_real_escape_string($this->db, $email);
+			$lastname = mysqli_real_escape_string($this->db, $lastname);
+			$firstname = mysqli_real_escape_string($this->db, $fistname);
+			
+			$sql = "UPDATE users SET email='$email', lastname='$lastname', firstname='$firstname' WHERE id = '$id'";
+			$result = mysqli_query($this->db,$sql);
+			return $result;
 		}
 		public function get_users()
 		{

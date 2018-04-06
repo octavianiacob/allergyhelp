@@ -27,6 +27,13 @@
 		if ($register) $_SESSION['allergyhelp_admin_add_user_success'] = true;
 		else $_SESSION['allergyhelp_admin_add_user_fail'] = true;
 	}
+	if (isset($_REQUEST['editp_user']))
+	{
+		extract($_REQUEST);
+		$edit = $admin->edit_profile($id, $editp_email, $editp_password, $editp_lastname, $editp_firstname);
+		if ($edit) $_SESSION['allergyhelp_admin_editp_user_success'] = true;
+		else $_SESSION['allergyhelp_admin_editp_user_fail'] = true;
+	}
 	if (isset($_GET['makeadmin']))
 	{
 		$userid = $_GET['makeadmin'];
@@ -65,15 +72,10 @@
 
 <body class="bg-light">
 	
-	<p class="no-admin text-center">Drepturile de administrator ți-au fost revocate. <a href="index.php?q=logout">Click aici pentru delogare.</a></p>
-
-	<footer>
-		Realizat pentru <strong><a href="https://fiicode.asii.ro/" target="_blank" rel="noopener">FIICode 2018</a></strong> de către echipa <strong>Discode</strong>.
-	</footer>
-	<script src="../assets/js/jquery/jquery.min.js"></script>
-	<script src="../assets/js/popper/popper.min.js"></script>
-	<script src="../assets/js/bootstrap/bootstrap.min.js"></script>
-	<script src="../assets/js/admin.js"></script>
+	<p class="no-admin text-center">
+		Drepturile de administrator ți-au fost revocate.
+		<br /><a href="index.php?q=logout">Click aici pentru delogare.</a>
+	</p>
 	
 </body>
 
@@ -122,6 +124,7 @@
 							<img class="avatar" src="<?php echo $user->get_avatar($id); ?>"><?php echo $user->get_firstname($id); ?>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item<?php if ((isset($p) ? $p : null) == "account") echo ' active'; ?>" href="?p=account">Setări cont</a>
 							<a class="dropdown-item" href="?q=logout">Delogare</a>
 						</div>
 					</li>
@@ -363,6 +366,105 @@
 					</tbody>
 				</table>
 			</div>
+		</div>
+	</main>
+	<?php
+		}
+		else if($p === "account")
+		{
+	?>
+	<main role="main">
+		<div class="container pt-4">
+			<?php
+				if (isset($_SESSION['allergyhelp_admin_change_pass_success']))
+				{
+					echo '
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						Parola ta a fost schimbată!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_change_pass_success'] = false;
+					unset($_SESSION['allergyhelp_admin_change_pass_success']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_change_pass_fail']))
+				{
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						A apărut o problemă la schimbarea parolei!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_change_pass_fail'] = false;
+					unset($_SESSION['allergyhelp_admin_change_pass_fail']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_editp_user_success']))
+				{
+					echo '
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						Datele tale au fost modificate!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_editp_user_success'] = false;
+					unset($_SESSION['allergyhelp_admin_editp_user_success']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_editp_user_fail']))
+				{
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						Adresa de email specificată există deja!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_editp_user_fail'] = false;
+					unset($_SESSION['allergyhelp_admin_editp_user_fail']);
+				}
+			?>
+			<h1>Setările contului</h1>
+			<hr class="mt-0 mb-3" />
+			<form action="" method="post" name="editp_user">
+				<div class="form-group row">
+					<label for="editp-password" class="form-control-label col-sm-2 col-form-label">Parolă nouă:</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" name="editp_password" id="editp-password" placeholder="Completează doar dacă vrei să-ți schimbi parola" pattern=".{6,}" title="Parola trebuie să aibă minim 6 caractere.">
+					</div>
+				</div>
+				<hr />
+				<div class="form-group row">
+					<label for="editp-email" class="form-control-label col-sm-2 col-form-label">Email:</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" name="editp_email" id="editp-email" placeholder="Adresă de email" value="<?php echo $user->get_email($id); ?>" required>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="editp-lastname" class="form-control-label col-sm-2 col-form-label">Nume:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="editp_lastname" id="editp-lastname" placeholder="Nume" value="<?php echo $user->get_lastname($id); ?>" required>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="editp-firstname" class="form-control-label col-sm-2 col-form-label">Prenume:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="editp_firstname" id="editp-firstname" placeholder="Prenume" value="<?php echo $user->get_firstname($id); ?>" required>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-10">
+						<button class="btn btn-sm btn-primary ml-auto" type="submit" name="editp_user">Salvează modificările</button>
+						<button class="btn btn-sm btn-danger mr-auto" type="reset">Resetează câmpurile</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</main>
 	<?php
