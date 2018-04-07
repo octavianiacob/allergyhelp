@@ -61,6 +61,11 @@ h6 {
 
 /* --- Navbar --> */
 
+.container nav a.navbar-brand{
+  position: relative;
+  bottom: 15px;
+}
+
 #header {
   padding: 30px 0;
   height: 92px;
