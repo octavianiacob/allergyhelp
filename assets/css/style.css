@@ -1,5 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 @import url('https://fonts.google.com/?selection.family=Roboto:400,500,700,900');
+
+.btn-outline-secondary {
+    color: #6c757d;
+    background-color: transparent;
+    background-image: none;
+    border-color: #6c757d;
+}
+.btn-primary {
+    color: #6c757d;
+    background-color: transparent;
+    border-color: #6c757d;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
 /* --- General Style --> */
 
 html,
@@ -25,7 +44,7 @@ a:focus {
 
 p {
   padding: 0;
-  margin: 0 0 30px 0;
+  margin: 1 0 30px 0;
 }
 
 h1,
@@ -42,6 +61,11 @@ h6 {
 
 /* --- Navbar --> */
 
+.container nav a.navbar-brand{
+  position: relative;
+  bottom: 15px;
+}
+
 #header {
   padding: 30px 0;
   height: 92px;
@@ -53,18 +77,19 @@ h6 {
   z-index: 997;
 }
 
-#header #logo {
+#header .navbar-brand {
   float: left;
+ 
 }
 
-#header #logo img {
+#header .navbar-brand img {
   padding: 0;
-  margin: 0;
+  margin: 0px;
 }
 
 /* --- Login Button --> */
 
-.container #nav-menu-container .btn-get-started {
+nav #navbarSupportedContent ul li a#login.nav-link {
   font-family: "Segoe UI", sans-serif;
   text-transform: uppercase;
   font-weight: 500;
@@ -79,11 +104,11 @@ h6 {
   color: #fff;
 }
 
-.container #nav-menu-container .btn-get-started:hover {
+nav #navbarSupportedContent ul li a#login.nav-link:hover {
   background-color: #5fcf80;
 }
 
-.container #nav-menu-container .btn-get-started:hover:before {
+nav #navbarSupportedContent ul li a#login.nav-link:before {
   visibility: hidden;
 }
 
@@ -110,10 +135,11 @@ h6 {
   z-index: 99;
 }
 
-.nav-menu li {
+.container nav #navbarSupportedContent ul li {
   float: left;
   position: relative;
   white-space: nowrap;
+  
 }
 
 .nav-menu ul {
@@ -121,9 +147,10 @@ h6 {
   left: 100%;
 }
 
-#nav-menu-container {
+ul.nav-menu {
   float: right;
-  margin: 0;
+  margin: 0px 432px; 
+
 }
 
 .sandwich {
@@ -165,8 +192,8 @@ h6 {
 
 /* --- Navbar Styling --> */
 
-.nav-menu a {
-  padding: 0 8px 10px 8px;
+nav #navbarSupportedContent ul li a.nav-link {
+  padding: 0 12px 10px 8px;
   text-decoration: none;
   display: inline-block;
   color: #fff;
@@ -548,6 +575,15 @@ figure {
 
 
 /*--About--> */
+ 
+#header-about{
+    background: rgba(52, 59, 64, 0.9);
+  padding: 20px 0;
+  height: 72px;
+  transition: all 0.5s;
+
+}
+
 .title{
   text-align: left;
 }
@@ -589,7 +625,7 @@ figure {
   text-decoration: none;
   display: inline-block;
   color: #fff;
-  font-family: "Poppins", sans-serif;
+  font-family: "Segoe UI", sans-serif;
   font-weight: 300;
   text-transform: uppercase;
   font-size: 15px;

@@ -25,36 +25,39 @@
   <!-- Navigation -->
   <header id="header" class="aboutHeader">
     <div class="container">
-
-      <div id="logo">
-        <a href="./index.html">
+  
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="./index.html">
           <img src="./assets/img/logo-mic.png">
         </a>
-      </div>
-
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li>
-            <a href="index.html">Acasă</a>
-          </li>
-          <li class="menu-active">
-            <a href="#">Despre noi</a>
-          </li>
-          <li>
-            <a href="#">Servicii</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
-          </li>
-           <li>
-            <a href="#" class="btn-get-started">Login</a>
-          </li>
-        </ul>
+        <button class="btn-primary navbar-toggle float-right sandwich" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto nav-menu">
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html">Acasă</a>
+            </li>
+            <li>
+              <a class="nav-link" href="./about.html">Despre noi</a>
+            </li>
+            <li>
+              <a class="nav-link" href="#">Servicii</a>
+            </li>
+            <li>
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+           
+            <li>
+              <a class="nav-link" href="#" class="btn-get-started" id="login">Login</a>
+            </li>
+          </ul>
+  
+        </div>
       </nav>
-      <button class="btn-primary navbar-toggle float-right sandwich" data-toggle="collapse" data-target="#nav-menu-container">
-        <i class="fas fa-bars"></i>
-      </button>
-      </nav>
+  
     </div>
   </header>
 
