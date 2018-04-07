@@ -34,6 +34,17 @@
 		if ($edit) $_SESSION['allergyhelp_admin_editp_user_success'] = true;
 		else $_SESSION['allergyhelp_admin_editp_user_fail'] = true;
 	}
+	if(isset($_POST['image-data']))
+	{
+		$img = $_POST['image-data'];
+		$img = substr($img, 1+strrpos($img, ','));
+		file_put_contents('../assets/img/avatars/'.$id.'.png', base64_decode($img));
+		$img = imagecreatefrompng("../assets/img/avatars/".$id.".png");
+		unlink("../assets/img/avatars/".$id.".png");
+		$success = imagejpeg($img, "../assets/img/avatars/".$id.".jpg",100);
+		if($success) $_SESSION['allergyhelp_admin_add_avatar_success'] = true;
+		else $_SESSION['allergyhelp_admin_add_avatar_fail'] = true;
+	}
 	if (isset($_GET['makeadmin']))
 	{
 		$userid = $_GET['makeadmin'];
@@ -98,7 +109,14 @@
 
 	<link rel="icon" type="image/x-icon" href="../assets/img/icon.png" />
 	<link href="../assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/css/fontawesome/fontawesome.min.css" rel="stylesheet">
 	<link href="../assets/css/admin.css" rel="stylesheet">
+
+	<script src="../assets/js/jquery/jquery.min.js"></script>
+	<script src="../assets/js/popper/popper.min.js"></script>
+	<script src="../assets/js/bootstrap/bootstrap.min.js"></script>
+	<script src="../assets/js/cropit/cropit.js"></script>
+	<script src="../assets/js/admin.js"></script>
 </head>
 
 <body class="bg-light">
@@ -373,6 +391,52 @@
 		else if($p === "account")
 		{
 	?>
+	<form action="" method="post" name="photo" id="photo">
+		<div class="modal fade" id="modal_edit_avatar">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Schimbă fotografia de profil</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body text-center">
+						<small class="text-muted">Fotografia trebuie să aibă dimensiunile de minim 300px înălțime/lățime.</small>
+						<hr />
+						<div class="image-editor">
+							<label for="load-photo">
+								<a class="btn btn-sm btn-info"><i class="fa fa-fw fa-upload"></i> Încarcă o fotografie</a>
+							</label>
+							<input type="file" class="cropit-image-input" id="load-photo" required>
+							<div class="image-editor-controls">
+								<hr />
+								<div class="cropit-preview"></div>
+								<hr />
+								<div class="controls">
+									<div class="btn-group">
+									<button type="button" class="btn btn-sm btn-default disabled" style="cursor: default;">Rotește fotografia</button>
+									<a class="rotate-ccw btn btn-sm btn-primary"><i class="fa fa-undo"></i></a>
+									<a class="rotate-cw btn btn-sm btn-primary"><i class="fa fa-redo"></i></a>
+									</div>
+									<hr />
+									Scalează fotografia:
+									<br />
+									<input type="range" class="cropit-image-zoom-input" min="0" max="100">
+									<input type="hidden" name="image-data" class="hidden-image-data" />
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button class="export btn btn-sm btn-primary ml-auto" type="submit" name="photo">Schimbă</button>
+						<button class="btn btn-sm btn-default mr-auto" data-dismiss="modal">Închide</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 	<main role="main">
 		<div class="container pt-4">
 			<?php
@@ -428,10 +492,43 @@
 					$_SESSION['allergyhelp_admin_editp_user_fail'] = false;
 					unset($_SESSION['allergyhelp_admin_editp_user_fail']);
 				}
+				if (isset($_SESSION['allergyhelp_admin_add_avatar_success']))
+				{
+					echo '
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						Fotografia de profil a fost schimbată!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_avatar_success'] = false;
+					unset($_SESSION['allergyhelp_admin_add_avatar_success']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_add_avatar_fail']))
+				{
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						A apărut o eroare la schimbarea fotografiei de profil. Încearcă din nou mai târziu.
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_avatar_fail'] = false;
+					unset($_SESSION['allergyhelp_admin_add_avatar_fail']);
+				}
 			?>
 			<h1>Setările contului</h1>
 			<hr class="mt-0 mb-3" />
 			<form action="" method="post" name="editp_user">
+				<div class="form-group row">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-10">
+						<a class="btn btn-sm btn-info btn-avatar" data-toggle="modal" data-target="#modal_edit_avatar"><i class="fa fa-fw fa-user-circle"></i> Schimbă fotografia de profil</a>
+					</div>
+				</div>
+				<hr />
 				<div class="form-group row">
 					<label for="editp-password" class="form-control-label col-sm-2 col-form-label">Parolă nouă:</label>
 					<div class="col-sm-10">
@@ -460,8 +557,8 @@
 				<div class="row">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-10">
-						<button class="btn btn-sm btn-primary ml-auto" type="submit" name="editp_user">Salvează modificările</button>
-						<button class="btn btn-sm btn-danger mr-auto" type="reset">Resetează câmpurile</button>
+						<button class="btn btn-sm btn-primary" type="submit" name="editp_user">Salvează modificările</button>
+						<button class="btn btn-sm btn-danger" type="reset">Resetează câmpurile</button>
 					</div>
 				</div>
 			</form>
@@ -473,11 +570,13 @@
 	<footer>
 		Realizat pentru <strong><a href="https://fiicode.asii.ro/" target="_blank" rel="noopener">FIICode 2018</a></strong> de către echipa <strong>Discode</strong>.
 	</footer>
-	<script src="../assets/js/jquery/jquery.min.js"></script>
-	<script src="../assets/js/popper/popper.min.js"></script>
-	<script src="../assets/js/bootstrap/bootstrap.min.js"></script>
-	<script src="../assets/js/admin.js"></script>
-
+	<script>
+	$('.image-editor').cropit({
+		imageState: {
+			src: "http://via.placeholder.com/298x298"
+		}
+	});
+	</script>
 </body>
 
 </html>
@@ -527,10 +626,6 @@
 			<button type="submit" name="submitlog">Logare</button>
 		</form>
 	</div>
-	
-	<script src="../assets/js/jquery/jquery.min.js"></script>
-	<script src="../assets/js/bootstrap/bootstrap.min.js"></script>
-
 </body>
 
 </html>

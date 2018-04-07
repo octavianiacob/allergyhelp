@@ -295,6 +295,9 @@ footer a:hover {
 	font-weight: 700;
 	border-radius: 0;
 }
+a.btn {
+	color: #fff !important;
+}
 .btn-primary, .btn-primary:hover, .btn-primary:active {
 	background-color: var(--ah-green);
 	border-color: var(--ah-green);
@@ -338,6 +341,55 @@ button:focus, button:active {
 }
 .modal-content {
 	border-radius: 0;
+}
+.cropit-preview {
+	background-size: cover;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+}
+.cropit-image-loaded {
+	width: 300px;
+	height: 300px;
+}
+.cropit-preview-image-container {
+	cursor: move;
+	border-radius: 50%;
+}
+.cropit-image-input {
+	display: none;
+}
+.cropit-image-zoom-input {
+	-webkit-appearance: none;
+	width: 100%;
+	height: 5px;
+	border-radius: 5px;
+	background: #d3d3d3;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: opacity .15s ease-in-out;
+	transition: opacity .15s ease-in-out;
+}
+.cropit-image-zoom-input:hover {
+	opacity: 1;
+}
+.cropit-image-zoom-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: var(--ah-green);
+    cursor: pointer;
+    border-radius: 50%;
+}
+label[for="load-photo"] {
+	margin-bottom: 0;
+}
+.image-editor-controls {
+	display: none;
+}
+.export {
+	opacity: .5;
 }
 @media screen and (max-width: 1199px)
 {
