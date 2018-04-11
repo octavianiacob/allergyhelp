@@ -570,13 +570,6 @@
 	<footer>
 		Realizat pentru <strong><a href="https://fiicode.asii.ro/" target="_blank" rel="noopener">FIICode 2018</a></strong> de către echipa <strong>Discode</strong>.
 	</footer>
-	<script>
-	$('.image-editor').cropit({
-		imageState: {
-			src: "http://via.placeholder.com/298x298"
-		}
-	});
-	</script>
 </body>
 
 </html>
