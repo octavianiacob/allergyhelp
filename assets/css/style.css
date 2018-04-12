@@ -1,24 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 @import url('https://fonts.google.com/?selection.family=Roboto:400,500,700,900');
-
-.btn-outline-secondary {
-    color: #6c757d;
-    background-color: transparent;
-    background-image: none;
-    border-color: #6c757d;
-}
-.btn-primary {
-    color: #6c757d;
-    background-color: transparent;
-    border-color: #6c757d;
-}
-
-.img-fluid {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
 /* --- General Style --> */
 
 html,
@@ -59,7 +40,27 @@ h6 {
   padding: 0;
 }
 
+.btn-primary {
+  color: #6c757d;
+  background-color: transparent;
+  border-color: #6c757d;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  background-color: transparent;
+  background-image: none;
+  border-color: #6c757d;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 /* --- Navigation --> */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -69,6 +70,7 @@ h6 {
   transition: background-color .5s;
   z-index: 9999;
 }
+
 .navbar-toggler {
   position: absolute;
   left: 13px;
@@ -78,6 +80,7 @@ h6 {
   background: transparent;
   border: none;
 }
+
 .navbar-toggler .icon-bar {
   display: block;
   width: 22px;
@@ -88,6 +91,7 @@ h6 {
   -o-transition: all 0.2s;
   transition: all 0.2s;
 }
+
 .navbar-toggler .top-bar {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -96,11 +100,13 @@ h6 {
   -ms-transform-origin: 10% 10%;
   transform-origin: 10% 10%;
 }
+
 .navbar-toggler .middle-bar {
   margin-top: 4px;
   opacity: 0;
   margin-bottom: 4px;
 }
+
 .navbar-toggler .bottom-bar {
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -109,41 +115,47 @@ h6 {
   -ms-transform-origin: 10% 90%;
   transform-origin: 10% 90%;
 }
+
 .navbar-toggler.collapsed .top-bar {
   -webkit-transform: rotate(0);
   -ms-transform: rotate(0);
   transform: rotate(0);
 }
+
 .navbar-toggler.collapsed .middle-bar {
   opacity: 1;
 }
+
 .navbar-toggler.collapsed .bottom-bar {
   -webkit-transform: rotate(0);
   -ms-transform: rotate(0);
   transform: rotate(0);
 }
+
 .navbar-nav .dropdown-menu {
   position: absolute;
 }
+
 .navbar-dark .navbar-nav .nav-link {
-  color: rgba(255,255,255,.9);
+  color: rgba(255, 255, 255, .9);
   font-weight: 700;
 }
-main {
-  margin-top: 93px;
-  padding-bottom: 5rem;
-}
+
 .navbar-brand {
   margin: -5px;
   padding: 0;
   transition: opacity .5s;
 }
+
 .navbar-brand img {
   height: 40px;
 }
-button:focus, button:active {
-    outline: none !important;
+
+button:focus,
+button:active {
+  outline: none !important;
 }
+
 /* --- Carousel --> */
 
 #carousel {
@@ -153,6 +165,7 @@ button:focus, button:active {
   background: url(../img/dandelion1.jpg) top center fixed;
   background-size: cover;
 }
+
 #carousel .carousel-container {
   background: rgba(0, 0, 0, 0.6);
   display: table-cell;
@@ -351,6 +364,28 @@ button:focus, button:active {
 
 /*---Media Queries -->*/
 
+@media (min-width: 992px) {
+  #login-button {
+    font-family: "Segoe UI", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    padding: 7px 24px;
+    border-radius: 50px;
+    transition: 0.7s;
+    margin: 0 20px;
+    border: 2px solid #5fcf80;
+    color: #fff;
+  }
+  #login-button:hover {
+    background-color: #5fcf80;
+  }
+  .navbar-nav li {
+    margin-left: 20px;
+  }
+}
+
 @media (max-width: 992px) {
   .social a {
     font-size: 4em;
@@ -427,82 +462,23 @@ button:focus, button:active {
   }
 }
 
-/*---Firefox Bug Fix -->*/
-
-.carousel-item {
-  transition: -webkit-transform 0.5s ease;
-  transition: transform 0.5s ease;
-  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
-  -webkit-backface-visibility: visible;
-  backface-visibility: visible;
-}
-
-/*--- Fixed Background Image -->*/
-
-figure {
-  position: relative;
-  width: 100%;
-  height: 60%;
-  margin: 0 !important;
-}
-
-.fixed-wrap {
-  clip: rect(0, auto, auto, 0);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-#fixed {
-  background-image: url('img/mac.png');
-  position: fixed;
-  display: block;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center center;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  will-change: transform;
-}
-
-/*--- Bootstrap Padding Fix -->*/
-
-[class*="col-"] {
-  padding: 1rem;
-}
-
-#logo {
-  width: 10rem;
-  height: 3.4rem;
-}
-
-.footer-allergyhelp img {
-  width: 10rem;
-}
-
-
-
 /*--About--> */
 
-#header-about{
-    background: rgba(52, 59, 64, 0.9);
+#header-about {
+  background: rgba(52, 59, 64, 0.9);
   padding: 20px 0;
   height: 72px;
   transition: all 0.5s;
-
 }
 
-.title{
+.title {
   text-align: left;
 }
-.about{
+
+.about {
   text-align: center;
 }
+
 .nav-menu {
   margin: 0;
   padding: 0;
@@ -572,63 +548,64 @@ figure {
   transform: scaleX(1);
 }
 
-.aboutHeader{
+.aboutHeader {
   background-color: #484e53;
 }
 
 .section-header .section-title {
-    font-size: 32px;
-    color: #111;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: 700;
-    margin-bottom: 35px;
+  font-size: 32px;
+  color: #111;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 35px;
 }
 
 #team .member .pic img {
-    max-width: 65%;
-    border-radius: 50%;
+  max-width: 65%;
+  border-radius: 50%;
 }
 
 img {
-    vertical-align: middle;
-    border-style: none;
+  vertical-align: middle;
+  border-style: none;
 }
 
 #team .member {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-h4{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    font-size: 20px;
-    margin: 18px 0 20px 0;
-    padding: 0;
+h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  margin: 18px 0 20px 0;
+  padding: 0;
 }
 
-
-.aboutsocial a{
+.aboutsocial a {
   display: inline-block;
-width: 25px;
+  width: 25px;
 }
-.social a i.ion-social-facebook{
+
+.social a i.ion-social-facebook {
   width: 24px;
 }
 
-.icon{
+.icon {
   color: #666666;
 }
 
-#margin{
+#margin {
   margin-top: 120px;
 }
 
-i.ion-social-facebook{
+i.ion-social-facebook {
   font-size: 35px;
 }
-i.ion-social-instagram{
+
+i.ion-social-instagram {
   font-size: 35px;
 }
 
