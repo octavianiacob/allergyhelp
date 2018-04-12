@@ -597,6 +597,10 @@ html * {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+body {
+	background-color: #E5E5E5;
+	color: #3C4858;
+}
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 	font-weight: 300;
@@ -669,26 +673,45 @@ h2, .h2 {
 	font-size: 2.25rem;
 	line-height: 1.5em;
 }
+h3, .h3 {
+	font-size: 1.5625rem;
+	line-height: 1.4em;
+}
 h4, .h4 {
 	font-weight: 300;
 	font-size: 1.125rem;
 	line-height: 1.5em;
-}
-h2.title {
-    margin-bottom: 1rem;
 }
 h5, .h5 {
 	font-size: 1.0625rem;
 	line-height: 1.55em;
 	margin-bottom: 15px;
 }
+h2.title {
+	margin-bottom: 1rem;
+}
 .main {
-	background: #FFFFFF;
+	background: #fff;
 	position: relative;
 	z-index: 3;
+	/*
+	margin: -60px 30px 0px;
+	border-radius: 6px;
+	box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+	*/
 }
 .section {
 	padding: 70px 0;
+}
+.section:nth-of-type(even) {
+	background: #f2f2f2;
+}
+.section, .section-image {
+	background-position: 50%;
+	background-size: cover;
+}
+.section-image {
+	position: relative;
 }
 .info {
 	max-width: 360px;
@@ -702,5 +725,63 @@ h5, .h5 {
 }
 .info > i {
 	font-size: 3.85rem;
+}
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	border: 0;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	border-radius: 6px;
+	color: rgba(0,0,0,.87);
+	background: #fff;
+	width: 100%;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+.card-plain {
+	background: transparent;
+	box-shadow: none;
+}
+.card-blog {
+	margin-top: 60px;
+	margin-bottom: 80px;
+}
+.card .card-header.card-header-image {
+	position: relative;
+	padding: 0;
+	z-index: 1;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 25px;
+	border-radius: 6px;
+}
+.card .card-header.card-header-image .colored-shadow {
+	transform: scale(.94);
+	top: 12px;
+	filter: blur(12px);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	z-index: -1;
+	transition: opacity .45s;
+	opacity: 0;
+}
+.card-blog [class*=col-] .card-header-image img {
+    width: 100%;
+}
+.card .card-header.card-header-image img {
+	width: 100%;
+	border-radius: 6px;
+	pointer-events: none;
+	box-shadow: 0 5px 15px -8px rgba(0,0,0,.24), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+.card-title {
+	color: #3c4858;
+	font-weight: 700;
+	margin: 1.5rem 0 .625rem 0;
 }
 /* ========================================================= */
