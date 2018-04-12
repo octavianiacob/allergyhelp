@@ -67,15 +67,16 @@ h6 {
   right: 0;
   left: 0;
   background: none;
-  transition: background-color .5s;
+  transition: background-color .5s, padding .5s;
+  padding: 35px 0;
   z-index: 9999;
+}
+.bg-dark {
+  background-color: rgba(14, 14, 14, 0.9) !important;
 }
 
 .navbar-toggler {
-  position: absolute;
-  left: 13px;
-  padding: 9px 10px;
-  top: 13px;
+  padding: 0.25rem 0.75rem;
   border-radius: 4px;
   background: transparent;
   border: none;
@@ -162,7 +163,7 @@ button:active {
   display: table;
   width: 100%;
   height: 100vh;
-  background: url(../img/dandelion1.jpg) top center fixed;
+  background: url(../img/yellow.jpg) top center fixed;
   background-size: cover;
 }
 
@@ -188,18 +189,13 @@ button:active {
 }
 
 #carousel .btn-get-started {
-  font-family: "Segoe UI", sans-serif;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 8px 28px;
-  border-radius: 50px;
-  transition: 0.5s;
-  margin: 10px;
-  border: 2px solid #5fcf80;
-  color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 6px 20px;
+    border-radius: 50px;
+    transition: 0.3s;
+    border: 2px solid #5fcf80;
+    color: #fff;
 }
 
 #carousel .btn-get-started:hover {
@@ -366,15 +362,11 @@ button:active {
 
 @media (min-width: 992px) {
   #login-button {
-    font-family: "Segoe UI", sans-serif;
     text-transform: uppercase;
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: 1px;
-    padding: 7px 24px;
+    font-weight: 700;
+    padding: 6px 20px;
     border-radius: 50px;
-    transition: 0.7s;
-    margin: 0 20px;
+    transition: 0.3s;
     border: 2px solid #5fcf80;
     color: #fff;
   }
@@ -386,7 +378,18 @@ button:active {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
+  .navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-brand {
+    margin: 0;
+    padding-left: 0.75rem;
+  }
+  .navbar-nav {
+    margin-top: .5rem;
+  }
   .social a {
     font-size: 4em;
     padding: 2rem;

@@ -1,23 +1,19 @@
+function checkScroll() {
+	if ($(window).scrollTop() > 0 || $(window).width() < 991) {
+		$(".navbar").addClass("bg-dark");
+		$(".navbar").css("padding", "10px 0");
+	} else {
+		$(".navbar").removeClass("bg-dark");
+		$(".navbar").css("padding", "35px 0");
+	}
+}
 $(document).ready(function()
 {
-	$(window).scroll(function() {
-		if($(window).width() > 991)
-		{
-			if ($(window).scrollTop() > 0)
-			{
-				$(".navbar").addClass("bg-dark");
-				$(".navbar").css("box-shadow", "0 2px 2px 0 rgba(0, 0, 0, 0.07)");
-			}
-			else
-			{
-				$(".navbar").removeClass("bg-dark");
-				$(".navbar").css("box-shadow", "none");
-			}
-		}
+	checkScroll();
+	$(window).resize(function() {
+		checkScroll();
 	});
-	if($(window).width() <= 991)
-	{
-		$(".navbar").addClass("bg-dark");
-		$(".navbar").css("box-shadow", "0 2px 2px 0 rgba(0, 0, 0, 0.07)");
-	}
+	$(window).scroll(function() {
+		checkScroll();
+	});
 });

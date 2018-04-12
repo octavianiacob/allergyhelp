@@ -71,7 +71,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="theme-color" content="#343a40">
+	<meta name="theme-color" content="#5fcf80">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Discode">
 	<title>AllergyHelp</title>
@@ -102,7 +102,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="theme-color" content="#343a40">
+	<meta name="theme-color" content="#5fcf80">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Discode">
 	<title>AllergyHelp</title>
@@ -586,7 +586,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="theme-color" content="#343a40">
+	<meta name="theme-color" content="#5fcf80">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Discode">
 	<title>AllergyHelp</title>
