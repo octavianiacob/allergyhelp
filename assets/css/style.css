@@ -218,6 +218,9 @@ button:active {
   padding-bottom: 2rem;
 }
 
+button.btn.btn-dark{
+  text-align: center;
+}
 .welcome {
   width: 75%;
   margin: 0 auto;
@@ -233,7 +236,8 @@ button:active {
 
 .fa-allergies,
 .fa-user-md,
-.fa-heart {
+.fa-heart,
+.fa-info-circle {
   color: #5fcf80;
   font-size: 8em;
   padding-bottom: 2rem;
@@ -463,6 +467,10 @@ button:active {
 }
 
 /*--About--> */
+#teamphoto {
+  max-width: 100%;
+  height: auto;
+}
 
 #header-about {
   background: rgba(52, 59, 64, 0.9);
@@ -562,8 +570,13 @@ button:active {
 }
 
 #team .member .pic img {
+<<<<<<< HEAD
   max-width: 65%;
   border-radius: 50%;
+=======
+    max-width:  65%;
+    border-radius: 50%;
+>>>>>>> test
 }
 
 img {
