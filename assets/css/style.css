@@ -223,7 +223,8 @@ button.btn.btn-dark{
 
 .fa-allergies,
 .fa-user-md,
-.fa-heart {
+.fa-heart,
+.fa-info-circle {
   color: #5fcf80;
   font-size: 8em;
   padding-bottom: 2rem;
