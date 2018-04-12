@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
-@import url('https://fonts.google.com/?selection.family=Roboto:400,500,700,900');
-/* --- General Style --> */
-
 html,
 body {
   height: 100%;
@@ -28,7 +24,7 @@ p {
   margin: 1 0 30px 0;
 }
 
-h1,
+/*h1,
 h2,
 h3,
 h4,
@@ -38,7 +34,7 @@ h6 {
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
-}
+}*/
 
 .btn-primary {
   color: #6c757d;
@@ -157,51 +153,6 @@ button:active {
   outline: none !important;
 }
 
-/* --- Carousel --> */
-
-#carousel {
-  display: table;
-  width: 100%;
-  height: 100vh;
-  background: url(../img/yellow.jpg) top center fixed;
-  background-size: cover;
-}
-
-#carousel .carousel-container {
-  background: rgba(0, 0, 0, 0.6);
-  display: table-cell;
-  margin: 0;
-  padding: 0 10px;
-  text-align: center;
-  vertical-align: middle;
-}
-
-#carousel h1 {
-  text-transform: uppercase;
-  color: #fff;
-}
-
-#carousel h2 {
-  color: #eee;
-  margin-bottom: 50px;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-#carousel .btn-get-started {
-    text-transform: uppercase;
-    font-weight: 700;
-    padding: 6px 20px;
-    border-radius: 50px;
-    transition: 0.3s;
-    border: 2px solid #5fcf80;
-    color: #fff;
-}
-
-#carousel .btn-get-started:hover {
-  background: #5fcf80;
-  border: 2px solid #5fcf80;
-}
 
 /* --- Jumbotron --> */
 
@@ -364,106 +315,106 @@ button:active {
 
 @media (min-width: 992px) {
   #login-button {
-    text-transform: uppercase;
-    font-weight: 700;
-    padding: 6px 20px;
-    border-radius: 50px;
-    transition: 0.3s;
-    border: 2px solid #5fcf80;
-    color: #fff;
+	text-transform: uppercase;
+	font-weight: 700;
+	padding: 0.3rem 1rem;
+	border-radius: 50px;
+	transition: 0.3s;
+	border: 2px solid #5fcf80;
+	color: #fff;
   }
   #login-button:hover {
-    background-color: #5fcf80;
+	background-color: #5fcf80;
   }
   .navbar-nav li {
-    margin-left: 20px;
+	margin-left: 20px;
   }
 }
 
 @media (max-width: 991px) {
   .navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid {
-    padding-right: 15px;
-    padding-left: 15px;
+	padding-right: 15px;
+	padding-left: 15px;
   }
   .navbar-brand {
-    margin: 0;
-    padding-left: 0.75rem;
+	margin: 0;
+	padding-left: 0.75rem;
   }
   .navbar-nav {
-    margin-top: .5rem;
+	margin-top: .5rem;
   }
   .social a {
-    font-size: 4em;
-    padding: 2rem;
+	font-size: 4em;
+	padding: 2rem;
   }
 }
 
 @media (max-width: 768px) {
   #header #logo img {
-    max-height: 40px;
+	max-height: 40px;
   }
   #nav-menu-container {
-    display: none;
+	display: none;
   }
   #carousel h1 {
-    font-size: 28px;
-    line-height: 36px;
+	font-size: 28px;
+	line-height: 36px;
   }
   #carousel h2 {
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 30px;
+	font-size: 18px;
+	line-height: 24px;
+	margin-bottom: 30px;
   }
   .carousel-caption {
-    top: 45%;
+	top: 45%;
   }
   .carousel-caption h1 {
-    font-size: 350%;
+	font-size: 350%;
   }
   .carousel-caption h3 {
-    font-size: 140%;
-    font-weight: 400;
-    padding-bottom: .2rem;
+	font-size: 140%;
+	font-weight: 400;
+	padding-bottom: .2rem;
   }
   .carousel-caption .btn {
-    font-size: 95%;
-    padding: 8px 14px;
+	font-size: 95%;
+	padding: 8px 14px;
   }
   .display-4 {
-    font-size: 200%;
+	font-size: 200%;
   }
   .social a {
-    font-size: 2.5em;
-    padding: 1.2rem;
+	font-size: 2.5em;
+	padding: 1.2rem;
   }
   .sandwich {
-    display: inline-block;
+	display: inline-block;
   }
 }
 
 @media (max-width: 576px) {
   .carousel-caption {
-    top: 40%;
+	top: 40%;
   }
   .carousel-caption h1 {
-    font-size: 250%;
+	font-size: 250%;
   }
   .carousel-caption h3 {
-    font-size: 110%;
+	font-size: 110%;
   }
   .carousel-caption .btn {
-    font-size: 90%;
-    padding: 4px 8px;
+	font-size: 90%;
+	padding: 4px 8px;
   }
   .carousel-indicators {
-    display: none;
+	display: none;
   }
   .display-4 {
-    font-size: 160%;
+	font-size: 160%;
   }
   .social a {
-    font-size: 2em;
-    padding: .7rem;
+	font-size: 2em;
+	padding: .7rem;
   }
 }
 
@@ -581,13 +532,13 @@ img {
   margin-bottom: 20px;
 }
 
-h4 {
+/*h4 {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   font-size: 20px;
   margin: 18px 0 20px 0;
   padding: 0;
-}
+}*/
 
 .aboutsocial a {
   display: inline-block;
@@ -632,3 +583,84 @@ Large (lg) devices (desktops, 992px and up)
 Extra (xl) large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) { ... }
 */
+
+/* =========================================================
+ * AllergyHelp
+ * =========================================================
+ *
+ * Landing Page
+ * - intervențiile lui Tode -
+ *
+ * ========================================================= */
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.page-header {
+	background: url(../img/yellow.jpg);
+	height: 100vh;
+	background-position: center center;
+	background-size: cover;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	display: flex;
+	align-items: center;
+}
+.page-header .btn-get-started {
+	text-transform: uppercase;
+	font-weight: 700;
+	padding: 0.8rem 2rem;
+	border-radius: 50px;
+	transition: 0.3s;
+	border: 2px solid #5fcf80;
+	color: #fff;
+}
+.page-header .btn-get-started:hover {
+	background: #5fcf80;
+	border: 2px solid #5fcf80;
+}
+.page-header-filter::before {
+	background: rgba(0, 0, 0, 0.5);
+}
+.page-header-filter:before, .page-header-filter:after {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	display: block;
+	left: 0;
+	top: 0;
+	content: "";
+}
+.page-header-filter .container {
+	z-index: 2;
+	position: relative;
+}
+.page-header > .container {
+	color: #fff;
+}
+.page-header .title {
+	color: #fff;
+}
+.title {
+	font-weight: 700;
+	margin-top: 30px;
+	min-height: 32px;
+}
+h1, .h1 {
+	font-size: 3.3125rem;
+	line-height: 1.15em;
+}
+h4, .h4 {
+	font-weight: 300;
+	font-size: 1.125rem;
+	line-height: 1.5em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.main {
+	background: #FFFFFF;
+	position: relative;
+	z-index: 3;
+}

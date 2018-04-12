@@ -1,5 +1,5 @@
-function checkScrollForNavbar() {
-	if ($(window).scrollTop() > 0 || $(window).width() < 992) {
+function checkScroll() {
+	if ($(window).scrollTop() > 0 || $(window).width() < 991) {
 		$(".navbar").addClass("bg-dark");
 		$(".navbar").css("padding", "10px 0");
 	} else {
@@ -7,34 +7,13 @@ function checkScrollForNavbar() {
 		$(".navbar").css("padding", "35px 0");
 	}
 }
-function checkScrollForParallax() {
-	if($(window).width() > 991) {
-		oVal = ($(window).scrollTop() / 3);
-		$('.page-header[data-parallax="true"]').css({
-			'transform': 'translate3d(0,' + oVal + 'px,0)',
-			'-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
-			'-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
-			'-o-transform': 'translate3d(0,' + oVal + 'px,0)'
-		});
-	} else {
-		$('.page-header[data-parallax="true"]').css({
-			'transform': 'translate3d(0, 0 ,0)',
-			'-webkit-transform': 'translate3d(0, 0 ,0)',
-			'-ms-transform': 'translate3d(0, 0 ,0)',
-			'-o-transform': 'translate3d(0, 0 ,0)'
-		});
-	}
-}
 $(document).ready(function()
 {
-	checkScrollForNavbar();
-	checkScrollForParallax();
+	checkScroll();
 	$(window).resize(function() {
-		checkScrollForNavbar();
-		checkScrollForParallax();
+		checkScroll();
 	});
 	$(window).scroll(function() {
-		checkScrollForNavbar();
-		checkScrollForParallax();
+		checkScroll();
 	});
 });
