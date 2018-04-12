@@ -153,10 +153,6 @@ button:focus, button:active {
   background: url(../img/dandelion1.jpg) top center fixed;
   background-size: cover;
 }
-#carousel .big-logo {
-  max-width: 40%;
-  margin-bottom: .5rem;
-}
 #carousel .carousel-container {
   background: rgba(0, 0, 0, 0.6);
   display: table-cell;
@@ -492,7 +488,7 @@ figure {
 
 
 /*--About--> */
- 
+
 #header-about{
     background: rgba(52, 59, 64, 0.9);
   padding: 20px 0;
