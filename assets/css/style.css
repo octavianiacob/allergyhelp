@@ -178,7 +178,7 @@ button:active {
   margin-bottom: 1rem;
 }
 
-.fa-allergies,
+/*.fa-allergies,
 .fa-globe,
 .fa-money-bill-alt,
 .fa-user-md,
@@ -187,7 +187,7 @@ button:active {
   font-size: 8em;
   padding-bottom: 2rem;
   margin: 1rem;
-}
+}*/
 
 /* --- Social Media Links --> */
 
@@ -427,9 +427,9 @@ button:active {
   transition: all 0.5s;
 }
 
-.title {
+/*.title {
   text-align: left;
-}
+}*/
 
 .about {
   text-align: center;
@@ -593,8 +593,14 @@ Extra (xl) large devices (large desktops, 1200px and up)
  *
  * ========================================================= */
 
-body {
+html * {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-weight: 300;
+	line-height: 1.5em;
 }
 .page-header {
 	background: url(../img/yellow.jpg);
@@ -648,19 +654,53 @@ body {
 	margin-top: 30px;
 	min-height: 32px;
 }
+.description, .card-description, .footer-big p {
+	color: #999;
+}
+h4, h5, h6, .h4, .h5, .h6 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 h1, .h1 {
 	font-size: 3.3125rem;
 	line-height: 1.15em;
+}
+h2, .h2 {
+	font-size: 2.25rem;
+	line-height: 1.5em;
 }
 h4, .h4 {
 	font-weight: 300;
 	font-size: 1.125rem;
 	line-height: 1.5em;
-	margin-top: 10px;
-	margin-bottom: 10px;
+}
+h2.title {
+    margin-bottom: 1rem;
+}
+h5, .h5 {
+	font-size: 1.0625rem;
+	line-height: 1.55em;
+	margin-bottom: 15px;
 }
 .main {
 	background: #FFFFFF;
 	position: relative;
 	z-index: 3;
 }
+.section {
+	padding: 70px 0;
+}
+.info {
+	max-width: 360px;
+	margin: 0 auto;
+	padding: 70px 0 30px;
+}
+.info .info-title {
+	color: #3C4858;
+	margin: 1.75rem 0 0.875rem;
+	font-weight: 700;
+}
+.info > i {
+	font-size: 3.85rem;
+}
+/* ========================================================= */
