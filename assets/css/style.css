@@ -59,178 +59,91 @@ h6 {
   padding: 0;
 }
 
-/* --- Navbar --> */
-
-.container nav a.navbar-brand{
-  position: relative;
-  bottom: 15px;
-}
-
-#header {
-  padding: 30px 0;
-  height: 92px;
+/* --- Navigation --> */
+.navbar {
   position: fixed;
-  left: 0;
   top: 0;
   right: 0;
-  transition: all 0.5s;
-  z-index: 997;
-}
-
-#header .navbar-brand {
-  float: left;
- 
-}
-
-#header .navbar-brand img {
-  padding: 0;
-  margin: 0px;
-}
-
-/* --- Login Button --> */
-
-nav #navbarSupportedContent ul li a#login.nav-link {
-  font-family: "Segoe UI", sans-serif;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 7px 24px;
-  border-radius: 50px;
-  transition: 0.5s;
-  margin: -20px 0px 5px;
-  border: 2px solid #5fcf80;
-  color: #fff;
-}
-
-nav #navbarSupportedContent ul li a#login.nav-link:hover {
-  background-color: #5fcf80;
-}
-
-nav #navbarSupportedContent ul li a#login.nav-link:before {
-  visibility: hidden;
-}
-
-/* --- jQuery Fixed Nav --> */
-
-#header.header-fixed {
-  background: rgba(52, 59, 64, 0.9);
-  padding: 20px 0;
-  height: 72px;
-  transition: all 0.5s;
-}
-
-.nav-menu {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.nav-menu ul {
-  position: absolute;
-  display: none;
-  top: 100%;
   left: 0;
-  z-index: 99;
+  background: none;
+  transition: background-color .5s;
+  z-index: 9999;
 }
-
-.container nav #navbarSupportedContent ul li {
-  float: left;
-  position: relative;
-  white-space: nowrap;
-  
-}
-
-.nav-menu ul {
-  top: 0;
-  left: 100%;
-}
-
-ul.nav-menu {
-  float: right;
-  margin: 0px 432px; 
-
-}
-
-.sandwich {
-  font-family: "Segoe UI", sans-serif;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 10px 15px;
-  border-radius: 25px;
-  transition: 0.5s;
-  margin: 5px;
-  background: black;
-  opacity: 1;
-  border: 1px solid black;
-  display: none;
-}
-
-.sandwich:hover {
-  font-family: "Segoe UI", sans-serif;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: inline;
-  padding: 10px 15px;
-  border-radius: 25px;
-  transition: 0.5s;
-  margin: 5px;
-  background: #5fcf80;
-  opacity: 1;
-  border: 2px solid black;
-}
-
-.fa-bars {
-  color: #fff;
-}
-
-/* --- Navbar Styling --> */
-
-nav #navbarSupportedContent ul li a.nav-link {
-  padding: 0 12px 10px 8px;
-  text-decoration: none;
-  display: inline-block;
-  color: #fff;
-  font-family: "Segoe UI", sans-serif;
-  font-weight: 300;
-  text-transform: uppercase;
-  font-size: 15px;
-  outline: none;
-}
-
-.nav-menu>li {
-  margin-left: 20px;
-}
-
-.nav-menu>li>a:before {
-  content: "";
+.navbar-toggler {
   position: absolute;
-  width: 100%;
+  left: 13px;
+  padding: 9px 10px;
+  top: 13px;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+}
+.navbar-toggler .icon-bar {
+  display: block;
+  width: 22px;
   height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #5fcf80;
-  visibility: hidden;
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
+  background-color: white;
+  border-radius: 1px;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
 }
-
-.nav-menu a:hover:before,
-.nav-menu li:hover>a:before,
-.nav-menu .menu-active>a:before {
-  visibility: visible;
-  -webkit-transform: scaleX(1);
-  transform: scaleX(1);
+.navbar-toggler .top-bar {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: 10% 10%;
+  -ms-transform-origin: 10% 10%;
+  transform-origin: 10% 10%;
 }
-
+.navbar-toggler .middle-bar {
+  margin-top: 4px;
+  opacity: 0;
+  margin-bottom: 4px;
+}
+.navbar-toggler .bottom-bar {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform-origin: 10% 90%;
+  -ms-transform-origin: 10% 90%;
+  transform-origin: 10% 90%;
+}
+.navbar-toggler.collapsed .top-bar {
+  -webkit-transform: rotate(0);
+  -ms-transform: rotate(0);
+  transform: rotate(0);
+}
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+}
+.navbar-toggler.collapsed .bottom-bar {
+  -webkit-transform: rotate(0);
+  -ms-transform: rotate(0);
+  transform: rotate(0);
+}
+.navbar-nav .dropdown-menu {
+  position: absolute;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255,255,255,.9);
+  font-weight: 700;
+}
+main {
+  margin-top: 93px;
+  padding-bottom: 5rem;
+}
+.navbar-brand {
+  margin: -5px;
+  padding: 0;
+  transition: opacity .5s;
+}
+.navbar-brand img {
+  height: 40px;
+}
+button:focus, button:active {
+    outline: none !important;
+}
 /* --- Carousel --> */
 
 #carousel {
@@ -240,7 +153,10 @@ nav #navbarSupportedContent ul li a.nav-link {
   background: url(../img/dandelion1.jpg) top center fixed;
   background-size: cover;
 }
-
+#carousel .big-logo {
+  max-width: 40%;
+  margin-bottom: .5rem;
+}
 #carousel .carousel-container {
   background: rgba(0, 0, 0, 0.6);
   display: table-cell;
@@ -258,7 +174,8 @@ nav #navbarSupportedContent ul li a.nav-link {
 #carousel h2 {
   color: #eee;
   margin-bottom: 50px;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 #carousel .btn-get-started {
