@@ -205,6 +205,9 @@ button:focus, button:active {
   padding-bottom: 2rem;
 }
 
+button.btn.btn-dark{
+  text-align: center;
+}
 .welcome {
   width: 75%;
   margin: 0 auto;
@@ -488,6 +491,10 @@ figure {
 
 
 /*--About--> */
+#teamphoto {
+  max-width: 100%;
+  height: auto;
+}
 
 #header-about{
     background: rgba(52, 59, 64, 0.9);
@@ -586,7 +593,7 @@ figure {
 }
 
 #team .member .pic img {
-    max-width: 65%;
+    max-width:  65%;
     border-radius: 50%;
 }
 
