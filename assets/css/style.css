@@ -86,8 +86,24 @@ a:hover {
   position: absolute;
 }
 .navbar-dark .navbar-nav .nav-link {
-  color: rgba(255, 255, 255, .9);
-  font-weight: 700;
+  color: #fff;
+	font-weight: 700;
+	display: inline-block;
+	padding-bottom: 0.25rem;
+}
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+	color: #fff;
+}
+.nav-item:not(:last-child) .nav-link:after {
+	display: block;
+	content: "";
+	margin-top: 2px;
+	transform: scaleX(0);
+	transition: transform .25s;
+	border-bottom: 2px solid #5fcf80;
+}
+.nav-item:not(:last-child) .nav-link:hover:after, .nav-item:not(:last-child) .nav-link.active:after {
+	transform: scaleX(1);
 }
 .navbar-brand {
   margin: -5px;
@@ -308,7 +324,10 @@ b, strong {
 @media screen and (max-width: 991px) {
   h1, .h1 {
     font-size: 2.25rem;
-  }
+	}
+	h2, .h2 {
+		font-size: 1.5625rem;
+	}
   .main {
     margin: 0;
     border-radius: 0;

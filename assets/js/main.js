@@ -37,4 +37,16 @@ $(document).ready(function()
 		checkScrollForNavbar();
 		checkScrollForParallax();
 	});
+	$(".link-top").on('click',function(e) {
+		$("html, body").animate({ scrollTop: 0 }, 500);
+		return false;
+	});
+	$(".link-scroll").on('click',function(e) {
+		var url = e.target.href;
+		var hash = url.substring(url.indexOf("#")+1);
+		$('html, body').animate({
+			scrollTop: $('#'+hash).offset().top - 60
+		}, 500);
+		return false;
+	});
 });
