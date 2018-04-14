@@ -286,8 +286,9 @@ footer a:hover {
 	background: #fff;
 }
 #users-table td, #users-table th {
-	padding: .5rem;
+	padding: .35rem;
 	white-space: nowrap;
+	font-size: .9rem;
 }
 .add-user {
 	border: none;
@@ -312,7 +313,6 @@ button:focus, button:active {
 	font-weight: 700;
 }
 #users-table a {
-	color: var(--ah-green);
 	font-weight: 700;
 	font-size: 80%;
 }
@@ -324,8 +324,16 @@ button:focus, button:active {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
+#users-table thead th {
+	border: 0;
+	background: var(--ah-dark);
+	color: white;
+}
+.table-responsive {
+	border: 1px solid var(--ah-green);
+}
 .table-responsive table {
-	margin-bottom: 0;
+	margin-bottom: 1px;
 }
 .modal-header {
 	background: var(--ah-dark);
@@ -392,6 +400,22 @@ label[for="load-photo"] {
 }
 .export {
 	opacity: .5;
+}
+.revoke-admin-icon {
+	color: #ffd700;
+}
+.revoke-admin-icon:hover {
+	color: #afafaf;
+}
+.make-admin-icon {
+	color: #afafaf;
+}
+.make-admin-icon:hover {
+	color: #ffd700;
+}
+#users-table .fa-fw {
+	text-align: left;
+	width: 1.75rem;
 }
 @media screen and (max-width: 1199px)
 {

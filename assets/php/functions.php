@@ -247,9 +247,11 @@
 					<td>'.$row["email"].'</td>
 					<td>'.$row["regtime"].'</td>
 					<td>';
-				if($row["admin"]) echo '<a class="text-danger" href="?revokeadmin='.$row["id"].'" />Înlătură drepturile de admin.</a>';
-				else echo '<a href="?makeadmin='.$row["id"].'" />Fă-l administrator</a>';
+				if($row["admin"]) echo '<a title="Înlătură drepturile de administrator" class="revoke-admin-icon" href="?revokeadmin='.$row["id"].'" /><i class="fas fa-fw fa-star"></i></a>';
+				else echo '<a title="Fă-l administrator" class="make-admin-icon" href="?makeadmin='.$row["id"].'" /><i class="far fa-fw fa-star make-admin-icon"></i></a>';
 				echo '
+					<i class="fa fa-fw fa-edit text-info"></i>
+					<i class="fa fa-fw fa-trash text-danger"></i>
 					</td>
 				</tr>';
 			}

@@ -140,8 +140,8 @@
 							<img class="avatar" src="<?php echo $user->get_avatar($id); ?>"><?php echo $user->get_firstname($id); ?>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item<?php if ((isset($p) ? $p : null) == "account") echo ' active'; ?>" href="?p=account">Setări cont</a>
-							<a class="dropdown-item" href="?q=logout">Delogare</a>
+							<a class="dropdown-item<?php if ((isset($p) ? $p : null) == "account") echo ' active'; ?>" href="?p=account"><i class="fa fa-fw fa-cog"></i> Setări cont</a>
+							<a class="dropdown-item" href="?q=logout"><i class="fa fa-fw fa-sign-out-alt"></i> Delogare</a>
 						</div>
 					</li>
 				</ul>
@@ -164,32 +164,22 @@
 		<section class="jumbotron text-center">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm">
+					<div class="col">
 						<div class="card box-shadow">
 							<div class="card-body">
 								<h1><?php echo $admin->count_users(); ?></h1>
-								<p class="card-text">
-									Utilizatori înregistrați
+								<p class="card-text font-weight-bold">
+									Utilizatori
 								</p>
 							</div>
 						</div>
 					</div>
-					<div class="col-sm">
+					<div class="col">
 						<div class="card box-shadow">
 							<div class="card-body">
 								<h1>0</h1>
-								<p class="card-text">
-									Alergii adăugate
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm">
-						<div class="card box-shadow">
-							<div class="card-body">
-								<h1>0</h1>
-								<p class="card-text">
-									Tratamente propuse
+								<p class="card-text font-weight-bold">
+									Alergii
 								</p>
 							</div>
 						</div>
@@ -366,7 +356,7 @@
 			<hr class="mt-0 mb-3" />
 			<a class="btn add-user btn-block" data-toggle="modal" data-target="#modal_add_user">Înregistrează utilizator</a>
 			<div class="table-responsive">
-				<table id="users-table" class="table table-bordered table-hover table-sm">
+				<table id="users-table" class="table table-sm">
 					<thead>
 						<tr>
 							<th>Nume</th>
