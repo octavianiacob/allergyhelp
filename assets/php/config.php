@@ -1,6 +1,6 @@
 <?php
-define('DB_SERVER', 'sql11.freesqldatabase.com');
-define('DB_USERNAME', 'sql11230142');
-define('DB_PASSWORD', '6TdFtjlMZ9');
-define('DB_DATABASE', 'sql11230142');
+define('DB_SERVER', 'sgr-iasi.ro');
+define('DB_USERNAME', 'sgriasir_allergyhelp');
+define('DB_PASSWORD', 'Pg8^.0_kNFkK52O~');
+define('DB_DATABASE', 'sgriasir_allergyhelp');
 ?>

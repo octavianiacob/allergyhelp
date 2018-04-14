@@ -61,6 +61,20 @@
 		else $_SESSION['allergyhelp_admin_remove_admin_fail'] = true;
 		header("location:index.php?p=users");
 	}
+	if (isset($_REQUEST['add_sign']))
+	{
+		extract($_REQUEST);
+		$add_sign = $admin->add_sign($id, $sign);
+		if ($add_sign) $_SESSION['allergyhelp_admin_add_sign_success'] = true;
+		else $_SESSION['allergyhelp_admin_add_sign_fail'] = true;
+	}
+	if (isset($_REQUEST['add_cause']))
+	{
+		extract($_REQUEST);
+		$add_cause = $admin->add_cause($id, $cause);
+		if ($add_cause) $_SESSION['allergyhelp_admin_add_cause_success'] = true;
+		else $_SESSION['allergyhelp_admin_add_cause_fail'] = true;
+	}
 	if ($admin->get_admin_session())
 	{
 		if(!$admin->isadmin($id))
@@ -379,8 +393,88 @@
 	?>
 	<main role="main">
 		<div class="container pt-4">
-			<h1>Alergii</h1>
-			<hr class="mt-0 mb-3" />
+			<?php
+				if (isset($_SESSION['allergyhelp_admin_add_sign_success']))
+				{
+					echo '
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						Ai adăugat un simptom cu succes!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_sign_success'] = false;
+					unset($_SESSION['allergyhelp_admin_add_sign_success']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_add_sign_fail']))
+				{
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						A apărut o problemă la adăugarea simptomului: simptomul introdus există deja!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_sign_fail'] = false;
+					unset($_SESSION['allergyhelp_admin_add_sign_fail']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_add_cause_success']))
+				{
+					echo '
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						Ai adăugat o cauză cu succes!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_cause_success'] = false;
+					unset($_SESSION['allergyhelp_admin_add_cause_success']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_add_cause_fail']))
+				{
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						A apărut o problemă la adăugarea cauzei: cauza introdusă există deja!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_cause_fail'] = false;
+					unset($_SESSION['allergyhelp_admin_add_cause_fail']);
+				}
+			?>
+			<div class="row">
+				<div class="col-sm">
+					<h1>Simptome</h1>
+					<hr class="mt-0 mb-3" />
+					<form action="" method="post" name="add_sign">
+						<div class="row m-0">
+							<input class="form-control col-9" type="text" name="sign" placeholder="Adaugă un simptom..." required>
+							<button class="btn btn-primary col-3" type="submit" name="add_sign">Adaugă</button>
+						</div>
+					</form>
+					<ul class="list-group mb-4 allergy-info">
+						<?php $admin->get_signs(); ?>
+					</ul>
+				</div>
+				<div class="col-sm">
+					<h1>Cauze</h1>
+					<hr class="mt-0 mb-3" />
+					<form action="" method="post" name="add_cause">
+						<div class="row m-0">
+							<input class="form-control col-9" type="text" name="cause" placeholder="Adaugă o cauză..." required>
+							<button class="btn btn-primary col-3" type="submit" name="add_cause">Adaugă</button>
+						</div>
+					</form>
+					<ul class="list-group mb-4 allergy-info">
+						<?php $admin->get_causes(); ?>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</main>
 	<?php

@@ -250,8 +250,8 @@
 				if($row["admin"]) echo '<a title="Înlătură drepturile de administrator" class="revoke-admin-icon" href="?revokeadmin='.$row["id"].'" /><i class="fas fa-fw fa-star"></i></a>';
 				else echo '<a title="Fă-l administrator" class="make-admin-icon" href="?makeadmin='.$row["id"].'" /><i class="far fa-fw fa-star make-admin-icon"></i></a>';
 				echo '
-					<i class="fa fa-fw fa-edit text-info"></i>
-					<i class="fa fa-fw fa-trash text-danger"></i>
+					<!--<i class="fa fa-fw fa-edit text-info"></i>
+					<i class="fa fa-fw fa-trash text-danger"></i>-->
 					</td>
 				</tr>';
 			}
@@ -274,6 +274,76 @@
 				</div>
 				';
 			}
+		}
+		public function add_sign($adminid, $sign)
+		{
+			$sign = mysqli_real_escape_string($this->db, $sign);
+			$sql = "INSERT INTO signs SET sign = '$sign'";
+			$result = mysqli_query($this->db, $sql);
+
+			if($result) $this->add_action($adminid, "a adăugat un simptom");
+			return $result;
+		}
+		public function add_cause($adminid, $cause)
+		{
+			$cause = mysqli_real_escape_string($this->db, $cause);
+			$sql = "INSERT INTO causes SET cause = '$cause'";
+			$result = mysqli_query($this->db, $sql);
+
+			if($result) $this->add_action($adminid, "a adăugat o cauză");
+			return $result;
+		}
+		public function get_signs()
+		{
+			$sql = "SELECT * FROM signs ORDER BY sign ASC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo '
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						'.$row['sign'].'
+						<!--<span class="badge">
+							<i class="fas fa-fw fa-pencil-alt text-warning"></i>
+							<i class="fa fa-fw fa-trash text-danger"></i>
+						</span>-->
+					</li>
+					';
+				}
+			}
+			else
+				echo '
+					<li class="list-group-item d-flex justify-content-between align-items-center list-group-item-danger">
+						Nu există niciun simptom adăugat!
+					</li>
+					';
+		}
+		public function get_causes()
+		{
+			$sql = "SELECT * FROM causes ORDER BY cause ASC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo '
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						'.$row['cause'].'
+						<!--<span class="badge">
+							<i class="fas fa-fw fa-pencil-alt text-warning"></i>
+							<i class="fa fa-fw fa-trash text-danger"></i>
+						</span>-->
+					</li>
+					';
+				}
+			}
+			else
+				echo '
+					<li class="list-group-item d-flex justify-content-between align-items-center list-group-item-danger">
+						Nu există nicio cauză adăugată!
+					</li>
+					';
 		}
 		public function set_admin($adminid, $userid)
 		{

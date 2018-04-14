@@ -413,9 +413,30 @@ label[for="load-photo"] {
 .make-admin-icon:hover {
 	color: #ffd700;
 }
+.fa-fw {
+	width: 1.75rem;
+}
 #users-table .fa-fw {
 	text-align: left;
-	width: 1.75rem;
+}
+.allergy-info {
+	max-height: 300px;
+	overflow-y: auto;
+	display: block;
+}
+.allergy-info .list-group-item {
+	padding: .5rem 1rem;
+}
+.allergy-info .list-group-item:first-child, .allergy-info .list-group-item:last-child {
+	border-radius: 0;
+}
+.allergy-info .list-group-item:first-child {
+	margin-top: -1px;
+}
+form[name="add_sign"] input, form[name="add_sign"] button, form[name="add_cause"] input, form[name="add_cause"] button {
+	border-radius: 0;
+	padding: .5rem 1rem;
+	margin-bottom: 0;
 }
 @media screen and (max-width: 1199px)
 {
