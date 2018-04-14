@@ -131,11 +131,9 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item d-lg-none"><a class="nav-link" href="#">Setări site</a></li>
-					<li class="nav-item d-lg-none"><a class="nav-link<?php if ((isset($p) ? $p : null) == "users") echo ' active'; ?>" href="?p=users">Utilizatori</a></li>
-					<li class="nav-item d-lg-none"><a class="nav-link" href="#">Alergii</a></li>
-					<li class="nav-item d-lg-none"><a class="nav-link" href="#">Tratamente</a></li>
-					<li class="nav-item d-lg-none"><a class="nav-link" href="#">Pagini</a></li>
+					<li class="nav-item d-lg-none"><a class="nav-link" href="../"><i class="fa fa-fw fa-home"></i> Înapoi la site</a></li>
+					<li class="nav-item d-lg-none"><a class="nav-link<?php if ((isset($p) ? $p : null) == "users") echo ' active'; ?>" href="?p=users"><i class="fa fa-fw fa-users"></i> Utilizatori</a></li>
+					<li class="nav-item d-lg-none"><a class="nav-link<?php if ((isset($p) ? $p : null) == "allergies") echo ' active'; ?>" href="?p=allergies"><i class="fa fa-fw fa-allergies"></i> Alergii</a></li>
 					<div class="separator d-lg-none"></div>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -151,11 +149,9 @@
 		</div>
 		<div class="navbar-links">
 			<div class="container d-flex flex-column flex-lg-row justify-content-between">
-				<a class="py-2 d-none d-lg-inline-block" href="#">Setări site</a>
-				<a class="py-2 d-none d-lg-inline-block<?php if ((isset($p) ? $p : null) == "users") echo ' active'; ?>" href="?p=users">Utilizatori</a>
-				<a class="py-2 d-none d-lg-inline-block" href="#">Alergii</a>
-				<a class="py-2 d-none d-lg-inline-block" href="#">Tratamente</a>
-				<a class="py-2 d-none d-lg-inline-block" href="#">Pagini</a>
+				<a class="py-2 d-none d-lg-inline-block" href="../"><i class="fa fa-fw fa-home"></i> Înapoi la site</a>
+				<a class="py-2 d-none d-lg-inline-block<?php if ((isset($p) ? $p : null) == "users") echo ' active'; ?>" href="?p=users"><i class="fa fa-fw fa-users"></i> Utilizatori</a>
+				<a class="py-2 d-none d-lg-inline-block<?php if ((isset($p) ? $p : null) == "allergies") echo ' active'; ?>" href="?p=allergies"><i class="fa fa-fw fa-allergies"></i> Alergii</a>
 			</div>
 		</div>
 	</nav>
@@ -388,6 +384,17 @@
 	</main>
 	<?php
 		}
+		else if($p === "allergies")
+		{
+	?>
+	<main role="main">
+		<div class="container pt-4">
+			<h1>Alergii</h1>
+			<hr class="mt-0 mb-3" />
+		</div>
+	</main>
+	<?php
+		}
 		else if($p === "account")
 		{
 	?>
@@ -600,6 +607,10 @@
 	<div class="cover">
 		<form action="" method="post" name="register" id="login-form">
 			<a href="../"><img class="brand" src="../assets/img/logo-green.png" /></a>
+			<br /><small class="brand-subtitle">Panou de administrare</small>
+			<input type="text" name="email" id="log-email" placeholder="Adresă de email" required="" autocomplete="off" autofocus="">
+			<input type="password" name="password" id="log-password" placeholder="Parolă" required="">
+			<button type="submit" name="submitlog">Logare</button>
 			<?php
 				if (isset($_SESSION['allergyhelp_admin_login_fail']))
 				{
@@ -614,9 +625,6 @@
 					unset($_SESSION['allergyhelp_admin_login_not_admin']);
 				}
 			?>
-			<input type="text" name="email" id="log-email" placeholder="Adresă de email" required="" autocomplete="off" autofocus="">
-			<input type="password" name="password" id="log-password" placeholder="Parolă" required="">
-			<button type="submit" name="submitlog">Logare</button>
 		</form>
 	</div>
 </body>
