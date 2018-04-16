@@ -86,9 +86,6 @@ a:hover {
   -ms-transform: rotate(0);
   transform: rotate(0);
 }
-.navbar-nav .dropdown-menu {
-  position: absolute;
-}
 .navbar-dark .navbar-nav .nav-link {
 	color: #fff;
 	font-weight: 700;
@@ -172,6 +169,7 @@ button:active, button:focus, .btn:active, .btn:focus {
 }
 .page-header .title {
 	color: #fff;
+	user-select: none;
 }
 .title {
 	font-weight: 700;
@@ -446,7 +444,7 @@ body.modal-open .modal {
 .modal label {
 	font-weight: 700;
 }
-.navbar-nav .dropdown-menu {
+.navbar-nav .dropdown-menu-login {
 	min-width: 15rem;
 	position: absolute;
 	border: 0;
@@ -463,9 +461,6 @@ body.modal-open .modal {
 .dropdown-menu.show {
 	display: block;
 	transform: scale(1, 1);
-}
-.dropdown-toggle::after {
-	content: none;
 }
 .dropdown-menu-right {
 	right: 0;
@@ -525,6 +520,42 @@ form[name="login"] .btn {
 	border-radius: 0 0 6px 6px !important;
 	margin-top: -1px;
 }
+.page-header-logged {
+	background: url(../img/sunrise.jpg);
+	background-position: center center;
+	background-size: cover;
+	height: 45vh;
+}
+.page-header-logged.page-header-filter::before {
+	background: rgba(0, 0, 0, 0.6);
+}
+.page-header-logged .title {
+	margin-top: 0;
+}
+.main-logged {
+	margin: -60px 30px 0px;
+}
+.avatar {
+	width: 28px;
+	height: 28px;
+	margin-right: 10px;
+	float: left;
+	margin-top: -2px;
+	border-radius: 50%;
+	border: 2px solid var(--ah-green);
+}
+.last-allergies .card .card-header.card-header-image {
+	margin-top: 10px;
+}
+.last-allergies .card .card-header {
+	margin: 0 !important;
+}
+.last-allergies .card-title {
+	margin: 0;
+}
+.last-allergies .card-description {
+	font-size: .8rem;
+}
 @media (min-width: 992px) {
 	#login-button {
 		text-transform: uppercase;
@@ -565,12 +596,24 @@ form[name="login"] .btn {
 	.navbar-nav {
 		margin-top: .5rem;
 	}
-	.navbar-nav .dropdown-menu {
+	.navbar-nav .dropdown-menu-login {
 		position: relative;
 		width: 100%;
 		display: none;
 	}
 	.navbar-nav .dropdown-menu.show {
 		display: block;
+	}
+	.page-header-logged {
+		height: 30vh;
+	}
+	.page-header-logged .title {
+		margin-top: 10vh;
+	}
+	.section-logged {
+		padding: 15px 0;
+	}
+	.last-allergies .card-title {
+		margin-top: 1rem;
 	}
 }
