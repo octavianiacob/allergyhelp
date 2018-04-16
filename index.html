@@ -20,6 +20,47 @@
 </head>
 
 <body>
+	<div class="modal fade" id="modal_register">
+		<div class="modal-dialog"  role="document">
+			<form action="" method="post" name="register">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Înregistrare</h5>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+							<label for="reg-email" class="form-control-label col-sm-2 col-form-label">Email</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" name="reg_email" id="reg-email" placeholder="Introdu adresa ta de email validă" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="reg-password" class="form-control-label col-sm-2 col-form-label">Parolă</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" name="reg_password" id="reg-password" placeholder="Parola trebuie să aibă minim 6 caractere" pattern=".{6,}" required title="Parola trebuie să aibă minim 6 caractere.">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="reg-lastname" class="form-control-label col-sm-2 col-form-label">Nume</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="reg_lastname" id="reg-lastname" placeholder="Introdu numele" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="reg-firstname" class="form-control-label col-sm-2 col-form-label">Prenume</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="reg_firstname" id="reg-firstname" placeholder="Introdu prenumele" required>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-primary ml-auto font-weight-bold" type="submit" name="register">Înregistrează-te</button>
+						<button class="btn btn-sm btn-secondary mr-auto" data-dismiss="modal">Înapoi</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark">
 		<div class="container">
 			<a class="navbar-brand link-top" href="#">
@@ -50,7 +91,7 @@
 					<h1 class="title">Protejează-te împotriva alergiilor</h1>
 					<h4>Cu ajutorul nostru poți afla ultimele noutăți despre alergiile de orice tip, inclusiv despre simptomele și cauzele acestora. Doar selectezi simptomele și vei primi automat informații!</h4>
 					<br />
-					<a href="#" class="btn-get-started">Înscrie-te acum</a>
+					<a class="btn-get-started" data-toggle="modal" data-target="#modal_register">Înscrie-te acum</a>
 				</div>
 			</div>
 		</div>
