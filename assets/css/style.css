@@ -1,5 +1,6 @@
 :root {
 	--ah-green: #5fcf80;
+	--ah-dark: #343a40;
 }
 html * {
 	-webkit-font-smoothing: antialiased;
@@ -89,7 +90,7 @@ a:hover {
   position: absolute;
 }
 .navbar-dark .navbar-nav .nav-link {
-  color: #fff;
+	color: #fff;
 	font-weight: 700;
 	display: inline-block;
 	padding-bottom: 0.25rem;
@@ -120,7 +121,7 @@ a:hover {
 	cursor: pointer;
 	border-radius: 6px !important;
 }
-.btn:active, .btn:focus {
+button:active, button:focus, .btn:active, .btn:focus {
   outline: none !important;
   box-shadow: none !important;
 }
@@ -445,6 +446,85 @@ body.modal-open .modal {
 .modal label {
 	font-weight: 700;
 }
+.navbar-nav .dropdown-menu {
+	min-width: 15rem;
+	position: absolute;
+	border: 0;
+	padding: 0;
+	border-radius: 6px;
+	transform: scale(1, 0);
+	transform-origin: top;
+	animation-fill-mode: forwards; 
+	display: block;
+	transition: all 0.2s ease-out;
+	background: transparent;
+	box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+.dropdown-menu.show {
+	display: block;
+	transform: scale(1, 1);
+}
+.dropdown-toggle::after {
+	content: none;
+}
+.dropdown-menu-right {
+	right: 0;
+	left: auto;
+}
+.input-group {
+	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-align: stretch;
+	-ms-flex-align: stretch;
+	align-items: stretch;
+	width: 100%;
+}
+.input-group-prepend {
+	margin-right: -1px;
+	display: flex;
+}
+.input-group-text {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: .375rem .75rem;
+	margin-bottom: 0;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	background-color: var(--ah-green);
+	border: 0;
+	border-radius: 0;
+}
+.input-group .form-control {
+	border: 1px solid var(--ah-green);
+	border-radius: 0;
+}
+.input-group .form-control:focus {
+	border-color: var(--ah-green);
+}
+.input-group:first-child .input-group-text {
+	border-radius: 6px 0 0 0;
+	margin-bottom: -1px;
+}
+.input-group:first-child .form-control {
+	border-radius: 0 6px 0 0;
+	margin-bottom: -1px;
+}
+form[name="login"] .btn {
+	border-radius: 0 0 6px 6px !important;
+	margin-top: -1px;
+}
 @media (min-width: 992px) {
 	#login-button {
 		text-transform: uppercase;
@@ -484,5 +564,13 @@ body.modal-open .modal {
 	}
 	.navbar-nav {
 		margin-top: .5rem;
+	}
+	.navbar-nav .dropdown-menu {
+		position: relative;
+		width: 100%;
+		display: none;
+	}
+	.navbar-nav .dropdown-menu.show {
+		display: block;
 	}
 }
