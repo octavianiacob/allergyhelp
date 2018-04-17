@@ -1,8 +1,8 @@
 <?php
 	session_start();
 	include_once '../assets/php/functions.php';
-	$admin = new Admin();
 	$user = new User();
+	$admin = new Admin();
 
 	if(isset($_SESSION['allergyhelp_admin_id']))
 		$id = $_SESSION['allergyhelp_admin_id'];

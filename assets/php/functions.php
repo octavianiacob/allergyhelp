@@ -185,7 +185,7 @@
 	}
 	class Admin extends User
 	{
-		public function check_admin_login($email, $password)
+		public function check_login($email, $password)
 		{
 			$email = mysqli_real_escape_string($this->db, $email);
 			$password = sha1($password);
