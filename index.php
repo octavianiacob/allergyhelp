@@ -23,7 +23,7 @@
 		$register = $user->register($reg_email, $reg_password, $reg_lastname, $reg_firstname);
 		if ($register)
 		{
-			$user->check_login($reg_password, $reg_password);
+			$user->check_login($reg_email, $reg_password);
 			header("location:index.php");
 		}
 		else $_SESSION['allergyhelp_register_fail'] = true;
