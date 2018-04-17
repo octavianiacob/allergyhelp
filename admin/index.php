@@ -12,8 +12,8 @@
 		$admin->admin_logout();
 		header("location:index.php");
 	}
-	if (isset($_REQUEST['submitlog'])) 
-	{ 
+	if (isset($_REQUEST['submitlog']))
+	{
 		extract($_REQUEST);
 		$login = $admin->check_login($email, $password);
 		if ($login == 1) header("location:index.php");
@@ -96,12 +96,12 @@
 </head>
 
 <body class="bg-light">
-	
+
 	<p class="no-admin text-center">
 		Drepturile de administrator ți-au fost revocate.
 		<br /><a href="index.php?q=logout">Click aici pentru delogare.</a>
 	</p>
-	
+
 </body>
 
 </html>
@@ -134,7 +134,7 @@
 </head>
 
 <body class="bg-light">
-	
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
 			<a class="navbar-brand m-auto" href="."><img src="../assets/img/logo-green.png" /></a>
@@ -151,7 +151,7 @@
 					<div class="separator d-lg-none"></div>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<img class="avatar" src="<?php echo $user->get_avatar($id); ?>"><?php echo $user->get_firstname($id); ?>
+							<img class="avatar" src="<?php echo $admin->get_avatar($id); ?>"><?php echo $user->get_firstname($id); ?>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item<?php if ((isset($p) ? $p : null) == "account") echo ' active'; ?>" href="?p=account"><i class="fa fa-fw fa-cog"></i> Setări cont</a>
@@ -668,9 +668,9 @@
 <?php
 		}
 	}
-	else 
+	else
 	{
-		
+
 ?>
 <!DOCTYPE html>
 <html lang="ro" class="login">

@@ -1,3 +1,302 @@
+<?php
+	session_start();
+	include_once 'assets/php/functions.php';
+	$user = new User();
+
+	if(isset($_SESSION['allergyhelp_id']))
+		$id = $_SESSION['allergyhelp_id'];
+	if (isset($_GET['q']))
+	{
+		$user->logout();
+		header("location:index.php");
+	}
+	if (isset($_REQUEST['login']))
+	{
+		extract($_REQUEST);
+		$login = $user->check_login($email, $password);
+		if ($login) header("location:index.php");
+		else $_SESSION['allergyhelp_login_fail'] = true;
+	}
+	if (isset($_REQUEST['register']))
+	{
+		extract($_REQUEST);
+		$register = $user->register($reg_email, $reg_password, $reg_lastname, $reg_firstname);
+		if ($register)
+		{
+			$user->check_login($reg_password, $reg_password);
+			header("location:index.php");
+		}
+		else $_SESSION['allergyhelp_register_fail'] = true;
+	}
+	if ($user->get_session())
+	{
+		if(isset($_GET['p'])) $p = $_GET['p'];
+?>
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="theme-color" content="#5fcf80">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Discode">
+	<title>AllergyHelp</title>
+
+	<link rel="icon" type="image/x-icon" href="assets/img/icon.png" />
+	<link href="assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/css/fontawesome/fontawesome.min.css" rel="stylesheet">
+	<link href="assets/css/style.css" rel="stylesheet">
+
+	<script src="assets/js/jquery/jquery.min.js"></script>
+	<script src="assets/js/popper/popper.min.js"></script>
+	<script src="assets/js/bootstrap/bootstrap.min.js"></script>
+	<script src="assets/js/main.js"></script>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<div class="container">
+			<a class="navbar-brand" href=".">
+				<img src="assets/img/logo-green.png" />
+			</a>
+			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="#navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="icon-bar top-bar"></span>
+				<span class="icon-bar middle-bar"></span>
+				<span class="icon-bar bottom-bar"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "myallergies") echo ' active'; ?>" href="?p=myallergies">Alergiile mele</a></li>
+					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "allallergies") echo ' active'; ?>" href="?p=allallergies">Toate alergiile</a></li>
+					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "profile") echo ' active'; ?>" href="?p=profile">Profil</a></li>
+					<?php if($user->isadmin($id)) echo '<li class="nav-item"><a class="nav-link admin-panel-link" href="admin/">Admin</a></li>'; ?>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<img class="avatar" src="<?php echo $user->get_avatar($id); ?>"><?php echo $user->get_firstname($id); ?>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="?p=account"><i class="fa fa-fw fa-cog"></i> Setări cont</a>
+							<a class="dropdown-item" href="?q=logout"><i class="fa fa-fw fa-sign-out-alt"></i> Delogare</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<?php
+		if(empty($p)) // Pagina principala
+		{
+	?>
+	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
+		<div class="container text-center">
+			<h1 class="title">Bine ai venit, <?php echo $user->get_firstname($id); ?>!</h1>
+		</div>
+	</div>
+	<div class="main main-logged">
+		<div class="section section-logged">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg last-allergies">
+						<h3 class="title">Ultimele alergii înregistrate</h3>
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="card-header card-header-image">
+										<img class="img" src="assets/img/rsz_alergia-la-polen.jpg">
+										<div class="colored-shadow" style="background-image: url('assets/img/rsz_alergia-la-polen.jpg'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<h4 class="card-title">
+										Rinita alergică
+									</h4>
+									<p class="card-description">
+										Cel puțin 1 din 10 persoane la nivel mondial suferă de rinită alergică, iar incidența acestei afecțiuni este în creștere, din cauza creșterii expunerii la poluanții atmosferici și utilizării crescute de antibiotice pentru tratarea infecțiilor respiratorii în copilarie.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="card-header card-header-image">
+										<img class="img" src="assets/img/astm1.jpg">
+										<div class="colored-shadow" style="background-image: url('assets/img/astm1.jpg'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<h4 class="card-title">
+										Astmul bronșic
+									</h4>
+									<p class="card-description">
+										Peste 300 de milioane de oameni din întreaga lume sufera de astm bronșic, prevalența acestei boli este în creștere. În România, prevalența astmului este de 4-6%, fiind afectate aproximativ un milion de persoane, din care se estimeaza ca 60% sunt la copii și tineri.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="card-header card-header-image">
+										<img class="img" src="assets/img/rsz_dermatita.jpg">
+										<div class="colored-shadow" style="background-image: url('assets/img/rsz_dermatita.jpg'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<h4 class="card-title">
+										Dermatita atopică
+									</h4>
+									<p class="card-description">
+										Eczema este cea mai comună manifestare a bolii atopice. Aceasta apare încă din copilarie și se ameliorează cu vârsta în 80% din cauzuri. Este o afecțiune cutantă inflamatorie, care creează o senzație intensă de mâncărime a pielii.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg last-allergies">
+						<h3 class="title">Cele mai frecvente alergii</h3>
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="card-header card-header-image">
+										<img class="img" src="assets/img/rsz_alergia-la-polen.jpg">
+										<div class="colored-shadow" style="background-image: url('assets/img/rsz_alergia-la-polen.jpg'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<h4 class="card-title">
+										Rinita alergică
+									</h4>
+									<p class="card-description">
+										Cel puțin 1 din 10 persoane la nivel mondial suferă de rinită alergică, iar incidența acestei afecțiuni este în creștere, din cauza creșterii expunerii la poluanții atmosferici și utilizării crescute de antibiotice pentru tratarea infecțiilor respiratorii în copilarie.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="card-header card-header-image">
+										<img class="img" src="assets/img/astm1.jpg">
+										<div class="colored-shadow" style="background-image: url('assets/img/astm1.jpg'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<h4 class="card-title">
+										Astmul bronșic
+									</h4>
+									<p class="card-description">
+										Peste 300 de milioane de oameni din întreaga lume sufera de astm bronșic, prevalența acestei boli este în creștere. În România, prevalența astmului este de 4-6%, fiind afectate aproximativ un milion de persoane, din care se estimeaza ca 60% sunt la copii și tineri.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="card-header card-header-image">
+										<img class="img" src="assets/img/rsz_dermatita.jpg">
+										<div class="colored-shadow" style="background-image: url('assets/img/rsz_dermatita.jpg'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<h4 class="card-title">
+										Dermatita atopică
+									</h4>
+									<p class="card-description">
+										Eczema este cea mai comună manifestare a bolii atopice. Aceasta apare încă din copilarie și se ameliorează cu vârsta în 80% din cauzuri. Este o afecțiune cutantă inflamatorie, care creează o senzație intensă de mâncărime a pielii.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+		}
+		else if($p === "myallergies")
+		{
+	?>
+	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
+		<div class="container text-center">
+			<h1 class="title">Alergiile mele</h1>
+		</div>
+	</div>
+	<div class="main main-logged">
+		<div class="section section-logged">
+			<div class="container">
+				continutul paginii
+			</div>
+		</div>
+	</div>
+	<?php
+		}
+		else if($p === "allallergies")
+		{
+	?>
+	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
+		<div class="container text-center">
+			<h1 class="title">Toate alergiile</h1>
+		</div>
+	</div>
+	<div class="main main-logged">
+		<div class="section section-logged">
+			<div class="container">
+				continutul paginii
+			</div>
+		</div>
+	</div>
+	<?php
+		}
+		else if($p === "profile")
+		{
+	?>
+	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
+		<div class="container text-center">
+			<h1 class="title">Profil</h1>
+		</div>
+	</div>
+	<div class="main main-logged">
+		<div class="section section-logged">
+			<div class="container">
+				continutul paginii
+			</div>
+		</div>
+	</div>
+	<?php
+		}
+		else if($p === "account")
+		{
+	?>
+	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
+		<div class="container text-center">
+			<h1 class="title">Setări cont</h1>
+		</div>
+	</div>
+	<div class="main main-logged">
+		<div class="section section-logged">
+			<div class="container">
+				continutul paginii
+			</div>
+		</div>
+	</div>
+	<?php
+		}
+	?>
+	<footer class="text-center m-2">
+		<small>Realizat pentru <strong><a href="https://fiicode.asii.ro/" target="_blank" rel="noopener">FIICode 2018</a></strong> de către echipa <strong>Discode</strong>.</small>
+	</footer>
+</body>
+
+</html>
+<?php
+	}
+	else
+	{
+?>
 <!DOCTYPE html>
 <html lang="ro">
 
@@ -381,3 +680,7 @@
 </body>
 
 </html>
+
+<?php
+	}
+?>

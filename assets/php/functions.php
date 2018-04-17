@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include "config.php";
 	date_default_timezone_set('Europe/Bucharest');
 
@@ -8,7 +8,7 @@
 		public function __construct()
 		{
 			$this->db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-			if(mysqli_connect_errno()) 
+			if(mysqli_connect_errno())
 			{
 				echo "Nu s-a putut face conexiunea la baza de date!";
 				exit;
@@ -21,7 +21,7 @@
 				$ip = $_SERVER['HTTP_CLIENT_IP'];
 			elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
 				$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-			else 
+			else
 				$ip = $_SERVER['REMOTE_ADDR'];
 			return $ip;
 		}
@@ -42,58 +42,58 @@
 			$timestamp      = strtotime($timestamp);
 			$current_time   = strtotime(date('Y-m-d H:i:s', time()));
 			$diff           = $current_time - $timestamp;
-			
+
 			$intervals      = array (
 				'year' => 31556926, 'month' => 2629744, 'week' => 604800, 'day' => 86400, 'hour' => 3600, 'minute'=> 60
 			);
-			
+
 			$prepoz = "de";
-			
+
 			if ($diff == 0)
 			{
 				return 'chiar acum';
-			}    
+			}
 
 			if ($diff < 60)
 			{
 				if($diff < 20) $prepoz = "";
 				return $diff == 1 ? 'acum o secundă' : 'acum ' . $diff . ' '. $prepoz .' secunde';
-			}        
+			}
 
 			if ($diff >= 60 && $diff < $intervals['hour'])
 			{
 				$diff = floor($diff/$intervals['minute']);
 				if($diff < 20) $prepoz = "";
 				return $diff == 1 ? 'acum un minut' : 'acum ' . $diff . ' '. $prepoz .' minute';
-			}        
+			}
 
 			if ($diff >= $intervals['hour'] && $diff < $intervals['day'])
 			{
 				$diff = floor($diff/$intervals['hour']);
 				if($diff < 20) $prepoz = "";
 				return $diff == 1 ? 'acum o oră' : 'acum ' . $diff . ' '. $prepoz .' ore';
-			}    
+			}
 
 			if ($diff >= $intervals['day'] && $diff < $intervals['week'])
 			{
 				$diff = floor($diff/$intervals['day']);
 				if($diff < 20) $prepoz = "";
 				return $diff == 1 ? 'acum o zi' : 'acum ' . $diff . ' '. $prepoz .' zile';
-			}    
+			}
 
 			if ($diff >= $intervals['week'] && $diff < $intervals['month'])
 			{
 				$diff = floor($diff/$intervals['week']);
 				if($diff < 20) $prepoz = "";
 				return $diff == 1 ? 'acum o săptămână' : 'acum ' . $diff . ' '. $prepoz .' săptămâni';
-			}    
+			}
 
 			if ($diff >= $intervals['month'] && $diff < $intervals['year'])
 			{
 				$diff = floor($diff/$intervals['month']);
 				if($diff < 20) $prepoz = "";
 				return $diff == 1 ? 'acum o lună' : 'acum ' . $diff . ' '. $prepoz .' luni';
-			}    
+			}
 
 			if ($diff >= $intervals['year'])
 			{
@@ -105,6 +105,44 @@
 	}
 	class User extends Utils
 	{
+		public function check_login($email, $password)
+		{
+			$email = mysqli_real_escape_string($this->db, $email);
+			$password = sha1($password);
+			$sql="SELECT id FROM users WHERE email='$email' AND password='$password'";
+
+			$result = mysqli_query($this->db,$sql);
+			$user_data = mysqli_fetch_array($result);
+			$count_row = $result->num_rows;
+
+			if($count_row == 1)
+			{
+				$_SESSION['allergyhelp_login'] = true;
+				$_SESSION['allergyhelp_id'] = $user_data['id'];
+				return 1;
+			}
+			return 0;
+		}
+		public function register($email, $pass, $lastname, $fistname)
+		{
+			$email = mysqli_real_escape_string($this->db, $email);
+			$lastname = mysqli_real_escape_string($this->db, $lastname);
+			$firstname = mysqli_real_escape_string($this->db, $fistname);
+
+			$pass = sha1($pass);
+			$sql = "SELECT * FROM users WHERE email='$email'";
+
+			$check =  $this->db->query($sql);
+			$count_row = $check->num_rows;
+
+			if ($count_row == 0)
+			{
+				$sql = "INSERT INTO users SET email='$email', password='$pass', lastname='$lastname', firstname='$firstname', regtime='".date('Y-m-d H:i:s', time())."'";
+				mysqli_query($this->db,$sql);
+				return 1;
+			}
+			return 0;
+		}
 		public function get_fullname($id)
 		{
 			$sql = "SELECT firstname, lastname FROM users WHERE id = $id";
@@ -126,36 +164,49 @@
 		}
 		public function get_avatar($id)
 		{
-			if(file_exists("../assets/img/avatars/".$id.".jpg")) $avatar = $id;
+			if(file_exists("assets/img/avatars/".$id.".jpg")) $avatar = $id;
 			else $avatar = 0;
-			$source = "../assets/img/avatars/" . $avatar . ".jpg?=" . filemtime('../assets/img/avatars/'.$avatar.'.jpg');
+			$source = "assets/img/avatars/" . $avatar . ".jpg?=" . filemtime('assets/img/avatars/'.$avatar.'.jpg');
 			return $source;
+		}
+		public function isadmin($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT admin FROM users WHERE id = '$id'"));
+		}
+		public function get_session()
+		{
+			return isset($_SESSION['allergyhelp_login']);
+		}
+		public function logout()
+		{
+			$_SESSION['allergyhelp_login'] = FALSE;
+			session_destroy();
 		}
 	}
 	class Admin extends User
-	{	
-		public function check_login($email, $password)
+	{
+		public function check_admin_login($email, $password)
 		{
 			$email = mysqli_real_escape_string($this->db, $email);
 			$password = sha1($password);
 			$sql="SELECT id, admin FROM users WHERE email='$email' AND password='$password'";
-			
+
 			$result = mysqli_query($this->db,$sql);
 			$user_data = mysqli_fetch_array($result);
 			$count_row = $result->num_rows;
-		
-			if($count_row == 1) 
+
+			if($count_row == 1)
 			{
 				if(!$user_data['admin'])
 					return -1;
-				$_SESSION['allergyhelp_admin_login'] = true; 
+				$_SESSION['allergyhelp_admin_login'] = true;
 				$_SESSION['allergyhelp_admin_id'] = $user_data['id'];
-				
+
 				$ip = $this->get_ip_address();
 				$id = $user_data['id'];
 				$sql="INSERT INTO logins SET userid='$id', ip='$ip', date='".date('Y-m-d H:i:s', time())."'";
 				mysqli_query($this->db, $sql);
-				
+
 				return 1;
 			}
 			else return 0;
@@ -200,10 +251,10 @@
 			$email = mysqli_real_escape_string($this->db, $email);
 			$lastname = mysqli_real_escape_string($this->db, $lastname);
 			$firstname = mysqli_real_escape_string($this->db, $fistname);
-			
+
 			$pass = sha1($pass);
 			$sql = "SELECT * FROM users WHERE email='$email'";
-			
+
 			$check =  $this->db->query($sql);
 			$count_row = $check->num_rows;
 
@@ -230,7 +281,7 @@
 			$email = mysqli_real_escape_string($this->db, $email);
 			$lastname = mysqli_real_escape_string($this->db, $lastname);
 			$firstname = mysqli_real_escape_string($this->db, $fistname);
-			
+
 			$sql = "UPDATE users SET email='$email', lastname='$lastname', firstname='$firstname' WHERE id = '$id'";
 			$result = mysqli_query($this->db,$sql);
 			return $result;
@@ -361,19 +412,22 @@
 			if($result) $this->add_action($adminid, "a șters un administrator");
 			return $result;
 		}
-		public function isadmin($id)
-		{
-			return $this->mysqli_result(mysqli_query($this->db, "SELECT admin FROM users WHERE id = '$id'"));
-		}
 		public function count_users()
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM users"));
+		}
+		public function get_avatar($id)
+		{
+			if(file_exists("../assets/img/avatars/".$id.".jpg")) $avatar = $id;
+			else $avatar = 0;
+			$source = "../assets/img/avatars/" . $avatar . ".jpg?=" . filemtime('../assets/img/avatars/'.$avatar.'.jpg');
+			return $source;
 		}
 		public function get_admin_session()
 		{
 			return isset($_SESSION['allergyhelp_admin_login']);
 		}
-		public function admin_logout() 
+		public function admin_logout()
 		{
 			$_SESSION['allergyhelp_admin_login'] = FALSE;
 			session_destroy();

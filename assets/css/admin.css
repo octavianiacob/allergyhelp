@@ -281,6 +281,7 @@ footer a:hover {
 	height: auto;
 	float: none;
 	margin-bottom: 1rem;
+	margin-right: 0;
 }
 #users-table {
 	background: #fff;

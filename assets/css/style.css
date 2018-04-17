@@ -452,7 +452,7 @@ body.modal-open .modal {
 	border-radius: 6px;
 	transform: scale(1, 0);
 	transform-origin: top;
-	animation-fill-mode: forwards; 
+	animation-fill-mode: forwards;
 	display: block;
 	transition: all 0.2s ease-out;
 	background: transparent;
@@ -520,6 +520,9 @@ form[name="login"] .btn {
 	border-radius: 0 0 6px 6px !important;
 	margin-top: -1px;
 }
+.admin-panel-link {
+	color: var(--ah-green) !important;
+}
 .page-header-logged {
 	background: url(../img/sunrise.jpg);
 	background-position: center center;
@@ -528,6 +531,9 @@ form[name="login"] .btn {
 }
 .page-header-logged.page-header-filter::before {
 	background: rgba(0, 0, 0, 0.6);
+}
+.page-header-logged.page-header-filter:before, .page-header-logged.page-header-filter:after {
+	height: 45vh;
 }
 .page-header-logged .title {
 	margin-top: 0;
