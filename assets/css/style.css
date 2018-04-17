@@ -171,6 +171,48 @@ button:active, button:focus, .btn:active, .btn:focus {
 	color: #fff;
 	user-select: none;
 }
+.error.alert {
+	position: absolute;
+	z-index: 5 !important;
+	width: 100%;
+	top: 110px;
+	left: 0;
+	border: 0;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	line-height: 15px;
+}
+.error.alert .container {
+	padding: 15px 15px;
+}
+.error.alert.alert-danger {
+	background-color: #f55145;
+	color: #fff;
+}
+.error.alert .alert-icon {
+	display: block;
+	float: left;
+	margin-right: 1.071rem;
+}
+.error.alert .alert-icon i {
+	top: -.05rem;
+	position: relative;
+	font-size: .8rem;
+}
+.error.alert .close {
+	color: #fff;
+	text-shadow: none;
+	opacity: .9;
+	position: relative;
+	top: -.5rem;
+	right: 0;
+	padding: 0;
+	color: inherit;
+}
+.error.alert .close i {
+	font-size: 15px;
+}
 .title {
 	font-weight: 700;
 	margin-top: 30px;
@@ -591,6 +633,10 @@ form[name="login"] .btn {
 		border-radius: 0;
 		box-shadow: none;
 	}
+	.navbar {
+		padding: 10px 0;
+		background-color: rgba(52, 58, 64, .9) !important;
+	}
 	.navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid {
 		padding-right: 15px;
 		padding-left: 15px;
@@ -609,6 +655,9 @@ form[name="login"] .btn {
 	}
 	.navbar-nav .dropdown-menu.show {
 		display: block;
+	}
+	.error.alert {
+		top: 60px;
 	}
 	.page-header-logged {
 		height: 30vh;

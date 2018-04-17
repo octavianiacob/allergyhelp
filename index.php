@@ -402,6 +402,44 @@
 			</div>
 		</div>
 	</nav>
+	<?php
+		if (isset($_SESSION['allergyhelp_register_fail']))
+		{
+			echo '
+			<div class="alert alert-danger alert-dismissible fade show error">
+				<div class="container">
+					<div class="alert-icon">
+						<i class="fas fa-exclamation-circle"></i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true"><i class="fas fa-times"></i></span>
+					</button>
+					Există deja un cont cu aceeași adresă de email!
+				</div>
+			</div>
+			';
+			$_SESSION['allergyhelp_register_fail'] = false;
+			unset($_SESSION['allergyhelp_register_fail']);
+		}
+		if (isset($_SESSION['allergyhelp_login_fail']))
+		{
+			echo '
+			<div class="alert alert-danger alert-dismissible fade show error">
+				<div class="container">
+					<div class="alert-icon">
+						<i class="fas fa-exclamation-circle"></i>
+					</div>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true"><i class="fas fa-times"></i></span>
+					</button>
+					Adresa de email sau parola este greșită!
+				</div>
+			</div>
+			';
+			$_SESSION['allergyhelp_login_fail'] = false;
+			unset($_SESSION['allergyhelp_login_fail']);
+		}
+	?>
 	<div class="page-header page-header-filter" data-parallax="true">
 		<div class="container">
 			<div class="row">
