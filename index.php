@@ -651,10 +651,10 @@
 					<div class="col-sm-6 col-md-3">
 						<div class="card card-profile card-plain">
 							<div class="card-header card-avatar">
-								<img class="img" src="assets/img/avatars/2.jpg">
+								<img class="img" src="<?php echo $user->get_avatar(2); ?>">
 							</div>
 							<div class="card-body">
-								<h4 class="card-title">Iacob Octavian</h4>
+								<h4 class="card-title"><?php echo $user->get_firstname(2)." ".$user->get_lastname(2); ?></h4>
 							</div>
 							<div class="card-footer justify-content-center">
 								<a href="https://www.facebook.com/octavzz" target="_blank" rel="noopener"><i class="fab fa-facebook-square"></i></a>
@@ -666,10 +666,10 @@
 					<div class="col-sm-6 col-md-3">
 						<div class="card card-profile card-plain">
 							<div class="card-header card-avatar">
-								<img class="img" src="assets/img/avatars/4.jpg">
+								<img class="img" src="<?php echo $user->get_avatar(4); ?>">
 							</div>
 							<div class="card-body">
-								<h4 class="card-title">Negru Parascheva</h4>
+								<h4 class="card-title"><?php echo $user->get_firstname(4)." ".$user->get_lastname(4); ?></h4>
 							</div>
 							<div class="card-footer justify-content-center">
 								<a href="https://www.facebook.com/parascheva.negru" target="_blank" rel="noopener"><i class="fab fa-facebook-square"></i></a>
@@ -681,10 +681,10 @@
 					<div class="col-sm-6 col-md-3">
 						<div class="card card-profile card-plain">
 							<div class="card-header card-avatar">
-								<img class="img" src="assets/img/avatars/3.jpg">
+								<img class="img" src="<?php echo $user->get_avatar(3); ?>">
 							</div>
 							<div class="card-body">
-								<h4 class="card-title">Scurtu Claudiu</h4>
+								<h4 class="card-title"><?php echo $user->get_firstname(3)." ".$user->get_lastname(3); ?></h4>
 							</div>
 							<div class="card-footer justify-content-center">
 								<a href="https://www.facebook.com/claudiu.scurtu" target="_blank" rel="noopener"><i class="fab fa-facebook-square"></i></a>
@@ -696,10 +696,10 @@
 					<div class="col-sm-6 col-md-3">
 						<div class="card card-profile card-plain">
 							<div class="card-header card-avatar">
-								<img class="img" src="assets/img/avatars/1.jpg">
+								<img class="img" src="<?php echo $user->get_avatar(1); ?>">
 							</div>
 							<div class="card-body">
-								<h4 class="card-title">Toderică Alexandru</h4>
+								<h4 class="card-title"><?php echo $user->get_firstname(1)." ".$user->get_lastname(1); ?></h4>
 							</div>
 							<div class="card-footer justify-content-center">
 								<a href="https://www.facebook.com/alexandru.toderica" target="_blank" rel="noopener"><i class="fab fa-facebook-square"></i></a>
