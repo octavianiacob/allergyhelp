@@ -124,12 +124,14 @@
 	<link rel="icon" type="image/x-icon" href="../assets/img/icon.png" />
 	<link href="../assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
 	<link href="../assets/css/fontawesome/fontawesome.min.css" rel="stylesheet">
+	<link href="../assets/css/summernote/summernote-bs4.css" rel="stylesheet">
 	<link href="../assets/css/admin.css" rel="stylesheet">
 
 	<script src="../assets/js/jquery/jquery.min.js"></script>
 	<script src="../assets/js/popper/popper.min.js"></script>
 	<script src="../assets/js/bootstrap/bootstrap.min.js"></script>
 	<script src="../assets/js/cropit/cropit.js"></script>
+	<script src="../assets/js/summernote/summernote-bs4.min.js"></script>
 	<script src="../assets/js/admin.js"></script>
 </head>
 
@@ -475,6 +477,31 @@
 					</ul>
 				</div>
 			</div>
+			<h1>Alergii</h1>
+			<hr class="mt-0 mb-3" />
+			<a class="btn btn-primary btn-block btn-allergy" href="?p=addallergy">Adaugă o alergie</a>
+			<ul class="list-group mb-4 allergy-info">
+				<li class="list-group-item">
+					<strong>Rinita alergică</strong>
+					<br /><small class="text-muted">Cel puțin 1 din 10 persoane la nivel mondial suferă de rinită alergică, iar incidența acestei afecțiuni este în creștere, din cauza creșterii expunerii la poluanții atmosferici și utilizării crescute de antibiotice pentru tratarea infecțiilor respiratorii în copilarie.</small>
+				</li>
+			</ul>
+		</div>
+	</main>
+	<?php
+		}
+		else if($p === "addallergy")
+		{
+	?>
+	<main role="main">
+		<div class="container pt-4">
+			<h1>Adaugă o alergie</h1>
+			<hr class="mt-0 mb-3" />
+			<form action="" method="post" name="add_allergy">
+				<input type="text" class="form-control" name="allergy_title" id="allergy-title" placeholder="Numele alergiei" required>
+				<textarea class="input-block-level" name="allergy_content" id="allergy-content"></textarea>
+				<button class="btn btn-primary btn-block btn-allergy" type="submit" name="add_allergy" id="add_allergy">Adaugă</button>
+			</form>
 		</div>
 	</main>
 	<?php

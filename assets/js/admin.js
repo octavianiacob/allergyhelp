@@ -26,4 +26,42 @@ $(document).ready(function()
 			$(".export").fadeTo("fast", 0.5);
 		}
 	});
+	$('#allergy-content').summernote({
+		minHeight: 150,
+		toolbar: [
+			["style", ["style"]],
+			["font", ["bold", "underline", "clear"]],
+			["color", ["color"]],
+			["para", ["ul", "ol", "paragraph"]],
+			["table", ["table"]],
+			["insert", ["link", "picture", "video"]],
+			["view", ["fullscreen", "codeview"]]
+		],
+		callbacks: {
+			onImageUpload: function(files, editor, welEditable) {
+				for (var i = files.length - 1; i >= 0; i--) {
+					sendFile(files[i], this);
+				}
+			}
+		}
+	});
+	function sendFile(file, el) {
+		var form_data = new FormData();
+		form_data.append('file', file);
+		$.ajax({
+			data: form_data,
+			type: "POST",
+			url: '../php/upload.php',
+			cache: false,
+			contentType: false,
+			enctype: 'multipart/form-data',
+			processData: false,
+			success: function(url) {
+				$(el).summernote('editor.insertImage', url);
+			},
+		});
+	}
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	});
 });

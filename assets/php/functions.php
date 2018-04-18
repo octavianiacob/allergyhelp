@@ -353,7 +353,7 @@
 				while($row = mysqli_fetch_assoc($result))
 				{
 					echo '
-					<li class="list-group-item d-flex justify-content-between align-items-center">
+					<li class="list-group-item">
 						'.$row['sign'].'
 						<!--<span class="badge">
 							<i class="fas fa-fw fa-pencil-alt text-warning"></i>
@@ -365,7 +365,7 @@
 			}
 			else
 				echo '
-					<li class="list-group-item d-flex justify-content-between align-items-center list-group-item-danger">
+					<li class="list-group-item">
 						Nu există niciun simptom adăugat!
 					</li>
 					';
@@ -379,7 +379,7 @@
 				while($row = mysqli_fetch_assoc($result))
 				{
 					echo '
-					<li class="list-group-item d-flex justify-content-between align-items-center">
+					<li class="list-group-item">
 						'.$row['cause'].'
 						<!--<span class="badge">
 							<i class="fas fa-fw fa-pencil-alt text-warning"></i>
@@ -391,7 +391,7 @@
 			}
 			else
 				echo '
-					<li class="list-group-item d-flex justify-content-between align-items-center list-group-item-danger">
+					<li class="list-group-item">
 						Nu există nicio cauză adăugată!
 					</li>
 					';
