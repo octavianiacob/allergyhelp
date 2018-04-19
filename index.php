@@ -99,117 +99,11 @@
 				<div class="row">
 					<div class="col-lg last-allergies">
 						<h3 class="title">Ultimele alergii înregistrate</h3>
-						<div class="card card-plain">
-							<div class="row">
-								<div class="col-sm-5">
-									<div class="card-header card-header-image">
-										<img class="img" src="assets/img/rsz_alergia-la-polen.jpg">
-										<div class="colored-shadow" style="background-image: url('assets/img/rsz_alergia-la-polen.jpg'); opacity: 1;"></div>
-									</div>
-								</div>
-								<div class="col-sm-7">
-									<h4 class="card-title">
-										Rinita alergică
-									</h4>
-									<p class="card-description">
-										Cel puțin 1 din 10 persoane la nivel mondial suferă de rinită alergică, iar incidența acestei afecțiuni este în creștere, din cauza creșterii expunerii la poluanții atmosferici și utilizării crescute de antibiotice pentru tratarea infecțiilor respiratorii în copilarie.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="card card-plain">
-							<div class="row">
-								<div class="col-sm-5">
-									<div class="card-header card-header-image">
-										<img class="img" src="assets/img/astm1.jpg">
-										<div class="colored-shadow" style="background-image: url('assets/img/astm1.jpg'); opacity: 1;"></div>
-									</div>
-								</div>
-								<div class="col-sm-7">
-									<h4 class="card-title">
-										Astmul bronșic
-									</h4>
-									<p class="card-description">
-										Peste 300 de milioane de oameni din întreaga lume sufera de astm bronșic, prevalența acestei boli este în creștere. În România, prevalența astmului este de 4-6%, fiind afectate aproximativ un milion de persoane, din care se estimeaza ca 60% sunt la copii și tineri.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="card card-plain">
-							<div class="row">
-								<div class="col-sm-5">
-									<div class="card-header card-header-image">
-										<img class="img" src="assets/img/rsz_dermatita.jpg">
-										<div class="colored-shadow" style="background-image: url('assets/img/rsz_dermatita.jpg'); opacity: 1;"></div>
-									</div>
-								</div>
-								<div class="col-sm-7">
-									<h4 class="card-title">
-										Dermatita atopică
-									</h4>
-									<p class="card-description">
-										Eczema este cea mai comună manifestare a bolii atopice. Aceasta apare încă din copilarie și se ameliorează cu vârsta în 80% din cauzuri. Este o afecțiune cutantă inflamatorie, care creează o senzație intensă de mâncărime a pielii.
-									</p>
-								</div>
-							</div>
-						</div>
+						<?php echo $user->get_last_allergies(); ?>
 					</div>
 					<div class="col-lg last-allergies">
 						<h3 class="title">Cele mai frecvente alergii</h3>
-						<div class="card card-plain">
-							<div class="row">
-								<div class="col-sm-5">
-									<div class="card-header card-header-image">
-										<img class="img" src="assets/img/rsz_dermac.jpg">
-										<div class="colored-shadow" style="background-image: url('assets/img/rsz_dermac.jpg'); opacity: 1;"></div>
-									</div>
-								</div>
-								<div class="col-sm-7">
-									<h4 class="card-title">
-										Dermatita de contact
-									</h4>
-									<p class="card-description">
-										Este o reacție alergică localizată, produsă de contactul dintre un alergen și tegumentul unei persoane. Se manifestă prin erupție localizată la locul de contact, de tip eczematos, de multe ori cu vezicule și edem.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="card card-plain">
-							<div class="row">
-								<div class="col-sm-5">
-									<div class="card-header card-header-image">
-										<img class="img" src="assets/img/rsz_food.jpg">
-										<div class="colored-shadow" style="background-image: url('assets/img/rsz_food.jpg'); opacity: 1;"></div>
-									</div>
-								</div>
-								<div class="col-sm-7">
-									<h4 class="card-title">
-										Alergia alimentară
-									</h4>
-									<p class="card-description">
-										Este o reacție de hipersensibilitate mediată imun (reacție a sistemului imunitar), o apărare exagerată a organismului declanșată în urma ingestiei unor alimente sau aditivi alimentari, considerați periculoși de către organism.
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="card card-plain">
-							<div class="row">
-								<div class="col-sm-5">
-									<div class="card-header card-header-image">
-										<img class="img" src="assets/img/rsz_1intoleranta.jpg">
-										<div class="colored-shadow" style="background-image: url('assets/img/rsz_1intoleranta.jpg'); opacity: 1;"></div>
-									</div>
-								</div>
-								<div class="col-sm-7">
-									<h4 class="card-title">
-										Intoleranță alimetară
-									</h4>
-									<p class="card-description">
-										Este o hipersensibilitate individuală la un aliment pe care cei mai mulți oameni îl tolerează fără probleme. Se manifestă în special la nivelul sistemului digestiv, având ca și consecințe: inflamația intestinală și scăderea secreției de serotonină în intestine.
-									</p>
-								</div>
-							</div>
-						</div>
+						<?php echo $user->get_frequent_allergies(); ?>
 					</div>
 				</div>
 			</div>
@@ -594,48 +488,7 @@
 			<div class="container">
 				<h2 class="title text-center">Noutăți</h2>
 				<div class="row">
-					<div class="col-md-4">
-						<div class="card card-plain">
-							<div class="card-header card-header-image">
-								<img class="img" src="assets/img/rsz_alergia-la-polen.jpg">
-								<div class="colored-shadow" style="background-image: url('assets/img/rsz_alergia-la-polen.jpg'); opacity: 1;"></div>
-							</div>
-							<h3 class="card-title">
-								Rinita alergică
-							</h3>
-							<p class="card-description">
-								Cel puțin 1 din 10 persoane la nivel mondial suferă de rinită alergică, iar incidența acestei afecțiuni este în creștere, din cauza creșterii expunerii la poluanții atmosferici și utilizării crescute de antibiotice pentru tratarea infecțiilor respiratorii în copilarie.
-							</p>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="card card-plain">
-							<div class="card-header card-header-image">
-								<img class="img" src="assets/img/astm1.jpg">
-								<div class="colored-shadow" style="background-image: url('assets/img/astm1.jpg'); opacity: 1;"></div>
-							</div>
-							<h3 class="card-title">
-								Astmul bronșic
-							</h3>
-							<p class="card-description">
-								Peste 300 de milioane de oameni din întreaga lume sufera de astm bronșic, prevalența acestei boli este în creștere. În România, prevalența astmului este de 4-6%, fiind afectate aproximativ un milion de persoane, din care se estimeaza ca 60% sunt la copii și tineri.
-							</p>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="card card-plain">
-							<div class="card-header card-header-image">
-								<img class="img" src="assets/img/rsz_dermatita.jpg">
-								<div class="colored-shadow" style="background-image: url('assets/img/rsz_dermatita.jpg'); opacity: 1;"></div>
-							</div>
-							<h3 class="card-title">
-								Dermatita atopică
-							</h3>
-							<p class="card-description">
-								Eczema este cea mai comună manifestare a bolii atopice. Aceasta apare încă din copilarie și se ameliorează cu vârsta în 80% din cauzuri. Este o afecțiune cutantă inflamatorie, care creează o senzație intensă de mâncărime a pielii.
-							</p>
-						</div>
-					</div>
+					<?php $user->get_last_allergies_landing(); ?>
 				</div>
 			</div>
 		</div>
