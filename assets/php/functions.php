@@ -2,6 +2,20 @@
 	include "config.php";
 	date_default_timezone_set('Europe/Bucharest');
 
+	if(isset($_FILES['allergy-content-img']))
+	{
+		$name = md5(rand(100, 200));
+		$ext = pathinfo($_FILES["allergy-content-img"]["name"], PATHINFO_EXTENSION);
+		$filename = $name . '.' . $ext;
+		$destination = '../img/uploads/' . $filename;
+		$location = $_FILES["allergy-content-img"]["tmp_name"];
+		$allowed = array('png', 'jpg', 'gif', 'bmp');
+		if (in_array(strtolower($ext), $allowed))
+		{
+			move_uploaded_file($location, $destination);
+			echo '../assets/img/uploads/' . $filename;
+		}
+	}
 	class Utils
 	{
 		public $db;

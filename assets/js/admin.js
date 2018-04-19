@@ -47,11 +47,11 @@ $(document).ready(function()
 	});
 	function sendFile(file, el) {
 		var form_data = new FormData();
-		form_data.append('file', file);
+		form_data.append('allergy-content-img', file);
 		$.ajax({
 			data: form_data,
 			type: "POST",
-			url: '../php/upload.php',
+			url: '../assets/php/functions.php',
 			cache: false,
 			contentType: false,
 			enctype: 'multipart/form-data',
