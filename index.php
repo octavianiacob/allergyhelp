@@ -96,16 +96,10 @@
 	<div class="main main-logged">
 		<div class="section section-logged">
 			<div class="container">
-				<div class="row">
-					<div class="col-lg last-allergies">
-						<h3 class="title">Ultimele alergii înregistrate</h3>
-						<?php echo $user->get_last_allergies(); ?>
-					</div>
-					<div class="col-lg last-allergies">
-						<h3 class="title">Cele mai frecvente alergii</h3>
-						<?php echo $user->get_frequent_allergies(); ?>
-					</div>
-				</div>
+				<h3 class="title">Ultimele alergii înregistrate</h3>
+				<?php echo $user->get_last_allergies(); ?>
+				<h3 class="title mt-4">Cele mai frecvente alergii</h3>
+				<?php echo $user->get_frequent_allergies(); ?>
 			</div>
 		</div>
 	</div>
@@ -129,7 +123,25 @@
 	<div class="main main-logged">
 		<div class="section section-logged">
 			<div class="container">
-				<?php echo $user->get_allergy_content($a); ?>
+				<div class="row">
+					<div class="col-md-9 mb-4">
+						<?php echo $user->get_allergy_content($a); ?>
+					</div>
+					<div class="col-md-3">
+						<div class="author">
+							<img src="<?php echo $user->get_avatar($user->get_allergy_author($a)); ?>" class="avatar" />
+							<strong><?php echo $user->get_firstname($user->get_allergy_author($a)).' '.$user->get_lastname($user->get_allergy_author($a)); ?></strong>
+							<br /><?php echo $user->time_passed($user->get_allergy_date($a)); ?>
+						</div>
+						<hr />
+						<div class="categories categories-post">
+							<h4>Simptome</h4>
+							<?php $user->get_allergy_signs($a); ?>
+							<h4>Cauze</h4>
+							<?php $user->get_allergy_causes($a); ?>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
