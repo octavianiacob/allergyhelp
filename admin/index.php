@@ -222,7 +222,7 @@
 					<div class="col">
 						<div class="card box-shadow">
 							<div class="card-body">
-								<h1>0</h1>
+								<h1><?php echo $admin->count_allergies(); ?></h1>
 								<p class="card-text font-weight-bold">
 									Alergii
 								</p>

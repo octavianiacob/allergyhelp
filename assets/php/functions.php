@@ -2,6 +2,10 @@
 	include "config.php";
 	date_default_timezone_set('Europe/Bucharest');
 
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+
 	if(isset($_FILES['allergy-content-img']))
 	{
 		$name = md5(rand(100, 200));
@@ -420,7 +424,7 @@
 				{
 					echo '
 					<li class="media">
-						<img class="d-none d-md-block" src="../assets/img/allergies/0.jpg">
+						<img class="d-none d-md-block" src="'.$this->get_allergy_cover($row['id']).'">
 						<div class="media-body">
 							<h5 class="mt-0 mb-1">'.$row['name'].'</h5>
 							'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
@@ -560,6 +564,10 @@
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM users"));
 		}
+		public function count_allergies()
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM allergies"));
+		}
 		public function get_last_sign_id()
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM signs ORDER BY id DESC LIMIT 1"));
@@ -574,11 +582,11 @@
 		}
 		public function add_sign_to_allergy($allergy, $sign)
 		{
-			return $this->mysqli_result(mysqli_query($this->db, "INSERT INTO allergy_signs SET allergy='$allergy', sign='$sign'"));
+			return $this->mysqli_query($this->db, "INSERT INTO allergy_signs SET allergy='$allergy', sign='$sign'");
 		}
 		public function add_cause_to_allergy($allergy, $cause)
 		{
-			return $this->mysqli_result(mysqli_query($this->db, "INSERT INTO allergy_causes SET allergy='$allergy', cause='$cause'"));
+			return $this->mysqli_query($this->db, "INSERT INTO allergy_causes SET allergy='$allergy', cause='$cause'");
 		}
 		public function get_allergy_cover($id)
 		{
