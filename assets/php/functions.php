@@ -296,28 +296,18 @@
 					<a href="index.php?p=allergy&a='.$row['id'].'">
 						<div class="card card-plain">
 							<div class="row">
-								<div class="col-md-4 col-lg-3">
+								<div class="col-sm-5">
 									<div class="card-header card-header-image">
 										<img class="img" src="'.$this->get_allergy_cover($row['id']).'">
 										<div class="colored-shadow" style="background-image: url('.$this->get_allergy_cover($row['id']).'); opacity: 1;"></div>
 									</div>
 								</div>
-								<div class="col-md-8 col-lg-9">
-									<h4 class="card-title mb-0">
+								<div class="col-sm-7">
+									<h4 class="card-title">
 										'.$row['name'].'
 									</h4>
-									<p class="categories my-1">';
-					$this->get_allergy_signs($row['id']);
-					$this->get_allergy_causes($row['id']);
-					echo '
-									</p>
 									<p class="card-description">
 										'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
-									</p>
-									<p class="author">
-										<img src="'.$this->get_avatar($row['author']).'" class="avatar" />
-										<strong>'.$this->get_firstname($row['author']).' '.$this->get_lastname($row['author']).'</strong>
-										<br />'.$this->time_passed($row['date']).'
 									</p>
 								</div>
 							</div>
@@ -328,6 +318,7 @@
 			}
 			else echo "Nu ai niciun articol adăugat la favorite!";
 		}
+<<<<<<< HEAD
 		public function get_frequent_allergies()
 		{
 			$sql = "SELECT * FROM allergies WHERE frequent = 1 ORDER BY date DESC";
@@ -361,6 +352,8 @@
 				}
 			}
 		}
+=======
+>>>>>>> ec15f7ff5dc40327a5db4759bb5c147ec36c4251
 		public function allergy_exists($id)
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM allergies WHERE id = '$id'"));
@@ -373,6 +366,7 @@
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT content FROM allergies WHERE id = '$id'"));
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		public function get_allergy_author($id)
 		{
@@ -405,6 +399,8 @@
 		{
 			return mysqli_query($this->db, "DELETE FROM user_allergies WHERE user='$user' AND allergy='$allergy'");
 		}
+=======
+>>>>>>> ec15f7ff5dc40327a5db4759bb5c147ec36c4251
 =======
 >>>>>>> ec15f7ff5dc40327a5db4759bb5c147ec36c4251
 		public function isadmin($id)

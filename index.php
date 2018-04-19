@@ -140,6 +140,7 @@
 		<div class="section section-logged">
 			<div class="container">
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<div class="row">
 					<div class="col-md-9 mb-4">
 						<?php echo $user->get_allergy_content($a); ?>
@@ -166,6 +167,9 @@
 						</div>
 					</div>
 				</div>
+=======
+				<?php echo $user->get_allergy_content($a); ?>
+>>>>>>> ec15f7ff5dc40327a5db4759bb5c147ec36c4251
 =======
 				<?php echo $user->get_allergy_content($a); ?>
 >>>>>>> ec15f7ff5dc40327a5db4759bb5c147ec36c4251
