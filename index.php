@@ -28,6 +28,16 @@
 		}
 		else $_SESSION['allergyhelp_register_fail'] = true;
 	}
+	if (isset($_GET['adda']))
+	{
+		$user->add_allergy_to_user($id, $_GET['adda']);
+		header("location:index.php?p=allergy&a=".$_GET['adda']);
+	}
+	if (isset($_GET['dela']))
+	{
+		$user->delete_allergy_from_user($id, $_GET['dela']);
+		header("location:index.php?p=allergy&a=".$_GET['dela']);
+	}
 	if ($user->get_session())
 	{
 		if(isset($_GET['p'])) $p = $_GET['p'];
@@ -123,11 +133,6 @@
 	<div class="main main-logged">
 		<div class="section section-logged">
 			<div class="container">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 40c5396... articole favorite
 				<div class="row">
 					<div class="col-md-9 mb-4">
 						<?php echo $user->get_allergy_content($a); ?>
@@ -139,6 +144,13 @@
 							<br /><?php echo $user->time_passed($user->get_allergy_date($a)); ?>
 						</div>
 						<hr />
+						<?php 
+							if($user->is_allergy_added_to_user($id, $a))
+								echo '<a href="?dela='.$a.'" class="font-weight-bold text-danger"><i class="fa fa-fw fa-minus"></i> Șterge articolul de la favorite</a>';
+							else
+								echo '<a href="?adda='.$a.'" class="font-weight-bold"><i class="fa fa-fw fa-plus"></i> Adaugă articolul la favorite</a>';
+						?>
+						<hr />
 						<div class="categories categories-post">
 							<h4>Simptome</h4>
 							<?php $user->get_allergy_signs($a); ?>
@@ -147,15 +159,6 @@
 						</div>
 					</div>
 				</div>
-<<<<<<< HEAD
-=======
-				<?php echo $user->get_allergy_content($a); ?>
->>>>>>> ec15f7ff5dc40327a5db4759bb5c147ec36c4251
-=======
-				<?php echo $user->get_allergy_content($a); ?>
->>>>>>> ec15f7ff5dc40327a5db4759bb5c147ec36c4251
-=======
->>>>>>> parent of 40c5396... articole favorite
 			</div>
 		</div>
 	</div>
@@ -173,7 +176,8 @@
 	<div class="main main-logged">
 		<div class="section section-logged">
 			<div class="container">
-				continutul paginii
+				<h3 class="title">Articole favorite</h3>
+				<?php echo $user->get_favorite_allergies($id); ?>
 			</div>
 		</div>
 	</div>
