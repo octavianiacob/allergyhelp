@@ -304,50 +304,6 @@
 				}
 			}
 		}
-		public function get_favorite_allergies($id)
-		{
-			$sql = "SELECT allergies.id, allergies.name, allergies.content, allergies.date, allergies.author FROM allergies INNER JOIN user_allergies ON allergies.id = user_allergies.allergy WHERE user_allergies.user = 1 ORDER BY allergies.date DESC";
-			$result = mysqli_query($this->db, $sql);
-			if(mysqli_num_rows($result))
-			{
-				while($row = mysqli_fetch_assoc($result))
-				{
-					echo '
-					<a href="index.php?p=allergy&a='.$row['id'].'">
-						<div class="card card-plain">
-							<div class="row">
-								<div class="col-md-4 col-lg-3">
-									<div class="card-header card-header-image">
-										<img class="img" src="'.$this->get_allergy_cover($row['id']).'">
-										<div class="colored-shadow" style="background-image: url('.$this->get_allergy_cover($row['id']).'); opacity: 1;"></div>
-									</div>
-								</div>
-								<div class="col-md-8 col-lg-9">
-									<h4 class="card-title mb-0">
-										'.$row['name'].'
-									</h4>
-									<p class="categories my-1">';
-					$this->get_allergy_signs($row['id']);
-					$this->get_allergy_causes($row['id']);
-					echo '
-									</p>
-									<p class="card-description">
-										'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
-									</p>
-									<p class="author">
-										<img src="'.$this->get_avatar($row['author']).'" class="avatar" />
-										<strong>'.$this->get_firstname($row['author']).' '.$this->get_lastname($row['author']).'</strong>
-										<br />'.$this->time_passed($row['date']).'
-									</p>
-								</div>
-							</div>
-						</div>
-					</a>
-					';
-				}
-			}
-			else echo "Nu ai niciun articol adăugat la favorite!";
-		}
 		public function get_frequent_allergies()
 		{
 			$sql = "SELECT * FROM allergies WHERE frequent = 1 ORDER BY date DESC";
@@ -397,6 +353,60 @@
 			$result = mysqli_query($this->db, $sql);
 			if(mysqli_num_rows($result))
 				while($row = mysqli_fetch_assoc($result))
+<<<<<<< HEAD
+				{
+					echo '
+					<a href="index.php?p=allergy&a='.$row['id'].'">
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-md-4 col-lg-3">
+									<div class="card-header card-header-image">
+										<img class="img" src="'.$this->get_allergy_cover($row['id']).'">
+										<div class="colored-shadow" style="background-image: url('.$this->get_allergy_cover($row['id']).'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-md-8 col-lg-9">
+									<h4 class="card-title mb-0">
+										'.$row['name'].'
+									</h4>
+									<p class="categories my-1">';
+					$this->get_allergy_signs($row['id']);
+					$this->get_allergy_causes($row['id']);
+					echo '
+									</p>
+									<p class="card-description">
+										'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
+									</p>
+									<p class="author">
+										<img src="'.$this->get_avatar($row['author']).'" class="avatar" />
+										<strong>'.$this->get_firstname($row['author']).' '.$this->get_lastname($row['author']).'</strong>
+										<br />'.$this->time_passed($row['date']).'
+									</p>
+								</div>
+							</div>
+						</div>
+					</a>
+					';
+				}
+			}
+=======
+					echo '<span class="text-danger mr-3">'.$row['sign'].'</span>';
+		}
+		public function get_allergy_causes($allergy)
+		{
+			$sql = "SELECT causes.cause FROM allergy_causes INNER JOIN causes ON allergy_causes.cause = causes.id WHERE allergy_causes.allergy = '$allergy' ORDER BY allergy_causes.cause ASC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+				while($row = mysqli_fetch_assoc($result))
+					echo '<span class="text-warning mr-3">'.$row['cause'].'</span>';
+>>>>>>> parent of 40c5396... articole favorite
+		}
+		public function get_allergy_signs($allergy)
+		{
+			$sql = "SELECT signs.sign FROM allergy_signs INNER JOIN signs ON allergy_signs.sign = signs.id WHERE allergy_signs.allergy = '$allergy' ORDER BY allergy_signs.sign ASC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+				while($row = mysqli_fetch_assoc($result))
 					echo '<span class="text-danger mr-3">'.$row['sign'].'</span>';
 		}
 		public function get_allergy_causes($allergy)
@@ -427,6 +437,7 @@
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT date FROM allergies WHERE id = '$id'"));
 		}
+<<<<<<< HEAD
 		public function is_allergy_added_to_user($user, $allergy)
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT * FROM user_allergies WHERE user='$user' AND allergy='$allergy'"));
@@ -450,6 +461,8 @@
 		{
 			return mysqli_query($this->db, "DELETE FROM user_allergies WHERE user='$user' AND allergy='$allergy'");
 		}
+=======
+>>>>>>> parent of 40c5396... articole favorite
 		public function isadmin($id)
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT admin FROM users WHERE id = '$id'"));
