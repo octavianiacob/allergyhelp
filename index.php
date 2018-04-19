@@ -38,6 +38,26 @@
 		$user->delete_allergy_from_user($id, $_GET['dela']);
 		header("location:index.php?p=allergy&a=".$_GET['dela']);
 	}
+	if (isset($_GET['adds']))
+	{
+		$user->add_sign_to_user($id, $_GET['adds']);
+		header("location:index.php?p=profile");
+	}
+	if (isset($_GET['dels']))
+	{
+		$user->delete_sign_from_user($id, $_GET['dels']);
+		header("location:index.php?p=profile");
+	}
+	if (isset($_GET['addc']))
+	{
+		$user->add_cause_to_user($id, $_GET['addc']);
+		header("location:index.php?p=profile");
+	}
+	if (isset($_GET['delc']))
+	{
+		$user->delete_cause_from_user($id, $_GET['delc']);
+		header("location:index.php?p=profile");
+	}
 	if ($user->get_session())
 	{
 		if(isset($_GET['p'])) $p = $_GET['p'];
@@ -211,7 +231,16 @@
 	<div class="main main-logged">
 		<div class="section section-logged">
 			<div class="container">
-				continutul paginii
+				<div class="row">
+					<div class="col-sm">
+						<h3 class="title">Selectează simptomele</h3>
+						<?php $user->get_signs_for_user($id); ?>
+					</div>
+					<div class="col-sm">
+						<h3 class="title">Selectează cauzele</h3>
+						<?php $user->get_causes_for_user($id); ?>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

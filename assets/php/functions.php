@@ -306,7 +306,7 @@
 		}
 		public function get_favorite_allergies($id)
 		{
-			$sql = "SELECT allergies.id, allergies.name, allergies.content, allergies.date, allergies.author FROM allergies INNER JOIN user_allergies ON allergies.id = user_allergies.allergy WHERE user_allergies.user = 1 ORDER BY allergies.date DESC";
+			$sql = "SELECT allergies.id, allergies.name, allergies.content, allergies.date, allergies.author FROM allergies INNER JOIN user_allergies ON allergies.id = user_allergies.allergy WHERE user_allergies.user = '$id' ORDER BY allergies.date DESC";
 			$result = mysqli_query($this->db, $sql);
 			if(mysqli_num_rows($result))
 			{
@@ -407,6 +407,28 @@
 				while($row = mysqli_fetch_assoc($result))
 					echo '<span class="text-warning mr-3">'.$row['cause'].'</span>';
 		}
+		public function get_signs_for_user($userid)
+		{
+			$sql = "SELECT * FROM signs ORDER BY sign ASC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+				while($row = mysqli_fetch_assoc($result))
+				{
+					if($this->is_sign_added_to_user($userid, $row['id'])) echo '<a href="?dels='.$row['id'].'" class="btn btn-dark m-2 text-white"><i class="fa fa-fw fa-minus"></i> '.$row['sign'].'</a>';
+					else echo '<a href="?adds='.$row['id'].'" class="btn btn-danger m-2 text-white">'.$row['sign'].'</a>';
+				}
+		}
+		public function get_causes_for_user($userid)
+		{
+			$sql = "SELECT * FROM causes ORDER BY cause ASC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+				while($row = mysqli_fetch_assoc($result))
+				{
+					if($this->is_cause_added_to_user($userid, $row['id'])) echo '<a href="?delc='.$row['id'].'" class="btn btn-dark m-2 text-white"><i class="fa fa-fw fa-minus"></i> '.$row['cause'].'</a>';
+					else echo '<a href="?addc='.$row['id'].'" class="btn btn-warning m-2">'.$row['cause'].'</a>';
+				}
+		}
 		public function allergy_exists($id)
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM allergies WHERE id = '$id'"));
@@ -431,6 +453,14 @@
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT * FROM user_allergies WHERE user='$user' AND allergy='$allergy'"));
 		}
+		public function is_sign_added_to_user($user, $sign)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT * FROM user_signs WHERE user='$user' AND sign='$sign'"));
+		}
+		public function is_cause_added_to_user($user, $cause)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT * FROM user_causes WHERE user='$user' AND cause='$cause'"));
+		}
 		public function add_allergy_to_user($user, $allergy)
 		{
 			$sql = "SELECT * FROM user_allergies WHERE user='$user' AND allergy='$allergy'";
@@ -446,9 +476,47 @@
 			}
 			return 0;
 		}
+		public function add_sign_to_user($user, $sign)
+		{
+			$sql = "SELECT * FROM user_signs WHERE user='$user' AND sign='$sign'";
+
+			$check =  $this->db->query($sql);
+			$count_row = $check->num_rows;
+
+			if ($count_row == 0)
+			{
+				$sql = "INSERT INTO user_signs SET user='$user', sign='$sign'";
+				mysqli_query($this->db,$sql);
+				return 1;
+			}
+			return 0;
+		}
+		public function add_cause_to_user($user, $cause)
+		{
+			$sql = "SELECT * FROM user_causes WHERE user='$user' AND cause='$cause'";
+
+			$check =  $this->db->query($sql);
+			$count_row = $check->num_rows;
+
+			if ($count_row == 0)
+			{
+				$sql = "INSERT INTO user_causes SET user='$user', cause='$cause'";
+				mysqli_query($this->db,$sql);
+				return 1;
+			}
+			return 0;
+		}
 		public function delete_allergy_from_user($user, $allergy)
 		{
 			return mysqli_query($this->db, "DELETE FROM user_allergies WHERE user='$user' AND allergy='$allergy'");
+		}
+		public function delete_sign_from_user($user, $sign)
+		{
+			return mysqli_query($this->db, "DELETE FROM user_signs WHERE user='$user' AND sign='$sign'");
+		}
+		public function delete_cause_from_user($user, $cause)
+		{
+			return mysqli_query($this->db, "DELETE FROM user_causes WHERE user='$user' AND cause='$cause'");
 		}
 		public function isadmin($id)
 		{
