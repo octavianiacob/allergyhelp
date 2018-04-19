@@ -198,6 +198,8 @@
 			<div class="container">
 				<h3 class="title">Articole favorite</h3>
 				<?php echo $user->get_favorite_allergies($id); ?>
+				<h3 class="title">Alergii ce conțin simptomele/cauzele salvate</h3>
+				<?php echo $user->get_recommended_allergies($id); ?>
 			</div>
 		</div>
 	</div>

@@ -348,6 +348,50 @@
 			}
 			else echo "Nu ai niciun articol adăugat la favorite!";
 		}
+		public function get_recommended_allergies($id)
+		{
+			$sql = "SELECT DISTINCT allergies.id, allergies.name, allergies.content, allergies.date, allergies.author FROM allergies INNER JOIN allergy_signs ON allergy_signs.allergy = allergies.id INNER JOIN user_signs ON user_signs.sign = allergy_signs.sign WHERE user_signs.user = '$id' UNION SELECT DISTINCT allergies.id, allergies.name, allergies.content, allergies.date, allergies.author FROM allergies INNER JOIN allergy_causes ON allergy_causes.allergy = allergies.id INNER JOIN user_causes ON user_causes.cause = allergy_causes.cause WHERE user_causes.user = '$id' ORDER BY date DESC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo '
+					<a href="index.php?p=allergy&a='.$row['id'].'">
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-md-4 col-lg-3">
+									<div class="card-header card-header-image">
+										<img class="img" src="'.$this->get_allergy_cover($row['id']).'">
+										<div class="colored-shadow" style="background-image: url('.$this->get_allergy_cover($row['id']).'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-md-8 col-lg-9">
+									<h4 class="card-title mb-0">
+										'.$row['name'].'
+									</h4>
+									<p class="categories my-1">';
+					$this->get_allergy_signs($row['id']);
+					$this->get_allergy_causes($row['id']);
+					echo '
+									</p>
+									<p class="card-description">
+										'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
+									</p>
+									<p class="author">
+										<img src="'.$this->get_avatar($row['author']).'" class="avatar" />
+										<strong>'.$this->get_firstname($row['author']).' '.$this->get_lastname($row['author']).'</strong>
+										<br />'.$this->time_passed($row['date']).'
+									</p>
+								</div>
+							</div>
+						</div>
+					</a>
+					';
+				}
+			}
+			else echo "Nu este înregistrată nicio alergie pe baza simptomelor și cauzelor salvate în cont!";
+		}
 		public function get_frequent_allergies()
 		{
 			$sql = "SELECT * FROM allergies WHERE frequent = 1 ORDER BY date DESC";
