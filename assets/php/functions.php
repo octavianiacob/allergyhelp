@@ -410,6 +410,136 @@
 					</li>
 					';
 		}
+		public function get_allergies()
+		{
+			$sql = "SELECT * FROM allergies ORDER BY date DESC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo '
+					<li class="media">
+						<img class="d-none d-md-block" src="../assets/img/allergies/0.jpg">
+						<div class="media-body">
+							<h5 class="mt-0 mb-1">'.$row['name'].'</h5>
+							'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
+							<hr class="my-1" />
+							<small class="text-muted">
+								<i class="fa fa-clock mr-2"></i>'.$this->time_passed($row['date']).'
+								&nbsp&middot;&nbsp&nbsp<i class="fa fa-user mr-2"></i>'.$this->get_firstname($row['author']).' '.$this->get_lastname($row['author']).'<br />';
+					$this->get_allergy_signs($row['id']);
+					$this->get_allergy_causes($row['id']);
+					echo '
+							</small>
+						</div>
+					</li>
+					';
+				}
+			}
+			else
+				echo '
+					<li class="media">
+						<div class="media-body">
+							Nu există nicio alergie adăugată!
+						</div>
+					</li>
+					';
+		}
+		public function get_allergy_signs($allergy)
+		{
+			$sql = "SELECT signs.sign FROM allergy_signs INNER JOIN signs ON allergy_signs.sign = signs.id WHERE allergy_signs.allergy = '$allergy' ORDER BY allergy_signs.sign ASC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo '<div class="badge badge-danger mx-1">'.$row['sign'].'</div>';
+				}
+			}
+			else echo '<div class="badge badge-dark mx-1">Niciun simptom selectat</div>';
+		}
+		public function get_allergy_causes($allergy)
+		{
+			$sql = "SELECT causes.cause FROM allergy_causes INNER JOIN causes ON allergy_causes.cause = causes.id WHERE allergy_causes.allergy = '$allergy' ORDER BY allergy_causes.cause ASC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo '<div class="badge badge-warning mx-1">'.$row['cause'].'</div>';
+				}
+			}
+			else echo '<div class="badge badge-dark mx-1">Nicio cauză selectată</div>';
+		}
+		public function get_signs_causes_checkboxes()
+		{
+			echo '
+				<div class="row">
+				';
+			$sql = "SELECT * FROM signs ORDER BY sign ASC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				echo '
+					<div class="col-sm mt-4">
+						<h3>Alege simptomele</h3>
+							<hr class="mt-0 mb-3" />
+								<div class="signs-causes-checkboxes">
+					';
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo '
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="sign-'.$row['id'].'" name="sign_'.$row['id'].'">
+							<label class="form-check-label" for="sign-'.$row['id'].'">'.$row['sign'].'</label>
+						</div>
+						';
+				}
+				echo '
+						</div>
+					</div>
+					';
+			}
+			$sql = "SELECT * FROM causes ORDER BY cause ASC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				echo '
+					<div class="col-sm mt-4">
+						<h3>Alege cauzele</h3>
+							<hr class="mt-0 mb-3" />
+								<div class="signs-causes-checkboxes">
+					';
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo '
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="cause-'.$row['id'].'" name="cause_'.$row['id'].'">
+							<label class="form-check-label" for="cause-'.$row['id'].'">'.$row['cause'].'</label>
+						</div>
+						';
+				}
+				echo '
+						</div>
+					</div>
+					';
+			}
+			echo '
+				</div>
+				';
+		}
+		public function add_allergy($adminid, $name, $content)
+		{
+			$name = mysqli_real_escape_string($this->db, $name);
+			$content = mysqli_real_escape_string($this->db, $content);
+			
+			$sql = "INSERT INTO allergies SET author='$adminid', name='$name', content='$content', date='".date('Y-m-d H:i:s', time())."'";
+			$result = mysqli_query($this->db,$sql);
+			
+        	if($result) $this->add_action($adminid, "a adăugat o alergie");
+			return $result;
+		}
 		public function set_admin($adminid, $userid)
 		{
 			$sql = "UPDATE users SET admin = 1 WHERE id = '$userid'";
@@ -429,6 +559,33 @@
 		public function count_users()
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM users"));
+		}
+		public function get_last_sign_id()
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM signs ORDER BY id DESC LIMIT 1"));
+		}
+		public function get_last_cause_id()
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM causes ORDER BY id DESC LIMIT 1"));
+		}
+		public function get_last_allergy_id()
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM allergies ORDER BY id DESC LIMIT 1"));
+		}
+		public function add_sign_to_allergy($allergy, $sign)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "INSERT INTO allergy_signs SET allergy='$allergy', sign='$sign'"));
+		}
+		public function add_cause_to_allergy($allergy, $cause)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "INSERT INTO allergy_causes SET allergy='$allergy', cause='$cause'"));
+		}
+		public function get_allergy_cover($id)
+		{
+			if(file_exists("../assets/img/allergies/".$id.".jpg")) $cover = $id;
+			else $cover = 0;
+			$source = "../assets/img/allergies/" . $cover . ".jpg?=" . filemtime('../assets/img/allergies/'.$cover.'.jpg');
+			return $source;
 		}
 		public function get_avatar($id)
 		{

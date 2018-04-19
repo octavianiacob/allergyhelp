@@ -440,6 +440,9 @@ form[name="add_sign"] input, form[name="add_sign"] button, form[name="add_cause"
 	padding: .5rem 1rem;
 	margin-bottom: 0;
 }
+.btn-allergy {
+	cursor: pointer;
+}
 .note-editor {
 	border-radius: 0;
 	margin: 0 !important;
@@ -467,6 +470,30 @@ form[name="add_sign"] input, form[name="add_sign"] button, form[name="add_cause"
 }
 .note-editor.note-frame.fullscreen .note-editable {
 	height: calc(100vh - 93px - 40px) !important;
+}
+.form-check-input {
+	margin-top: .35rem;
+	margin-left: 0;
+}
+.signs-causes-checkboxes {
+	max-height: 300px;
+	overflow-y: auto;
+	background: white;
+	border: 1px solid rgba(0,0,0,.15);
+	padding: .5rem;
+}
+.media {
+	border: 1px solid rgba(0,0,0,.125);
+	border-top: none;
+}
+.media img {
+	width: 100%;
+	max-width: 200px;
+	margin: .7rem 0 .7rem .7rem;
+	border: 1px solid var(--ah-green);
+}
+.media .media-body {
+	padding: .7rem;
 }
 @media screen and (max-width: 1199px)
 {

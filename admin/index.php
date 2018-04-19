@@ -75,6 +75,35 @@
 		if ($add_cause) $_SESSION['allergyhelp_admin_add_cause_success'] = true;
 		else $_SESSION['allergyhelp_admin_add_cause_fail'] = true;
 	}
+	if (isset($_REQUEST['add_allergy']))
+	{
+		extract($_REQUEST);
+		$add_allergy = $admin->add_allergy($id, $allergy_title, $allergy_content);
+		if($add_allergy)
+		{
+			for($i = 1; $i <= $admin->get_last_sign_id(); $i++)
+				if(!empty($_POST["sign_".$i]))
+					$admin->add_sign_to_allergy($admin->get_last_allergy_id(), $i);
+			for($i = 1; $i <= $admin->get_last_cause_id(); $i++)
+				if(!empty($_POST["cause_".$i]))
+					$admin->add_cause_to_allergy($admin->get_last_allergy_id(), $i);
+			if(isset($_FILES['allergy_cover']))
+			{
+				$name = $admin->get_last_allergy_id();
+				$ext = pathinfo($_FILES["allergy_cover"]["name"], PATHINFO_EXTENSION);
+				$filename = $name . '.' . $ext;
+				$destination = '../assets/img/allergies/' . $filename;
+				$location = $_FILES["allergy_cover"]["tmp_name"];
+				$allowed = array('png', 'jpg', 'gif', 'bmp');
+				if (in_array(strtolower($ext), $allowed))
+					move_uploaded_file($location, $destination);
+				echo "<script>console.log(".$destination.");</script>";
+			}
+			$_SESSION['allergyhelp_admin_add_allergy_success'] = true;
+		}
+		else $_SESSION['allergyhelp_admin_add_allergy_fail'] = true;
+		header("location:index.php?p=allergies");
+	}
 	if ($admin->get_admin_session())
 	{
 		if(!$admin->isadmin($id))
@@ -448,6 +477,32 @@
 					$_SESSION['allergyhelp_admin_add_cause_fail'] = false;
 					unset($_SESSION['allergyhelp_admin_add_cause_fail']);
 				}
+				if (isset($_SESSION['allergyhelp_admin_add_allergy_success']))
+				{
+					echo '
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						Ai adăugat o alergie cu succes!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_allergy_success'] = false;
+					unset($_SESSION['allergyhelp_admin_add_allergy_success']);
+				}
+				if (isset($_SESSION['allergyhelp_admin_add_allergy_fail']))
+				{
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						A apărut o problemă la adăugarea alergiei!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					';
+					$_SESSION['allergyhelp_admin_add_allergy_fail'] = false;
+					unset($_SESSION['allergyhelp_admin_add_allergy_fail']);
+				}
 			?>
 			<div class="row">
 				<div class="col-sm">
@@ -480,11 +535,8 @@
 			<h1>Alergii</h1>
 			<hr class="mt-0 mb-3" />
 			<a class="btn btn-primary btn-block btn-allergy" href="?p=addallergy">Adaugă o alergie</a>
-			<ul class="list-group mb-4 allergy-info">
-				<li class="list-group-item">
-					<strong>Rinita alergică</strong>
-					<br /><small class="text-muted">Cel puțin 1 din 10 persoane la nivel mondial suferă de rinită alergică, iar incidența acestei afecțiuni este în creștere, din cauza creșterii expunerii la poluanții atmosferici și utilizării crescute de antibiotice pentru tratarea infecțiilor respiratorii în copilarie.</small>
-				</li>
+			<ul class="list-unstyled mb-4">
+				<?php $admin->get_allergies(); ?>
 			</ul>
 		</div>
 	</main>
@@ -500,7 +552,11 @@
 			<form action="" method="post" name="add_allergy">
 				<input type="text" class="form-control" name="allergy_title" id="allergy-title" placeholder="Numele alergiei" required>
 				<textarea class="input-block-level" name="allergy_content" id="allergy-content"></textarea>
-				<button class="btn btn-primary btn-block btn-allergy" type="submit" name="add_allergy" id="add_allergy">Adaugă</button>
+				<h3 class="mt-4">Încarcă o imagine de copertă</h3>
+				<hr class="mt-0 mb-3" />
+				<input type="file" class="form-control-file" id="allergy-cover" name="allergy_cover">
+				<?php $admin->get_signs_causes_checkboxes(); ?>
+				<button class="btn btn-primary btn-block btn-allergy mt-4 mb-4" type="submit" name="add_allergy" id="add_allergy">Adaugă</button>
 			</form>
 		</div>
 	</main>
