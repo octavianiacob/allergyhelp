@@ -375,6 +375,14 @@
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT content FROM allergies WHERE id = '$id'"));
 		}
+		public function get_allergy_author($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT author FROM allergies WHERE id = '$id'"));
+		}
+		public function get_allergy_date($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT date FROM allergies WHERE id = '$id'"));
+		}
 		public function isadmin($id)
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT admin FROM users WHERE id = '$id'"));
