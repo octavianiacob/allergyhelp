@@ -582,11 +582,11 @@
 		}
 		public function add_sign_to_allergy($allergy, $sign)
 		{
-			return $this->mysqli_query($this->db, "INSERT INTO allergy_signs SET allergy='$allergy', sign='$sign'");
+			return mysqli_query($this->db, "INSERT INTO allergy_signs SET allergy='$allergy', sign='$sign'");
 		}
 		public function add_cause_to_allergy($allergy, $cause)
 		{
-			return $this->mysqli_query($this->db, "INSERT INTO allergy_causes SET allergy='$allergy', cause='$cause'");
+			return mysqli_query($this->db, "INSERT INTO allergy_causes SET allergy='$allergy', cause='$cause'");
 		}
 		public function get_allergy_cover($id)
 		{
