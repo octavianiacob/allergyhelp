@@ -2,10 +2,6 @@
 	include "config.php";
 	date_default_timezone_set('Europe/Bucharest');
 
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	error_reporting(E_ALL);
-
 	if(isset($_FILES['allergy-content-img']))
 	{
 		$name = md5(rand(100, 200));
