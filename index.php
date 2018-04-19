@@ -111,6 +111,31 @@
 	</div>
 	<?php
 		}
+		else if($p === "allergy")
+		{
+			if(empty($_GET["a"]))
+				header("location:index.php?p=allallergies");
+			else if(!$user->allergy_exists($_GET["a"]))
+				header("location:index.php?p=allallergies");
+			else
+			{
+				$a = $_GET["a"];
+	?>
+	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
+		<div class="container text-center">
+			<h1 class="title"><?php echo $user->get_allergy_name($a); ?></h1>
+		</div>
+	</div>
+	<div class="main main-logged">
+		<div class="section section-logged">
+			<div class="container">
+				<?php echo $user->get_allergy_content($a); ?>
+			</div>
+		</div>
+	</div>
+	<?php
+			}
+		}
 		else if($p === "myallergies")
 		{
 	?>
@@ -139,7 +164,7 @@
 	<div class="main main-logged">
 		<div class="section section-logged">
 			<div class="container">
-				continutul paginii
+				<?php $user->get_all_allergies(); ?>
 			</div>
 		</div>
 	</div>

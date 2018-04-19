@@ -217,6 +217,39 @@
 				}
 			}
 		}
+		public function get_all_allergies()
+		{
+			$sql = "SELECT * FROM allergies ORDER BY date DESC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo '
+					<a href="index.php?p=allergy&a='.$row['id'].'">
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="card-header card-header-image">
+										<img class="img" src="'.$this->get_allergy_cover($row['id']).'">
+										<div class="colored-shadow" style="background-image: url('.$this->get_allergy_cover($row['id']).'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-sm-9">
+									<h4 class="card-title">
+										'.$row['name'].'
+									</h4>
+									<p class="card-description">
+										'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
+									</p>
+								</div>
+							</div>
+						</div>
+					</a>
+					';
+				}
+			}
+		}
 		public function get_last_allergies()
 		{
 			$frequent = $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM allergies WHERE frequent = 1"));
@@ -227,24 +260,26 @@
 				while($row = mysqli_fetch_assoc($result))
 				{
 					echo '
-					<div class="card card-plain">
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="card-header card-header-image">
-									<img class="img" src="'.$this->get_allergy_cover($row['id']).'">
-									<div class="colored-shadow" style="background-image: url('.$this->get_allergy_cover($row['id']).'); opacity: 1;"></div>
+					<a href="index.php?p=allergy&a='.$row['id'].'">
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="card-header card-header-image">
+										<img class="img" src="'.$this->get_allergy_cover($row['id']).'">
+										<div class="colored-shadow" style="background-image: url('.$this->get_allergy_cover($row['id']).'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<h4 class="card-title">
+										'.$row['name'].'
+									</h4>
+									<p class="card-description">
+										'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
+									</p>
 								</div>
 							</div>
-							<div class="col-sm-7">
-								<h4 class="card-title">
-									'.$row['name'].'
-								</h4>
-								<p class="card-description">
-									'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
-								</p>
-							</div>
 						</div>
-					</div>
+					</a>
 					';
 				}
 			}
@@ -258,27 +293,41 @@
 				while($row = mysqli_fetch_assoc($result))
 				{
 					echo '
-					<div class="card card-plain">
-						<div class="row">
-							<div class="col-sm-5">
-								<div class="card-header card-header-image">
-									<img class="img" src="'.$this->get_allergy_cover($row['id']).'">
-									<div class="colored-shadow" style="background-image: url('.$this->get_allergy_cover($row['id']).'); opacity: 1;"></div>
+					<a href="index.php?p=allergy&a='.$row['id'].'">
+						<div class="card card-plain">
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="card-header card-header-image">
+										<img class="img" src="'.$this->get_allergy_cover($row['id']).'">
+										<div class="colored-shadow" style="background-image: url('.$this->get_allergy_cover($row['id']).'); opacity: 1;"></div>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<h4 class="card-title">
+										'.$row['name'].'
+									</h4>
+									<p class="card-description">
+										'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
+									</p>
 								</div>
 							</div>
-							<div class="col-sm-7">
-								<h4 class="card-title">
-									'.$row['name'].'
-								</h4>
-								<p class="card-description">
-									'.mb_strimwidth(strip_tags($row['content']), 0, 300, "...").'
-								</p>
-							</div>
 						</div>
-					</div>
+					</a>
 					';
 				}
 			}
+		}
+		public function allergy_exists($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM allergies WHERE id = '$id'"));
+		}
+		public function get_allergy_name($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT name FROM allergies WHERE id = '$id'"));
+		}
+		public function get_allergy_content($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT content FROM allergies WHERE id = '$id'"));
 		}
 		public function isadmin($id)
 		{
