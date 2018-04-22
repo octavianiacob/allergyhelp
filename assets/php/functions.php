@@ -153,6 +153,9 @@
 			{
 				$sql = "INSERT INTO users SET email='$email', password='$pass', lastname='$lastname', firstname='$firstname', regtime='".date('Y-m-d H:i:s', time())."'";
 				mysqli_query($this->db,$sql);
+
+				$uid = mysqli_insert_id($this->db);
+				$this->add_notification($uid, "Bine ai venit pe AllergyHelp!", "Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.", "?p=profile");
 				return 1;
 			}
 			return 0;
@@ -580,6 +583,47 @@
 		{
 			return mysqli_query($this->db, "DELETE FROM user_causes WHERE user='$user' AND cause='$cause'");
 		}
+		public function get_notifications($id)
+		{
+			$sql = "SELECT * FROM notifications WHERE user = '$id' ORDER BY date DESC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				echo '<div class="notifications-list">';
+				while($row = mysqli_fetch_assoc($result))
+				{
+					$unread = "";
+					if(!$row['dismissed']) $unread = " unread";
+					echo '
+						<a href="'.$row['link'].'">
+						<div class="notification'.$unread.'">
+							<strong>'.$row['title'].'</strong>
+							<br />'.$row['content'].'
+							<br /><small class="text-muted"><i class="fa fa-fw fa-clock"></i> '.$this->time_passed($row['date']).'</small>
+						</div>
+					</a>
+					';
+				}
+				echo '</div>';
+			}
+			else echo '<div class="no-notifications">Toate notificările tale vor apărea aici!</div>';
+		}
+		public function add_notification($id, $title, $content, $link)
+		{
+			return mysqli_query($this->db, "INSERT INTO notifications SET user = '$id', title = '$title', content = '$content', link = '$link', date='".date('Y-m-d H:i:s', time())."'");
+		}
+		public function count_notifications($id)
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM notifications WHERE dismissed = 0 AND user = '$id'"));
+		}
+		public function read_notifications($id)
+		{
+			return mysqli_query($this->db, "UPDATE notifications SET dismissed = 1 WHERE id = '$id'");
+		}
+		public function get_last_user_id()
+		{
+			return $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM users ORDER BY id DESC LIMIT 1"));
+		}
 		public function isadmin($id)
 		{
 			return $this->mysqli_result(mysqli_query($this->db, "SELECT admin FROM users WHERE id = '$id'"));
@@ -673,6 +717,9 @@
 			{
 				$sql = "INSERT INTO users SET email='$email', password='$pass', lastname='$lastname', firstname='$firstname', regtime='".date('Y-m-d H:i:s', time())."'";
 				$result = mysqli_query($this->db,$sql);
+
+				$uid = mysqli_insert_id($this->db);
+				$this->add_notification($uid, "Bine ai venit pe AllergyHelp!", "Contul tău a fost creat cu succes de către un administrator. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.", "?p=profile");
 
 				if($result) $this->add_action($adminid, "a înregistrat un utilizator");
 				return $result;

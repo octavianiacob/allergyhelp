@@ -93,24 +93,54 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark">
 		<div class="container">
-			<a class="navbar-brand" href=".">
-				<img src="assets/img/logo-green.png" />
-			</a>
 			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="#navbarNav"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="icon-bar top-bar"></span>
 				<span class="icon-bar middle-bar"></span>
 				<span class="icon-bar bottom-bar"></span>
 			</button>
+			<a class="navbar-brand" href=".">
+				<img src="assets/img/logo-green.png" />
+			</a>
+			<div class="nav-item dropdown notification-panel d-lg-none">
+				<a href="#" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fa fa-bell"></i>
+					<?php
+						if($user->count_notifications($id))
+							echo '<span class="unread-badge">'.$user->count_notifications($id).'</span>';
+					?>
+				</a>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="notifications">
+					<div class="notifications-header">Notificări</div>
+					<div class="notifications-body">
+						<?php $user->get_notifications($id); ?>
+					</div>
+				</div>
+			</div>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "myallergies") echo ' active'; ?>" href="?p=myallergies">Alergiile mele</a></li>
 					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "allallergies") echo ' active'; ?>" href="?p=allallergies">Toate alergiile</a></li>
 					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "profile") echo ' active'; ?>" href="?p=profile">Profil</a></li>
 					<?php if($user->isadmin($id)) echo '<li class="nav-item"><a class="nav-link admin-panel-link" href="admin/">Admin</a></li>'; ?>
+					<li class="nav-item dropdown notification-panel d-none d-lg-block">
+						<a href="#" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-bell"></i>
+							<?php
+								if($user->count_notifications($id))
+									echo '<span class="unread-badge">'.$user->count_notifications($id).'</span>';
+							?>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="notifications">
+							<div class="notifications-header">Notificări</div>
+							<div class="notifications-body">
+								<?php $user->get_notifications($id); ?>
+							</div>
+						</div>
+					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<!--<img class="avatar" src="<?php //echo $user->get_avatar($id); ?>">--><?php echo $user->get_firstname($id); ?>
+							<?php echo $user->get_firstname($id); ?>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="?p=account"><i class="fa fa-fw fa-cog"></i> Setări cont</a>
