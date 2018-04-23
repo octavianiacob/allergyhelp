@@ -618,7 +618,7 @@
 		}
 		public function read_notifications($id)
 		{
-			return mysqli_query($this->db, "UPDATE notifications SET dismissed = 1 WHERE id = '$id'");
+			return mysqli_query($this->db, "UPDATE notifications SET dismissed = 1 WHERE user = '$id'");
 		}
 		public function get_last_user_id()
 		{
@@ -1022,11 +1022,37 @@
 		}
 		public function add_sign_to_allergy($allergy, $sign)
 		{
-			return mysqli_query($this->db, "INSERT INTO allergy_signs SET allergy='$allergy', sign='$sign'");
+			mysqli_query($this->db, "INSERT INTO allergy_signs SET allergy='$allergy', sign='$sign'");
+
+			$sql = "SELECT user FROM user_signs WHERE sign = '$sign'";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				while($row = mysqli_fetch_assoc($result))
+				{
+					$user = $row['user'];
+					$link = "?p=allergy&a=".$allergy;
+					$notified = $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM notifications WHERE user = '$user' AND link = '$link'"));
+					if(!$notified) $this->add_notification($user, "Alergie nouă", "A fost adăugată o alergie ce conține un simptom sau o cauză salvată de tine.", $link);
+				}
+			}
 		}
 		public function add_cause_to_allergy($allergy, $cause)
 		{
-			return mysqli_query($this->db, "INSERT INTO allergy_causes SET allergy='$allergy', cause='$cause'");
+			mysqli_query($this->db, "INSERT INTO allergy_causes SET allergy='$allergy', cause='$cause'");
+
+			$sql = "SELECT user FROM user_causes WHERE cause = '$cause'";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				while($row = mysqli_fetch_assoc($result))
+				{
+					$user = $row['user'];
+					$link = "?p=allergy&a=".$allergy;
+					$notified = $this->mysqli_result(mysqli_query($this->db, "SELECT COUNT(*) FROM notifications WHERE user = '$user' AND link = '$link'"));
+					if(!$notified) $this->add_notification($user, "Alergie nouă", "A fost adăugată o alergie ce conține un simptom sau o cauză salvată de tine.", $link);
+				}
+			}
 		}
 		public function get_allergy_cover($id)
 		{

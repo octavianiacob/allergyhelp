@@ -676,9 +676,12 @@ li.notification-panel {
 	text-align: center;
 	color: gray;
 }
+.notification-panel .notifications-body {
+	overflow-y: auto;
+	height: calc(100% - 35px);
+    border-radius: 0 0 .25rem .25rem;
+}
 .notification-panel .notifications-list {
-    overflow-y: auto;
-    height: calc(100% - 35px);
 	background: #f8f8f8;
 }
 .notification-panel .notifications-list a {
