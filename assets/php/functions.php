@@ -703,6 +703,8 @@
 		}
 		public function add_user($adminid, $email, $pass, $lastname, $fistname)
 		{
+			if(!$this->isadmin($adminid)) return false;
+
 			$email = mysqli_real_escape_string($this->db, $email);
 			$lastname = mysqli_real_escape_string($this->db, $lastname);
 			$firstname = mysqli_real_escape_string($this->db, $fistname);
@@ -786,6 +788,8 @@
 		}
 		public function add_sign($adminid, $sign)
 		{
+			if(!$this->isadmin($adminid)) return 0;
+
 			$sign = mysqli_real_escape_string($this->db, $sign);
 			$sql = "INSERT INTO signs SET sign = '$sign'";
 			$result = mysqli_query($this->db, $sql);
@@ -795,6 +799,8 @@
 		}
 		public function add_cause($adminid, $cause)
 		{
+			if(!$this->isadmin($adminid)) return 0;
+
 			$cause = mysqli_real_escape_string($this->db, $cause);
 			$sql = "INSERT INTO causes SET cause = '$cause'";
 			$result = mysqli_query($this->db, $sql);
@@ -975,6 +981,8 @@
 		}
 		public function add_allergy($adminid, $name, $content)
 		{
+			if(!$this->isadmin($adminid)) return 0;
+			
 			$name = mysqli_real_escape_string($this->db, $name);
 			$content = mysqli_real_escape_string($this->db, $content);
 			
@@ -986,6 +994,8 @@
 		}
 		public function set_admin($adminid, $userid)
 		{
+			if(!$this->isadmin($adminid)) return 0;
+
 			$sql = "UPDATE users SET admin = 1 WHERE id = '$userid'";
 			$result = mysqli_query($this->db, $sql);
 
@@ -994,6 +1004,8 @@
 		}
 		public function revoke_admin($adminid, $userid)
 		{
+			if(!$this->isadmin($adminid)) return 0;
+
 			$sql = "UPDATE users SET admin = 0 WHERE id = '$userid'";
 			$result = mysqli_query($this->db, $sql);
 
