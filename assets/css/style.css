@@ -718,6 +718,9 @@ label {
 .list-group-item {
 	line-height: 1.2;
 }
+a.list-group-item {
+	color: inherit;
+}
 .msgread {
 	background: rgba(223, 223, 223, 0.5);
 }

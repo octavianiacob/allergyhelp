@@ -636,10 +636,10 @@
 					if(!$row['unread']) $readcls = " msgread";
 					else $readcls = "";
 					echo '
-						<li class="list-group-item'.$readcls.'">
+						<a class="list-group-item'.$readcls.'" href="?p=messages&m='.$row['id'].'">
 							<strong>'.$row['subject'].'</strong>
 							<br /><small class="text-muted"><i class="fa fa-fw fa-clock"></i> '.$this->time_passed($row['date']).'</small>
-						</li>
+						</a>
 						';
 				}
 				echo '</ul>';
