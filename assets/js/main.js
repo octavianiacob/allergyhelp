@@ -54,4 +54,6 @@ $(document).ready(function()
 		$(".unread-badge").css("display", "none");
 		$(".notifications-body").load("assets/php/read_notifications.php");
 	});
+	var msg = $('.msg-list');
+	msg.scrollTop(msg.prop("scrollHeight"));
 });

@@ -709,6 +709,90 @@ li.notification-panel {
 	color: white;
 	cursor: pointer;
 }
+.form-control:hover, .form-control:focus  {
+    border-color: var(--ah-green);
+}
+label {
+	font-weight: 400;
+}
+.list-group-item {
+	line-height: 1.2;
+}
+.msgread {
+	background: rgba(223, 223, 223, 0.5);
+}
+.msgread strong {
+	font-weight: 500 !important;
+}
+.msg-box {
+	position: relative;
+	width: 100%;
+	height: 350px;
+	border-radius: 6px;
+	background: rgba(223, 223, 223, 0.5);
+	border: 1px solid rgba(0, 0, 0, .2);
+}
+.msg-list {
+	height: calc(100% - 49px);
+	padding: 1.5rem;
+	overflow-y: scroll;
+}
+.reply:not(:last-child) {
+	margin-bottom: 1rem;
+}
+.reply.reply-user {
+	float: right;
+}
+.reply.reply-user .reply-avatar {
+	float: right;
+	margin-right: 0;
+	margin-left: 10px;
+}
+.reply.reply-user .reply-text {
+	background: var(--ah-green);
+	color: white;
+	border-color: var(--ah-green);
+}
+.reply-avatar {
+	width: 40px;
+	height: 40px;
+	margin-top: 0;
+	border: 1px solid rgba(0, 0, 0, .2);
+}
+.reply-text {
+	display: inline-block;
+	background: #fff;
+	border-radius: 20px;
+	padding: 7px 14px;
+	font-weight: 400;
+	border: 1px solid rgba(0, 0, 0, .2);
+	max-width: calc(100% - 50px);
+}
+.reply-box {
+	position: absolute;
+	bottom: 0;
+	width: calc(100% - 58px);
+	left: 0;
+	border: 0;
+	border-top: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 0 0 6px 6px;
+	padding: .75rem;
+	float: left;
+	outline: none;
+}
+.send-reply {
+	position: absolute;
+	bottom: 0;
+	width: 58px;
+	right: 0;
+	float: right;
+	padding: .75rem 1.25rem;
+	border: 0;
+	color: #fff;
+	background: var(--ah-green);
+	cursor: pointer;
+	border-top: 1px solid var(--ah-green);
+}
 @media (min-width: 992px) {
 	#login-button {
 		text-transform: uppercase;

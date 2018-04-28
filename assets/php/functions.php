@@ -608,6 +608,55 @@
 			}
 			else echo '<div class="no-notifications">Toate notificările tale vor apărea aici!</div>';
 		}
+		public function send_message($id, $subject, $message)
+		{
+			$sql = "INSERT INTO conversations SET subject = '$subject', userid = '$id', date = '".date('Y-m-d H:i:s', time())."'";
+			$conv = mysqli_query($this->db, $sql);
+			if(!$conv) return 0;
+
+			$conv = mysqli_insert_id($this->db);
+			$sql = "INSERT INTO messages SET message = '$message', userid = '$id', conversation = '$conv', date = '".date('Y-m-d H:i:s', time())."'";
+			$mess = mysqli_query($this->db, $sql);
+			if(!$mess) return 0;
+
+			return 1;
+		}
+		public function get_conversations($id)
+		{
+			$sql = "SELECT * FROM conversations WHERE userid = '$id' ORDER BY unread DESC, date DESC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				echo '
+					<h2 class="title mt-4 mb-1">Mesajele mele</h2>
+					<ul class="list-group">
+					';
+				while($row = mysqli_fetch_assoc($result))
+				{
+					if(!$row['unread']) $readcls = " msgread";
+					else $readcls = "";
+					echo '
+						<li class="list-group-item'.$readcls.'">
+							<strong>'.$row['subject'].'</strong>
+							<br /><small class="text-muted"><i class="fa fa-fw fa-clock"></i> '.$this->time_passed($row['date']).'</small>
+						</li>
+						';
+				}
+				echo '</ul>';
+			}
+		}
+		public function get_conversation($id, $conversation)
+		{
+			$sql = "SELECT subject FROM conversations WHERE userid = '$id' AND id = '$conversation'";
+			$result = mysqli_query($this->db, $sql);
+			if(!mysqli_num_rows($result))
+			{
+				echo '<h3 class="title m-0">Conversația nu există!</h3><a href="?p=messages">Înapoi la mesaje</a>';
+				return 0;
+			}
+			$conv = mysqli_fetch_assoc($result);
+			echo '<h2 class="title">'.$conv['subject'].'</h2>';
+		}
 		public function add_notification($id, $title, $content, $link)
 		{
 			return mysqli_query($this->db, "INSERT INTO notifications SET user = '$id', title = '$title', content = '$content', link = '$link', date='".date('Y-m-d H:i:s', time())."'");

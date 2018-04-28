@@ -35,6 +35,17 @@
 		if ($edit) $_SESSION['allergyhelp_editp_user_success'] = true;
 		else $_SESSION['allergyhelp_editp_user_fail'] = true;
 	}
+	if (isset($_REQUEST['new_message']))
+	{
+		extract($_REQUEST);
+		$send = $user->send_message($id, $subject, $message);
+		if ($send)
+		{
+			$_SESSION['allergyhelp_send_message_success'] = true;
+			header("location:index.php?p=messages&m=".mysqli_insert_id($user->db));
+		}
+		else $_SESSION['allergyhelp_send_message_fail'] = true;
+	}
 	if (isset($_GET['adda']))
 	{
 		$user->add_allergy_to_user($id, $_GET['adda']);
@@ -122,6 +133,7 @@
 					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "myallergies") echo ' active'; ?>" href="?p=myallergies">Alergiile mele</a></li>
 					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "allallergies") echo ' active'; ?>" href="?p=allallergies">Toate alergiile</a></li>
 					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "profile") echo ' active'; ?>" href="?p=profile">Profil</a></li>
+					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "messages") echo ' active'; ?>" href="?p=messages">Mesaje</a></li>
 					<?php if($user->isadmin($id)) echo '<li class="nav-item"><a class="nav-link admin-panel-link" href="admin/">Admin</a></li>'; ?>
 					<li class="nav-item dropdown notification-panel d-none d-lg-block">
 						<a href="#" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -285,6 +297,132 @@
 	</div>
 	<?php
 		}
+		else if($p === "messages")
+		{
+			if(isset($_GET['m'])) $m = $_GET['m'];
+			if(empty($m))
+			{
+				if (isset($_SESSION['allergyhelp_send_message_fail']))
+				{
+					echo '
+					<div class="alert alert-danger alert-dismissible fade show error">
+						<div class="container">
+							<div class="alert-icon">
+								<i class="fas fa-exclamation-circle"></i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true"><i class="fas fa-times"></i></span>
+							</button>
+							A apărut o problemă la trimiterea mesajului!
+						</div>
+					</div>
+					';
+					$_SESSION['allergyhelp_send_message_fail'] = false;
+					unset($_SESSION['allergyhelp_send_message_fail']);
+				}
+	?>
+	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
+		<div class="container text-center">
+			<h1 class="title">Mesaje</h1>
+		</div>
+	</div>
+	<div class="main main-logged">
+		<div class="section section-logged">
+			<div class="container">
+				<h2 class="title mb-4">Mesaj nou</h2>
+				<form action="" method="post" name="new_message">
+					<div class="form-group row">
+						<label for="subject" class="form-control-label col-sm-2 col-form-label">Subiect</label>
+						<div class="col-sm">
+							<input type="text" id="subject" name="subject" class="form-control" pattern=".{3,128}" maxlength="128" title="Subiectul mesajului trebuie să fie cuprins între 3 și 128 de caractere." required></input>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="message" class="form-control-label col-sm-2 col-form-label">Mesaj</label>
+						<div class="col-sm">
+							<textarea class="form-control" id="message" name="message" rows="10" required></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-2"></div>
+						<div class="col-sm">
+							<button type="submit" class="btn btn-primary" name="new_message">Trimite</button>
+						</div>
+					</div>
+				</form>
+				<?php $user->get_conversations($id); ?>
+			</div>
+		</div>
+	</div>
+	<?php
+			}
+			else
+			{
+			if (isset($_SESSION['allergyhelp_send_message_success']))
+			{
+				echo '
+				<div class="alert alert-success alert-dismissible fade show error">
+					<div class="container">
+						<div class="alert-icon">
+							<i class="fas fa-check-circle"></i>
+						</div>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true"><i class="fas fa-times"></i></span>
+						</button>
+						Mesajul tău a fost trimis administratorilor! Vei primi un răspuns în cel mai scurt timp posibil.
+					</div>
+				</div>
+				';
+				$_SESSION['allergyhelp_send_message_success'] = false;
+				unset($_SESSION['allergyhelp_send_message_success']);
+			}
+	?>
+	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
+		<div class="container text-center">
+			<h1 class="title">Mesaje</h1>
+		</div>
+	</div>
+	<div class="main main-logged">
+		<div class="section section-logged">
+			<div class="container">
+				<?php $user->get_conversation($id, $m); ?>
+				<div class="msg-box">
+					<div class="msg-list">
+						<div class="reply">
+							<img class="avatar reply-avatar" src="assets/img/avatars/1.jpg" />
+							<div class="reply-text">
+								mesaj
+							</div>
+						</div>
+						<div class="reply reply-user">
+							<img class="avatar reply-avatar" src="assets/img/avatars/0.jpg" />
+							<div class="reply-text">
+								mesaj
+							</div>
+						</div>
+						<div class="reply reply-user">
+							<img class="avatar reply-avatar" src="assets/img/avatars/0.jpg" />
+							<div class="reply-text">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</div>
+						</div>
+					</div>
+					<form action="" method="post" name="new_reply">
+						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required></input>
+						<button type="submit" class="send-reply"><i class="fa fa-paper-plane"></i></button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+			}
+		}
 		else if($p === "account")
 		{
 			if (isset($_SESSION['allergyhelp_change_pass_success']))
@@ -311,7 +449,7 @@
 				<div class="alert alert-danger alert-dismissible fade show error" style="top: 155px;">
 					<div class="container">
 						<div class="alert-icon">
-							<i class="fas fa-exclamation-circle-circle"></i>
+							<i class="fas fa-exclamation-circle"></i>
 						</div>
 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							<span aria-hidden="true"><i class="fas fa-times"></i></span>
