@@ -260,6 +260,8 @@ h2.title {
 }
 .section {
 	padding: 70px 0;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 .section:nth-of-type(even) {
 	background: #f2f2f2;

@@ -497,7 +497,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link link-scroll" href="#introducere">Introducere</a></li>
 					<li class="nav-item"><a class="nav-link link-scroll" href="#alergie">Alergie</a></li>
-					<li class="nav-item"><a class="nav-link link-scroll" href="#statistica">Statistică</a></li>
+					<li class="nav-item"><a class="nav-link link-scroll" href="#statistici">Statistici</a></li>
 					<li class="nav-item"><a class="nav-link link-scroll" href="#noutati">Noutăți</a></li>
 					<li class="nav-item"><a class="nav-link link-scroll" href="#echipa">Echipa</a></li>
 					<li class="nav-item dropdown">
@@ -637,6 +637,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="section" id="statistici">
+		<div class="container-fluid">
+		<h2 class="title text-center">Statistici</h2>
 		<div class="section section-image" id="statistica" style="background-image: url('assets/img/crowded-station.jpg')">
 			<div class="container text-center">
 				<div class="carousel slide carousel-fade" data-ride="carousel">
@@ -705,6 +708,8 @@
 								<div class="col-md-4">
 									<h3 class="title mb-0">În România</h3>
 									Numărul alergicilor la ambrozie s-a dublat în ultimii 2-3 ani.
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
