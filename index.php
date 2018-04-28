@@ -484,15 +484,20 @@
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark">
 		<div class="container">
-			<a class="navbar-brand link-top" href="#">
-				<img src="assets/img/logo-green.png" />
-			</a>
 			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="#navbarNav"
-			    aria-expanded="false" aria-label="Toggle navigation">
+				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="icon-bar top-bar"></span>
 				<span class="icon-bar middle-bar"></span>
 				<span class="icon-bar bottom-bar"></span>
 			</button>
+			<a class="navbar-brand" href=".">
+				<img src="assets/img/logo-green.png" />
+			</a>
+			<div class="nav-item login-icon d-lg-none">
+				<a data-toggle="modal" data-target="#modal_login">
+					<i class="fas fa-sign-in-alt"></i>
+				</a>
+			</div>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link link-scroll" href="#introducere">Introducere</a></li>

@@ -704,6 +704,11 @@ li.notification-panel {
 #statistici .col-md-6 {
 	padding: 1rem;
 }
+.login-icon {
+	padding: 0.25rem 0.75rem;
+	color: white;
+	cursor: pointer;
+}
 @media (min-width: 992px) {
 	#login-button {
 		text-transform: uppercase;
