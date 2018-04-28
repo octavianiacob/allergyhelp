@@ -1,5 +1,3 @@
-$('.carousel').carousel('pause');
-
 function checkScrollForNavbar() {
 	if ($(window).scrollTop() > 0 || $(window).width() < 992) {
 		$(".navbar").addClass("bg-dark");

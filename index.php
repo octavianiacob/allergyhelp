@@ -637,82 +637,45 @@
 				</div>
 			</div>
 		</div>
-		<div class="section" id="statistici">
-		<div class="container-fluid">
-		<h2 class="title text-center">Statistici</h2>
-		<div class="section section-image" id="statistica" style="background-image: url('assets/img/crowded-station.jpg')">
+		<div class="section section-image" id="statistici" style="background-image: url('assets/img/crowded-station.jpg');">
 			<div class="container text-center">
-				<div class="carousel slide carousel-fade" data-ride="carousel">
-					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<div class="row">
-								<div class="col-md-4">
-									<h3 class="title mb-0">Alergiile</h3>
-									Sunt a șasea cauză a bolilor cronice din USA.
-								</div>
-								<div class="col-md-4">
-									<h3 class="title mb-0">La nivel mondial</h3>
-									Rinita alergică afectează între 10% și 30% din populație.
-								</div>
-								<div class="col-md-4">
-									<h3 class="title mb-0">Costurile</h3>
-									Anuale ale alergiilor depășesc 18 miliarde de dolari.
-								</div>
-							</div>
-						</div>
-
-						<div class="carousel-item">
-							<div class="row">
-								<div class="col-md-4">
-									<h3 class="title mb-0">Peste 170 de alimente</h3>
-									Au fost raportate ca factori alergici.
-								</div>
-								<div class="col-md-4">
-									<h3 class="title mb-0">La fiecare 3 minute</h3>
-									O reacție alergică alimentară trimite pe cineva în camera de urgențe.
-								</div>
-								<div class="col-md-4">
-									<h3 class="title mb-0">În 2015</h3>
-									Peste 8.8 milioane de copii au avut alergii de piele.
-								</div>
-							</div>
-						</div>
-
-						<div class="carousel-item">
-							<div class="row">
-								<div class="col-md-4">
-									<h3 class="title mb-0">Până la 57% dintre alergicii la rinită</h3>
-									Au insomnii, ducând la oboseală pe timpul zile, somnolență și la diminuarea funcționării cognitive.
-								</div>
-								<div class="col-md-4">
-									<h3 class="title mb-0">Reacțiile de tip anafilatic</h3>
-									Apar la aproximativ 1 din 1000 oameni din populația generală.
-								</div>
-								<div class="col-md-4">
-									<h3 class="title mb-0">În 2015</h3>
-									Peste 8.8 milioane de copii au avut alergii de piele.
-								</div>
-							</div>
-						</div>
-
-						<div class="carousel-item">
-							<div class="row">
-								<div class="col-md-4">
-									<h3 class="title mb-0">Studiile arată că</h3>
-									În urmatorii 5-7 ani unul din doi copii vor prezenta manifestări alergice.
-								</div>
-								<div class="col-md-4">
-									<h3 class="title mb-0">În Europa</h3>
-									Sunt peste 33 de milioane de oameni ce au reacții alergice la ambrozie.
-								</div>
-								<div class="col-md-4">
-									<h3 class="title mb-0">În România</h3>
-									Numărul alergicilor la ambrozie s-a dublat în ultimii 2-3 ani.
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+				<h2 class="title text-center">Statistici</h2>
+				<div class="row">
+					<div class="col-lg-4 col-md-6">
+						<h3 class="title m-0">Alergiile</h3>
+						Sunt a șasea cauză a bolilor cronice din USA.
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<h3 class="title m-0">La nivel mondial</h3>
+						Rinita alergică afectează între 10% și 30% din populație.
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<h3 class="title m-0">Costurile</h3>
+						Anuale ale alergiilor depășesc 18 miliarde de dolari.
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<h3 class="title m-0">Peste 170 de alimente</h3>
+						Au fost raportate ca factori alergici.
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<h3 class="title m-0">La fiecare 3 minute</h3>
+						O reacție alergică alimentară trimite pe cineva în camera de urgențe.
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<h3 class="title m-0">În 2015</h3>
+						Peste 8.8 milioane de copii au avut alergii de piele.
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<h3 class="title m-0">În România</h3>
+						Numărul alergicilor la ambrozie s-a dublat în ultimii 2-3 ani.
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<h3 class="title m-0">Reacțiile de tip anafilatic</h3>
+						Apar la aproximativ 1 din 1000 oameni din populația generală.
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<h3 class="title m-0">Studiile arată că</h3>
+						În urmatorii 5-7 ani unul din doi copii vor prezenta manifestări alergice.
 					</div>
 				</div>
 			</div>
