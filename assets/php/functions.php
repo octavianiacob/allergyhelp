@@ -691,6 +691,8 @@
 					</form>
 				</div>
 				';
+			$sql = "UPDATE conversations SET unread = 0 WHERE id = '$conversation'";
+			mysqli_query($this->db, $sql);
 		}
 		public function add_notification($id, $title, $content, $link)
 		{
