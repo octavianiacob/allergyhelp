@@ -220,7 +220,7 @@
 							<br /><?php echo $user->time_passed($user->get_allergy_date($a)); ?>
 						</div>
 						<hr />
-						<?php 
+						<?php
 							if($user->is_allergy_added_to_user($id, $a))
 								echo '<a href="?dela='.$a.'" class="font-weight-bold text-danger"><i class="fa fa-fw fa-minus"></i> Șterge articolul de la favorite</a>';
 							else
@@ -596,6 +596,35 @@
 			</form>
 		</div>
 	</div>
+	<div class="modal fade" id="modal_login">
+		<div class="modal-dialog"  role="document">
+			<form action="" method="post" name="login">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Autentificare</h5>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+							<label for="log-email" class="form-control-label col-sm-2 col-form-label">Email</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="email" id="log-email" required>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="log-password" class="form-control-label col-sm-2 col-form-label">Parolă</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" name="password" id="log-password" required>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-sm btn-primary ml-auto font-weight-bold" type="submit" name="login">Autentificare</button>
+						<button class="btn btn-sm btn-secondary mr-auto" data-dismiss="modal">Înapoi</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark">
 		<div class="container">
 			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="#navbarNav"
@@ -619,25 +648,8 @@
 					<li class="nav-item"><a class="nav-link link-scroll" href="#statistici">Statistici</a></li>
 					<li class="nav-item"><a class="nav-link link-scroll" href="#noutati">Noutăți</a></li>
 					<li class="nav-item"><a class="nav-link link-scroll" href="#echipa">Echipa</a></li>
-					<li class="nav-item dropdown">
-						<a class="nav-link" href="#" id="login-button" id="dropdown-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Autentificare</a>
-						<div class="dropdown-menu dropdown-menu-login dropdown-menu-right" aria-labelledby="dropdown-login">
-							<form action="" method="post" name="login">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text"><i class="fas fa-at"></i></div>
-									</div>
-									<input type="text" class="form-control" name="email" id="log-email" placeholder="Email" required="" autocomplete="off" autofocus="">
-								</div>
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text"><i class="fas fa-key"></i></div>
-									</div>
-									<input type="password" class="form-control" name="password" id="log-password" placeholder="Parolă" required="">
-								</div>
-								<button class="btn btn-sm btn-block btn-primary font-weight-bold" type="submit" name="login"><i class="fas fa-fw fa-sign-in-alt"></i> Loghează-te</button>
-							</form>
-						</div>
+					<li class="nav-item">
+						<a class="nav-link" id="login-button" data-toggle="modal" data-target="#modal_login">Autentificare</a>
 					</li>
 				</ul>
 			</div>

@@ -447,10 +447,6 @@ body.modal-open {
 	padding: 0 !important;
 	overflow: unset;
 }
-body.modal-open .modal {
-	display: flex !important;
-	height: 100%;
-}
 .modal {
 	z-index: 10001 !important;
 	align-items: center;
@@ -486,20 +482,6 @@ body.modal-open .modal {
 }
 .modal label {
 	font-weight: 700;
-}
-.navbar-nav .dropdown-menu-login {
-	min-width: 15rem;
-	position: absolute;
-	border: 0;
-	padding: 0;
-	border-radius: 6px;
-	transform: scale(1, 0);
-	transform-origin: top;
-	animation-fill-mode: forwards;
-	display: block;
-	transition: all 0.2s ease-out;
-	background: transparent;
-	box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
 .dropdown-menu.show {
 	display: block;
@@ -559,10 +541,6 @@ body.modal-open .modal {
 .input-group:first-child .form-control {
 	border-radius: 0 6px 0 0;
 	margin-bottom: -1px;
-}
-form[name="login"] .btn {
-	border-radius: 0 0 6px 6px !important;
-	margin-top: -1px;
 }
 .admin-panel-link {
 	color: var(--ah-green) !important;
@@ -803,6 +781,9 @@ a.list-group-item {
 	cursor: pointer;
 	border-top: 1px solid var(--ah-green);
 }
+#login-button {
+	cursor: pointer;
+}
 @media (min-width: 992px) {
 	#login-button {
 		text-transform: uppercase;
@@ -836,13 +817,13 @@ a.list-group-item {
 		border-top: 0;
 		border-left: 0;
 	}
-	#statistici .col-lg-4:nth-child(3), 
-	#statistici .col-lg-4:nth-child(6), 
+	#statistici .col-lg-4:nth-child(3),
+	#statistici .col-lg-4:nth-child(6),
 	#statistici .col-lg-4:nth-child(9) {
 		border-right: 0;
 	}
-	#statistici .col-lg-4:nth-child(7), 
-	#statistici .col-lg-4:nth-child(8), 
+	#statistici .col-lg-4:nth-child(7),
+	#statistici .col-lg-4:nth-child(8),
 	#statistici .col-lg-4:nth-child(9) {
 		border-bottom: 0;
 	}
@@ -875,11 +856,6 @@ a.list-group-item {
 	}
 	.navbar-nav {
 		margin-top: .5rem;
-	}
-	.navbar-nav .dropdown-menu-login {
-		position: relative;
-		width: 100%;
-		display: none;
 	}
 	.navbar-nav .dropdown-menu.show {
 		display: block;
