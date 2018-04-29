@@ -621,6 +621,17 @@
 
 			return 1;
 		}
+		public function send_reply($id, $message, $conversation)
+		{
+			if($id !== $this->mysqli_result(mysqli_query($this->db, "SELECT userid FROM conversations WHERE id = '$conversation'")))
+				return 0;
+
+			$sql = "INSERT INTO messages SET message = '$message', userid = '$id', conversation = '$conversation', date = '".date('Y-m-d H:i:s', time())."'";
+			mysqli_query($this->db, $sql);
+			$sql = "UPDATE conversations SET date = '".date('Y-m-d H:i:s', time())."' WHERE id = '$conversation'";
+			mysqli_query($this->db, $sql);
+			return 1;
+		}
 		public function get_conversations($id)
 		{
 			$sql = "SELECT * FROM conversations WHERE userid = '$id' ORDER BY unread DESC, date DESC";
@@ -656,6 +667,30 @@
 			}
 			$conv = mysqli_fetch_assoc($result);
 			echo '<h2 class="title">'.$conv['subject'].'</h2>';
+			$sql = "SELECT * FROM messages WHERE conversation = '$conversation' ORDER BY date ASC";
+			$result = mysqli_query($this->db, $sql);
+			echo '
+				<div class="msg-box">
+					<div class="msg-list">
+				';
+			while($row = mysqli_fetch_assoc($result))
+			{
+				if($row['userid'] === $id) $reply_user = " reply-user";
+				else $reply_user = "";
+				echo '<div class="reply'.$reply_user.'">';
+				if($row['userid'] !== $id)
+					echo '<div class="reply-name">'.$this->get_fullname($row["userid"]).'</div>';
+				echo '<img class="avatar reply-avatar" src="'.$this->get_avatar($row['userid']).'" />';
+				echo '<div class="reply-text">'.$row['message'].'</div></div>';
+			}
+			echo '
+					</div>
+					<form action="" method="post" name="new_reply">
+						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required></input>
+						<button type="submit" class="send-reply" name="new_reply"><i class="fa fa-paper-plane"></i></button>
+					</form>
+				</div>
+				';
 		}
 		public function add_notification($id, $title, $content, $link)
 		{

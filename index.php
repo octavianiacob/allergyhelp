@@ -46,6 +46,12 @@
 		}
 		else $_SESSION['allergyhelp_send_message_fail'] = true;
 	}
+	if (isset($_REQUEST['new_reply']))
+	{
+		extract($_REQUEST);
+		$conversation = $_GET['m'];
+		$user->send_reply($id, $reply, $conversation);
+	}
 	if (isset($_GET['adda']))
 	{
 		$user->add_allergy_to_user($id, $_GET['adda']);
@@ -386,37 +392,6 @@
 		<div class="section section-logged">
 			<div class="container">
 				<?php $user->get_conversation($id, $m); ?>
-				<div class="msg-box">
-					<div class="msg-list">
-						<div class="reply">
-							<img class="avatar reply-avatar" src="assets/img/avatars/1.jpg" />
-							<div class="reply-text">
-								mesaj
-							</div>
-						</div>
-						<div class="reply reply-user">
-							<img class="avatar reply-avatar" src="assets/img/avatars/0.jpg" />
-							<div class="reply-text">
-								mesaj
-							</div>
-						</div>
-						<div class="reply reply-user">
-							<img class="avatar reply-avatar" src="assets/img/avatars/0.jpg" />
-							<div class="reply-text">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</div>
-						</div>
-					</div>
-					<form action="" method="post" name="new_reply">
-						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required></input>
-						<button type="submit" class="send-reply"><i class="fa fa-paper-plane"></i></button>
-					</form>
-				</div>
 			</div>
 		</div>
 	</div>

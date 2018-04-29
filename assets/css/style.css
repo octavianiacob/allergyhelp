@@ -745,6 +745,7 @@ a.list-group-item {
 }
 .reply.reply-user {
 	float: right;
+	width: 100%;
 }
 .reply.reply-user .reply-avatar {
 	float: right;
@@ -752,9 +753,15 @@ a.list-group-item {
 	margin-left: 10px;
 }
 .reply.reply-user .reply-text {
+	float: right;
 	background: var(--ah-green);
 	color: white;
 	border-color: var(--ah-green);
+}
+.reply-name {
+	font-size: .8rem;
+	font-weight: 700;
+	margin-bottom: .1rem;
 }
 .reply-avatar {
 	width: 40px;
