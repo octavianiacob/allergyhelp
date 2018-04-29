@@ -4,6 +4,8 @@ $(document).ready(function()
 		if ($(window).scrollTop() > 56) $('.navbar-links').addClass('navbar-links-fixed');
 		else $('.navbar-links').removeClass('navbar-links-fixed');
 	});
+	var msg = $('.msg-list');
+	msg.scrollTop(msg.prop("scrollHeight"));
 	$('.image-editor').cropit({
 		allowDragNDrop: false
 	});
