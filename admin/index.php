@@ -109,6 +109,7 @@
 		extract($_REQUEST);
 		$conversation = $_GET['m'];
 		$admin->send_reply($id, $reply, $conversation);
+		header("location:index.php?p=messages&m=".$conversation);
 	}
 	if ($admin->get_admin_session())
 	{

@@ -42,7 +42,7 @@
 		if ($send)
 		{
 			$_SESSION['allergyhelp_send_message_success'] = true;
-			header("location:index.php?p=messages&m=".mysqli_insert_id($user->db));
+			header("location:index.php?p=messages");
 		}
 		else $_SESSION['allergyhelp_send_message_fail'] = true;
 	}
@@ -51,6 +51,7 @@
 		extract($_REQUEST);
 		$conversation = $_GET['m'];
 		$user->send_reply($id, $reply, $conversation);
+		header("location:index.php?p=messages&m=".$conversation);
 	}
 	if (isset($_GET['adda']))
 	{
@@ -308,6 +309,24 @@
 			if(isset($_GET['m'])) $m = $_GET['m'];
 			if(empty($m))
 			{
+				if (isset($_SESSION['allergyhelp_send_message_success']))
+				{
+					echo '
+					<div class="alert alert-success alert-dismissible fade show error">
+						<div class="container">
+							<div class="alert-icon">
+								<i class="fas fa-check-circle"></i>
+							</div>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true"><i class="fas fa-times"></i></span>
+							</button>
+							Mesajul tău a fost trimis administratorilor! Vei primi un răspuns în cel mai scurt timp posibil.
+						</div>
+					</div>
+					';
+					$_SESSION['allergyhelp_send_message_success'] = false;
+					unset($_SESSION['allergyhelp_send_message_success']);
+				}
 				if (isset($_SESSION['allergyhelp_send_message_fail']))
 				{
 					echo '
@@ -364,24 +383,6 @@
 			}
 			else
 			{
-			if (isset($_SESSION['allergyhelp_send_message_success']))
-			{
-				echo '
-				<div class="alert alert-success alert-dismissible fade show error">
-					<div class="container">
-						<div class="alert-icon">
-							<i class="fas fa-check-circle"></i>
-						</div>
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true"><i class="fas fa-times"></i></span>
-						</button>
-						Mesajul tău a fost trimis administratorilor! Vei primi un răspuns în cel mai scurt timp posibil.
-					</div>
-				</div>
-				';
-				$_SESSION['allergyhelp_send_message_success'] = false;
-				unset($_SESSION['allergyhelp_send_message_success']);
-			}
 	?>
 	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
 		<div class="container text-center">
