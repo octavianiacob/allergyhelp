@@ -1172,7 +1172,7 @@
 		}
 		public function admin_get_conversation($id, $conversation)
 		{
-			$sql = "SELECT subject FROM conversations WHERE userid = '$id' AND id = '$conversation'";
+			$sql = "SELECT subject FROM conversations WHERE id = '$conversation'";
 			$result = mysqli_query($this->db, $sql);
 			if(!mysqli_num_rows($result))
 			{
