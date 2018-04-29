@@ -648,7 +648,7 @@
 					<li class="nav-item"><a class="nav-link link-scroll" href="#statistici">Statistici</a></li>
 					<li class="nav-item"><a class="nav-link link-scroll" href="#noutati">Noutăți</a></li>
 					<li class="nav-item"><a class="nav-link link-scroll" href="#echipa">Echipa</a></li>
-					<li class="nav-item">
+					<li class="nav-item d-none d-lg-block">
 						<a class="nav-link" id="login-button" data-toggle="modal" data-target="#modal_login">Autentificare</a>
 					</li>
 				</ul>
