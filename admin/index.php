@@ -104,6 +104,12 @@
 		else $_SESSION['allergyhelp_admin_add_allergy_fail'] = true;
 		header("location:index.php?p=allergies");
 	}
+	if (isset($_REQUEST['new_reply']))
+	{
+		extract($_REQUEST);
+		$conversation = $_GET['m'];
+		$admin->send_reply($id, $reply, $conversation);
+	}
 	if ($admin->get_admin_session())
 	{
 		if(!$admin->isadmin($id))
@@ -179,6 +185,7 @@
 					<li class="nav-item d-lg-none"><a class="nav-link" href="../"><i class="fa fa-fw fa-home"></i> Înapoi la site</a></li>
 					<li class="nav-item d-lg-none"><a class="nav-link<?php if ((isset($p) ? $p : null) == "users") echo ' active'; ?>" href="?p=users"><i class="fa fa-fw fa-users"></i> Utilizatori</a></li>
 					<li class="nav-item d-lg-none"><a class="nav-link<?php if ((isset($p) ? $p : null) == "allergies") echo ' active'; ?>" href="?p=allergies"><i class="fa fa-fw fa-allergies"></i> Alergii</a></li>
+					<li class="nav-item d-lg-none"><a class="nav-link<?php if ((isset($p) ? $p : null) == "messages") echo ' active'; ?>" href="?p=messages"><i class="fa fa-fw fa-envelope"></i> Mesaje</a></li>
 					<div class="separator d-lg-none"></div>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -197,6 +204,7 @@
 				<a class="py-2 d-none d-lg-inline-block" href="../"><i class="fa fa-fw fa-home"></i> Înapoi la site</a>
 				<a class="py-2 d-none d-lg-inline-block<?php if ((isset($p) ? $p : null) == "users") echo ' active'; ?>" href="?p=users"><i class="fa fa-fw fa-users"></i> Utilizatori</a>
 				<a class="py-2 d-none d-lg-inline-block<?php if ((isset($p) ? $p : null) == "allergies") echo ' active'; ?>" href="?p=allergies"><i class="fa fa-fw fa-allergies"></i> Alergii</a>
+				<a class="py-2 d-none d-lg-inline-block<?php if ((isset($p) ? $p : null) == "messages") echo ' active'; ?>" href="?p=messages"><i class="fa fa-fw fa-envelope"></i> Mesaje</a>
 			</div>
 		</div>
 	</nav>
@@ -561,6 +569,32 @@
 		</div>
 	</main>
 	<?php
+		}
+		else if($p === "messages")
+		{
+			if(isset($_GET['m'])) $m = $_GET['m'];
+			if(empty($m))
+			{
+	?>
+	<main role="main">
+		<div class="container pt-4">
+			<h1>Mesaje</h1>
+			<hr class="mt-0 mb-3" />
+			<?php $admin->admin_get_conversations(); ?>
+		</div>
+	</main>
+	<?php
+			}
+			else
+			{
+	?>
+	<main role="main">
+		<div class="container pt-4">
+			<?php $admin->admin_get_conversation($id, $m); ?>
+		</div>
+	</main>
+	<?php
+			}
 		}
 		else if($p === "account")
 		{

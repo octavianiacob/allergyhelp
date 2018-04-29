@@ -1150,6 +1150,78 @@
 				}
 			}
 		}
+		public function admin_get_conversations()
+		{
+			$sql = "SELECT * FROM conversations ORDER BY date DESC";
+			$result = mysqli_query($this->db, $sql);
+			if(mysqli_num_rows($result))
+			{
+				echo '<ul class="list-group">';
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo '
+						<a class="list-group-item" href="?p=messages&m='.$row['id'].'">
+							<strong>'.$row['subject'].'</strong>
+							<br /><small class="text-muted"><i class="fa fa-user"></i>&nbsp;&nbsp;'.$this->get_fullname($row['userid']).'</small>&nbsp&nbsp;&middot;&nbsp;&nbsp;<small class="text-muted"><i class="fa fa-clock"></i>&nbsp;&nbsp;'.$this->time_passed($row['date']).'</small>
+						</a>
+						';
+				}
+				echo '</ul>';
+			}
+			else echo 'Nu există niciun mesaj de la utilizatori încă.';
+		}
+		public function admin_get_conversation($id, $conversation)
+		{
+			$sql = "SELECT subject FROM conversations WHERE userid = '$id' AND id = '$conversation'";
+			$result = mysqli_query($this->db, $sql);
+			if(!mysqli_num_rows($result))
+			{
+				echo '<h3 class="title m-0">Conversația nu există!</h3><a href="?p=messages">Înapoi la mesaje</a>';
+				return 0;
+			}
+			$conv = mysqli_fetch_assoc($result);
+			echo '<h1>Mesaje <small class="text-muted">'.$conv['subject'].'</small></h1><hr class="mt-0 mb-3" />';
+			$sql = "SELECT * FROM messages WHERE conversation = '$conversation' ORDER BY date ASC";
+			$result = mysqli_query($this->db, $sql);
+			echo '
+				<div class="msg-box">
+					<div class="msg-list">
+				';
+			while($row = mysqli_fetch_assoc($result))
+			{
+				if($row['userid'] === $id) $reply_user = " reply-user";
+				else $reply_user = "";
+				echo '<div class="reply'.$reply_user.'">';
+				if($row['userid'] !== $id)
+					echo '<div class="reply-name">'.$this->get_fullname($row["userid"]).'</div>';
+				echo '<img class="avatar reply-avatar" src="'.$this->get_avatar($row['userid']).'" />';
+				echo '<div class="reply-text">'.$row['message'].'</div></div>';
+			}
+			echo '
+					</div>
+					<form action="" method="post" name="new_reply">
+						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required></input>
+						<button type="submit" class="send-reply" name="new_reply"><i class="fa fa-paper-plane"></i></button>
+					</form>
+				</div>
+				';
+		}
+		public function send_reply($id, $message, $conversation)
+		{
+			$uid = $this->mysqli_result(mysqli_query($this->db, "SELECT userid FROM conversations WHERE id = '$conversation'"));
+			$sql = "INSERT INTO messages SET message = '$message', userid = '$id', conversation = '$conversation', date = '".date('Y-m-d H:i:s', time())."'";
+			mysqli_query($this->db, $sql);
+			$sql = "UPDATE conversations SET date = '".date('Y-m-d H:i:s', time())."' WHERE id = '$conversation'";
+			mysqli_query($this->db, $sql);
+
+			if($uid !== $id)
+			{
+				$this->add_notification($uid, "Mesaj nou", $this->get_fullname($id)." a răspuns la conversația creată de tine.", "?p=messages&m=".$conversation);
+				$sql = "UPDATE conversations SET unread = 1 WHERE id = '$conversation'";
+				mysqli_query($this->db, $sql);
+			}
+			return 1;
+		}
 		public function get_allergy_cover($id)
 		{
 			if(file_exists("../assets/img/allergies/".$id.".jpg")) $cover = $id;
