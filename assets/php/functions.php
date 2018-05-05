@@ -737,7 +737,24 @@
 
 			if($cmd[0] == "comenzi" || $cmd[0] == "ajutor" || $cmd[0] == "help")
 			{
-				$botmsg = "s-a folosit comanda comenzi";
+				$botmsg = "<i>info</i> <strong>&lt;nume alergie&gt;</strong>
+				<br />Îți ofer linkul către o alergie dată de tine.
+				<br /><br /><i>simptome</i> <strong>&lt;nume alergie&gt;</strong>
+				<br />Îți enumăr simptomele pentru o anumită alergie.
+				<br /><br /><i>cauze</i> <strong>&lt;nume alergie&gt;</strong>
+				<br />Îți enumăr cauzele pentru o anumită alergie.
+				<br /><br /><i>simptom</i> <strong>&lt;nume simptom&gt;</strong>
+				<br />Îți enumăr alergiile ce au un anumit simptom.
+				<br /><br /><i>cauza</i> <strong>&lt;nume cauză&gt;</strong>
+				<br />Îți enumăr alergiile ce au un anumit cauză.
+				<br /><br /><i>ultima</i>
+				<br />Îți ofer linkul către ultima alergie publicată.
+				<br /><br /><i>oarecare</i>
+				<br />Îți ofer linkul către o alergie oarecare.
+				<br /><br /><i>contact</i>
+				<br />Te ajut să contactezi un administrator.
+				<br /><br /><i>sterge</i>
+				<br />Șterg mesajele din această conversație.";
 			}
 			else if($cmd[0] == "info" || $cmd[0] == "detalii" || $cmd[0] == "informații" || $cmd[0] == "informatii" || $cmd[0] == "alergie" || $cmd[0] == "alergia")
 			{
