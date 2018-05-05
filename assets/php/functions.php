@@ -668,7 +668,7 @@
 			}
 			$conv = mysqli_fetch_assoc($result);
 			echo '<h2 class="title">'.$conv['subject'].'</h2>';
-			$sql = "SELECT * FROM messages WHERE conversation = '$conversation' ORDER BY date ASC";
+			$sql = "SELECT * FROM messages WHERE conversation = '$conversation' ORDER BY date ASC, id ASC";
 			$result = mysqli_query($this->db, $sql);
 			echo '
 				<div class="msg-box">
@@ -697,7 +697,7 @@
 		}
 		public function get_bot_conversation($id)
 		{
-			$sql = "SELECT * FROM bot_messages WHERE userid = '$id' ORDER BY date ASC";
+			$sql = "SELECT * FROM bot_messages WHERE userid = '$id' ORDER BY date ASC, id ASC";
 			$result = mysqli_query($this->db, $sql);
 			echo '
 				<div class="msg-box">
@@ -741,15 +741,20 @@
 			}
 			else if($cmd[0] == "info" || $cmd[0] == "detalii" || $cmd[0] == "informații" || $cmd[0] == "informatii")
 			{
-				$sql = "SELECT id, name FROM allergies WHERE name LIKE '%$cmd[1]%'";
-				$result = mysqli_query($this->db, $sql);
-				if(mysqli_num_rows($result))
+				if(empty($cmd[1])) $botmsg = "Mod de folosire:<br /><i>".$cmd[0]."</i> <strong>alergie</strong>";
+				else
 				{
-					$botmsg = "Am găsit următoarele:";
-					while($row = mysqli_fetch_assoc($result))
-						$botmsg .= "<br />".$row['name'];
+					$sql = "SELECT id, name FROM allergies WHERE name LIKE '%$cmd[1]%'";
+					$result = mysqli_query($this->db, $sql);
+					if(mysqli_num_rows($result))
+					{
+						if(mysqli_num_rows($result) === 1) $botmsg = "Am găsit următoarea alergie:";
+						else $botmsg = "Am găsit următoarele <strong>".mysqli_num_rows($result)."</strong> alergii:";
+						while($row = mysqli_fetch_assoc($result))
+							$botmsg .= "<br /><a href=?p=allergy&a=".$row['id']."><strong>".$row['name']."</strong></a>";
+					}
+					else $botmsg = "Nu am găsit nicio alergie numită astfel.<br />Încearcă din nou!";
 				}
-				else $botmsg = "Nu am găsit nicio alergie numită astfel. Încearcă din nou!";
 			}
 			else if($cmd[0] == "simptome" || $cmd[0] == "simptom")
 			{
@@ -759,21 +764,29 @@
 			{
 				$botmsg = "s-a folosit comanda cauze";
 			}
-			else if($cmd[0] == "ultima" || $cmd[0] == "ultimul" || $cmd[0] == "nou" || $cmd[0] == "noutati" || $cmd[0] == "noutăți")
+			else if($cmd[0] == "ultima" || $cmd[0] == "ultimul" || $cmd[0] == "nou" || $cmd[0] == "noutati" || $cmd[0] == "noutăți" || $cmd[0] == "last")
 			{
-				$botmsg = "s-a folosit comanda ultima alergie";
+				$sql = "SELECT id, name FROM allergies ORDER BY date DESC LIMIT 1";
+				$result = mysqli_query($this->db, $sql);
+				$row = mysqli_fetch_assoc($result);
+				$botmsg = "Ultima alergie publicată:<br /><a href=?p=allergy&a=".$row['id']."><strong>".$row['name']."</strong></a>";
 			}
-			else if($cmd[0] == "aleatoriu" || $cmd[0] == "aleatorie" || $cmd[0] == "random")
+			else if($cmd[0] == "aleatoriu" || $cmd[0] == "aleatorie" || $cmd[0] == "random" || $cmd[0] == "oarecare")
 			{
-				$botmsg = "s-a folosit comanda alergie aleatorie";
+				$sql = "SELECT id, name FROM allergies ORDER BY RAND() DESC LIMIT 1";
+				$result = mysqli_query($this->db, $sql);
+				$row = mysqli_fetch_assoc($result);
+				$botmsg = "Alergie aleatorie:<br /><a href=?p=allergy&a=".$row['id']."><strong>".$row['name']."</strong></a>";
 			}
 			else if($cmd[0] == "contact" || $cmd[0] == "mesaj" || $cmd[0] == "feedback")
 			{
-				$botmsg = "s-a folosit comanda contact";
+				$botmsg = "Poți lua legătura cu un administrator la fel de ușor cum poți lua legătura cu mine!<br /><a href=?p=messages>Du-te la pagina <strong>Mesaje</strong>.</a>";
 			}
-			else if($cmd[0] == "curata" || $cmd[0] == "curăță" || $cmd[0] == "sterge" || $cmd[0] == "șterge" || $cmd[0] == "goleste" || $cmd[0] == "golește")
+			else if($cmd[0] == "curata" || $cmd[0] == "curăță" || $cmd[0] == "sterge" || $cmd[0] == "șterge" || $cmd[0] == "goleste" || $cmd[0] == "golește" || $cmd[0] == "clean")
 			{
-				$botmsg = "s-a folosit comanda curata";
+				$sql = "DELETE FROM bot_messages WHERE userid = '$id'";
+				mysqli_query($this->db, $sql);
+				$botmsg = "Bună, ".$this->get_firstname($id)."!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Cu ce te pot ajuta?";
 			}
 			else $botmsg = "Scuze, nu am înțeles asta... :(";
 			$sql = "INSERT INTO bot_messages SET message = '$botmsg', frombot = 1, userid = '$id', date = '".date('Y-m-d H:i:s', time())."'";
@@ -1268,7 +1281,7 @@
 			}
 			$conv = mysqli_fetch_assoc($result);
 			echo '<h1>Mesaje <small class="text-muted">'.$conv['subject'].'</small></h1><hr class="mt-0 mb-3" />';
-			$sql = "SELECT * FROM messages WHERE conversation = '$conversation' ORDER BY date ASC";
+			$sql = "SELECT * FROM messages WHERE conversation = '$conversation' ORDER BY date ASC, id ASC";
 			$result = mysqli_query($this->db, $sql);
 			echo '
 				<div class="msg-box">
