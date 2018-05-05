@@ -885,6 +885,10 @@
 				mysqli_query($this->db, $sql);
 				$botmsg = "Bună, ".$this->get_firstname($id)."!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!";
 			}
+			else if($cmd[0] == "joke" || $cmd[0] == "gluma" || $cmd[0] == "glumă" || $cmd[0] == "banc" || $cmd[0] == "poanta" || $cmd[0] == "poantă")
+			{
+				$botmsg = $this->mysqli_result(mysqli_query($this->db, "SELECT joke FROM bot_jokes ORDER BY RAND() DESC LIMIT 1"));
+			}
 			else $botmsg = "Scuze, nu am înțeles asta... :(";
 			$sql = "INSERT INTO bot_messages SET message = '$botmsg', frombot = 1, userid = '$id', date = '".date('Y-m-d H:i:s', time())."'";
 			mysqli_query($this->db, $sql);
