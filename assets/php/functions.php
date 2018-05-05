@@ -156,6 +156,7 @@
 
 				$uid = mysqli_insert_id($this->db);
 				$this->add_notification($uid, "Bine ai venit pe AllergyHelp!", "Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.", "?p=profile");
+				$this->bot_reply_register($uid);
 				return 1;
 			}
 			return 0;
@@ -693,6 +694,37 @@
 				';
 			$sql = "UPDATE conversations SET unread = 0 WHERE id = '$conversation'";
 			mysqli_query($this->db, $sql);
+		}
+		public function get_bot_conversation($id)
+		{
+			$sql = "SELECT * FROM bot_messages WHERE userid = '$id' ORDER BY date ASC";
+			$result = mysqli_query($this->db, $sql);
+			echo '
+				<div class="msg-box">
+					<div class="msg-list">
+				';
+			while($row = mysqli_fetch_assoc($result))
+			{
+				if(!$row['frombot']) $reply_user = " reply-user";
+				else $reply_user = "";
+				echo '<div class="reply'.$reply_user.'">';
+				if($row['frombot']) echo '<img class="avatar reply-avatar" src="'.$this->get_avatar(-1).'" />';
+				else echo '<img class="avatar reply-avatar" src="'.$this->get_avatar($row['userid']).'" />';
+				echo '<div class="reply-text">'.$row['message'].'</div></div>';
+			}
+			echo '
+					</div>
+					<form action="" method="post" name="new_reply">
+						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required></input>
+						<button type="submit" class="send-reply" name="new_reply"><i class="fa fa-paper-plane"></i></button>
+					</form>
+				</div>
+				';
+		}
+		public function bot_reply_register($id)
+		{
+			$message = "Bună, ".$this->get_firstname($id)."! Eu sunt AllergyBot, dar poți să-mi spui și Botzică :)! Cu ce te pot ajuta?";
+			mysqli_query($this->db, "INSERT INTO bot_messages SET message = '$message', frombot = 1, userid = '$id', date = '".date('Y-m-d H:i:s', time())."'");
 		}
 		public function add_notification($id, $title, $content, $link)
 		{

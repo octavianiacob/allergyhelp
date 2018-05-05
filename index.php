@@ -242,23 +242,6 @@
 	<?php
 			}
 		}
-		else if($p === "allergybot")
-		{
-	?>
-	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
-		<div class="container text-center">
-			<h1 class="title">AllergyBot</h1>
-		</div>
-	</div>
-	<div class="main main-logged">
-		<div class="section section-logged">
-			<div class="container">
-
-			</div>
-		</div>
-	</div>
-	<?php
-		}
 		else if($p === "myallergies")
 		{
 	?>
@@ -414,8 +397,25 @@
 			</div>
 		</div>
 	</div>
-	<?php
+	<?php 
 			}
+		}
+		else if($p === "allergybot")
+		{
+	?>
+	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
+		<div class="container text-center">
+			<h1 class="title">AllergyBot</h1>
+		</div>
+	</div>
+	<div class="main main-logged">
+		<div class="section section-logged">
+			<div class="container">
+				<?php $user->get_bot_conversation($id); ?>
+			</div>
+		</div>
+	</div>
+	<?php
 		}
 		else if($p === "account")
 		{
