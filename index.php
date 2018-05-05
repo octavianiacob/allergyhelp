@@ -141,6 +141,7 @@
 					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "allallergies") echo ' active'; ?>" href="?p=allallergies">Toate alergiile</a></li>
 					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "profile") echo ' active'; ?>" href="?p=profile">Profil</a></li>
 					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "messages") echo ' active'; ?>" href="?p=messages">Mesaje</a></li>
+					<li class="nav-item"><a class="nav-link<?php if ((isset($p) ? $p : null) == "allergybot") echo ' active'; ?>" href="?p=allergybot">AllergyBot</a></li>
 					<?php if($user->isadmin($id)) echo '<li class="nav-item"><a class="nav-link admin-panel-link" href="admin/">Admin</a></li>'; ?>
 					<li class="nav-item dropdown notification-panel d-none d-lg-block">
 						<a href="#" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -240,6 +241,23 @@
 	</div>
 	<?php
 			}
+		}
+		else if($p === "allergybot")
+		{
+	?>
+	<div class="page-header page-header-logged page-header-filter" data-parallax="true">
+		<div class="container text-center">
+			<h1 class="title">AllergyBot</h1>
+		</div>
+	</div>
+	<div class="main main-logged">
+		<div class="section section-logged">
+			<div class="container">
+
+			</div>
+		</div>
+	</div>
+	<?php
 		}
 		else if($p === "myallergies")
 		{
