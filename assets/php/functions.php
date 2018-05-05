@@ -731,36 +731,47 @@
 			$sql = "INSERT INTO bot_messages SET message = '$reply', frombot = 0, userid = '$id', date = '".date('Y-m-d H:i:s', time())."'";
 			mysqli_query($this->db, $sql);
 
-			$cmd = strtolower(explode(' ', trim($reply))[0]);
-			if($cmd == "comenzi" || $cmd == "ajutor")
+			$cmd = explode(' ', trim($reply), 2);
+			$cmd[0] = strtolower($cmd[0]);
+			$cmd[1] = strtolower($cmd[1]);
+
+			if($cmd[0] == "comenzi" || $cmd[0] == "ajutor")
 			{
 				$botmsg = "s-a folosit comanda comenzi";
 			}
-			else if($cmd == "info" || $cmd == "detalii" || $cmd == "informații" || $cmd == "informatii")
+			else if($cmd[0] == "info" || $cmd[0] == "detalii" || $cmd[0] == "informații" || $cmd[0] == "informatii")
 			{
-				$botmsg = "s-a folosit comanda info";
+				$sql = "SELECT id, name FROM allergies WHERE name LIKE '%$cmd[1]%'";
+				$result = mysqli_query($this->db, $sql);
+				if(mysqli_num_rows($result))
+				{
+					$botmsg = "Am găsit următoarele:";
+					while($row = mysqli_fetch_assoc($result))
+						$botmsg .= "<br />".$row['name'];
+				}
+				else $botmsg = "Nu am găsit nicio alergie numită astfel. Încearcă din nou!";
 			}
-			else if($cmd == "simptome" || $cmd == "simptom")
+			else if($cmd[0] == "simptome" || $cmd[0] == "simptom")
 			{
 				$botmsg = "s-a folosit comanda simptome";
 			}
-			else if($cmd == "cauze" || $cmd == "cauza" || $cmd == "cauză" || $cmd == "factori")
+			else if($cmd[0] == "cauze" || $cmd[0] == "cauza" || $cmd[0] == "cauză" || $cmd[0] == "factori")
 			{
 				$botmsg = "s-a folosit comanda cauze";
 			}
-			else if($cmd == "ultima" || $cmd == "ultimul" || $cmd == "nou" || $cmd == "noutati" || $cmd == "noutăți")
+			else if($cmd[0] == "ultima" || $cmd[0] == "ultimul" || $cmd[0] == "nou" || $cmd[0] == "noutati" || $cmd[0] == "noutăți")
 			{
 				$botmsg = "s-a folosit comanda ultima alergie";
 			}
-			else if($cmd == "aleatoriu" || $cmd == "aleatorie" || $cmd == "random")
+			else if($cmd[0] == "aleatoriu" || $cmd[0] == "aleatorie" || $cmd[0] == "random")
 			{
 				$botmsg = "s-a folosit comanda alergie aleatorie";
 			}
-			else if($cmd == "contact" || $cmd == "mesaj" || $cmd == "feedback")
+			else if($cmd[0] == "contact" || $cmd[0] == "mesaj" || $cmd[0] == "feedback")
 			{
 				$botmsg = "s-a folosit comanda contact";
 			}
-			else if($cmd == "curata" || $cmd == "curăță" || $cmd == "sterge" || $cmd == "șterge" || $cmd == "goleste" || $cmd == "golește")
+			else if($cmd[0] == "curata" || $cmd[0] == "curăță" || $cmd[0] == "sterge" || $cmd[0] == "șterge" || $cmd[0] == "goleste" || $cmd[0] == "golește")
 			{
 				$botmsg = "s-a folosit comanda curata";
 			}
