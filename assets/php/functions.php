@@ -723,7 +723,7 @@
 		}
 		public function bot_reply_register($id)
 		{
-			$message = "Bună, ".$this->get_firstname($id)."!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Cu ce te pot ajuta?";
+			$message = "Bună, ".$this->get_firstname($id)."!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!";
 			mysqli_query($this->db, "INSERT INTO bot_messages SET message = '$message', frombot = 1, userid = '$id', date = '".date('Y-m-d H:i:s', time())."'");
 		}
 		public function send_bot_reply($id, $reply)
@@ -735,11 +735,11 @@
 			$cmd[0] = strtolower($cmd[0]);
 			$cmd[1] = strtolower($cmd[1]);
 
-			if($cmd[0] == "comenzi" || $cmd[0] == "ajutor")
+			if($cmd[0] == "comenzi" || $cmd[0] == "ajutor" || $cmd[0] == "help")
 			{
 				$botmsg = "s-a folosit comanda comenzi";
 			}
-			else if($cmd[0] == "info" || $cmd[0] == "detalii" || $cmd[0] == "informații" || $cmd[0] == "informatii")
+			else if($cmd[0] == "info" || $cmd[0] == "detalii" || $cmd[0] == "informații" || $cmd[0] == "informatii" || $cmd[0] == "alergie" || $cmd[0] == "alergia")
 			{
 				if(empty($cmd[1])) $botmsg = "Mod de folosire:<br /><i>".$cmd[0]."</i> <strong>alergie</strong>";
 				else
@@ -756,13 +756,93 @@
 					else $botmsg = "Nu am găsit nicio alergie numită astfel.<br />Încearcă din nou!";
 				}
 			}
-			else if($cmd[0] == "simptome" || $cmd[0] == "simptom")
+			else if($cmd[0] == "simptome")
 			{
-				$botmsg = "s-a folosit comanda simptome";
+				if(empty($cmd[1])) $botmsg = "Mod de folosire:<br /><i>".$cmd[0]."</i> <strong>alergie</strong>";
+				else
+				{
+					$aid = $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM allergies WHERE name LIKE '%$cmd[1]%' ORDER BY date DESC LIMIT 1"));
+					$aname = $this->mysqli_result(mysqli_query($this->db, "SELECT name FROM allergies WHERE id = '$aid'"));
+					if($aid)
+					{
+						$sql = "SELECT signs.sign FROM allergy_signs INNER JOIN signs ON allergy_signs.sign = signs.id WHERE allergy_signs.allergy = '$aid' ORDER BY allergy_signs.sign ASC";
+						$result = mysqli_query($this->db, $sql);
+						if(mysqli_num_rows($result))
+						{
+							$botmsg = "Simptome - <strong>".$aname."</strong>:";
+							while($row = mysqli_fetch_assoc($result))
+								$botmsg .= "<br />".$row['sign'];
+						}
+						else $botmsg = "Nu s-au găsit simptome pentru această alergie.";
+					}
+					else $botmsg = "Nu am găsit nicio alergie numită astfel.<br />Încearcă din nou!";
+				}
 			}
-			else if($cmd[0] == "cauze" || $cmd[0] == "cauza" || $cmd[0] == "cauză" || $cmd[0] == "factori")
+			else if($cmd[0] == "simptom")
 			{
-				$botmsg = "s-a folosit comanda cauze";
+				if(empty($cmd[1])) $botmsg = "Mod de folosire:<br /><i>".$cmd[0]."</i> <strong>nume simptom</strong>";
+				else
+				{
+					$sid = $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM signs WHERE sign LIKE '%$cmd[1]%' ORDER BY id DESC LIMIT 1"));
+					if($sid)
+					{
+						$sql = "SELECT DISTINCT allergies.id, allergies.name FROM allergies INNER JOIN allergy_signs ON allergy_signs.allergy = allergies.id WHERE allergy_signs.sign = '$sid' ORDER BY date DESC";
+						$result = mysqli_query($this->db, $sql);
+						if(mysqli_num_rows($result))
+						{
+							if(mysqli_num_rows($result) === 1) $botmsg = "Am găsit următoarea alergie cu acest simptom:";
+							else $botmsg = "Am găsit următoarele <strong>".mysqli_num_rows($result)."</strong> alergii cu acest simptom:";
+							while($row = mysqli_fetch_assoc($result))
+								$botmsg .= "<br /><a href=?p=allergy&a=".$row['id']."><strong>".$row['name']."</strong></a>";
+						}
+						else $botmsg = "Nu am găsit nicio alergie cu acest simptom.<br />Încearcă din nou!";
+					}
+					else $botmsg = "Nu am găsit niciun simptom numit astfel.<br />Încearcă din nou!";
+				}
+			}
+			else if($cmd[0] == "cauze" || $cmd[0] == "factori")
+			{
+				if(empty($cmd[1])) $botmsg = "Mod de folosire:<br /><i>".$cmd[0]."</i> <strong>alergie</strong>";
+				else
+				{
+					$aid = $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM allergies WHERE name LIKE '%$cmd[1]%' ORDER BY date DESC LIMIT 1"));
+					$aname = $this->mysqli_result(mysqli_query($this->db, "SELECT name FROM allergies WHERE id = '$aid'"));
+					if($aid)
+					{
+						$sql = "SELECT causes.cause FROM allergy_causes INNER JOIN causes ON allergy_causes.cause = causes.id WHERE allergy_causes.allergy = '$aid' ORDER BY allergy_causes.cause ASC";
+						$result = mysqli_query($this->db, $sql);
+						if(mysqli_num_rows($result))
+						{
+							$botmsg = "Cauze - <strong>".$aname."</strong>:";
+							while($row = mysqli_fetch_assoc($result))
+								$botmsg .= "<br />".$row['cause'];
+						}
+						else $botmsg = "Nu s-au găsit cauze pentru această alergie.";
+					}
+					else $botmsg = "Nu am găsit nicio alergie numită astfel.<br />Încearcă din nou!";
+				}
+			}
+			else if($cmd[0] == "cauza" || $cmd[0] == "cauză" || $cmd[0] == "factor")
+			{
+				if(empty($cmd[1])) $botmsg = "Mod de folosire:<br /><i>".$cmd[0]."</i> <strong>nume cauză</strong>";
+				else
+				{
+					$sid = $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM causes WHERE cause LIKE '%$cmd[1]%' ORDER BY id DESC LIMIT 1"));
+					if($sid)
+					{
+						$sql = "SELECT DISTINCT allergies.id, allergies.name FROM allergies INNER JOIN allergy_causes ON allergy_causes.allergy = allergies.id WHERE allergy_causes.cause = '$sid' ORDER BY date DESC";
+						$result = mysqli_query($this->db, $sql);
+						if(mysqli_num_rows($result))
+						{
+							if(mysqli_num_rows($result) === 1) $botmsg = "Am găsit următoarea alergie cu această cauză:";
+							else $botmsg = "Am găsit următoarele <strong>".mysqli_num_rows($result)."</strong> alergii cu această cauză:";
+							while($row = mysqli_fetch_assoc($result))
+								$botmsg .= "<br /><a href=?p=allergy&a=".$row['id']."><strong>".$row['name']."</strong></a>";
+						}
+						else $botmsg = "Nu am găsit nicio alergie cu această cauză.<br />Încearcă din nou!";
+					}
+					else $botmsg = "Nu am găsit nicio cauză numită astfel.<br />Încearcă din nou!";
+				}
 			}
 			else if($cmd[0] == "ultima" || $cmd[0] == "ultimul" || $cmd[0] == "nou" || $cmd[0] == "noutati" || $cmd[0] == "noutăți" || $cmd[0] == "last")
 			{
@@ -786,7 +866,7 @@
 			{
 				$sql = "DELETE FROM bot_messages WHERE userid = '$id'";
 				mysqli_query($this->db, $sql);
-				$botmsg = "Bună, ".$this->get_firstname($id)."!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Cu ce te pot ajuta?";
+				$botmsg = "Bună, ".$this->get_firstname($id)."!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!";
 			}
 			else $botmsg = "Scuze, nu am înțeles asta... :(";
 			$sql = "INSERT INTO bot_messages SET message = '$botmsg', frombot = 1, userid = '$id', date = '".date('Y-m-d H:i:s', time())."'";
