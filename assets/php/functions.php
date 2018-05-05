@@ -687,7 +687,7 @@
 			echo '
 					</div>
 					<form action="" method="post" name="new_reply">
-						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required></input>
+						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required autofocus></input>
 						<button type="submit" class="send-reply" name="new_reply"><i class="fa fa-paper-plane"></i></button>
 					</form>
 				</div>
@@ -714,17 +714,59 @@
 			}
 			echo '
 					</div>
-					<form action="" method="post" name="new_reply">
-						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required></input>
-						<button type="submit" class="send-reply" name="new_reply"><i class="fa fa-paper-plane"></i></button>
+					<form action="" method="post" name="bot_reply">
+						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required autofocus></input>
+						<button type="submit" class="send-reply" name="bot_reply"><i class="fa fa-paper-plane"></i></button>
 					</form>
 				</div>
 				';
 		}
 		public function bot_reply_register($id)
 		{
-			$message = "Bună, ".$this->get_firstname($id)."! Eu sunt AllergyBot, dar poți să-mi spui și Botzică :)! Cu ce te pot ajuta?";
+			$message = "Bună, ".$this->get_firstname($id)."!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Cu ce te pot ajuta?";
 			mysqli_query($this->db, "INSERT INTO bot_messages SET message = '$message', frombot = 1, userid = '$id', date = '".date('Y-m-d H:i:s', time())."'");
+		}
+		public function send_bot_reply($id, $reply)
+		{
+			$sql = "INSERT INTO bot_messages SET message = '$reply', frombot = 0, userid = '$id', date = '".date('Y-m-d H:i:s', time())."'";
+			mysqli_query($this->db, $sql);
+
+			$cmd = strtolower(explode(' ', trim($reply))[0]);
+			if($cmd == "comenzi" || $cmd == "ajutor")
+			{
+				$botmsg = "s-a folosit comanda comenzi";
+			}
+			else if($cmd == "info" || $cmd == "detalii" || $cmd == "informații" || $cmd == "informatii")
+			{
+				$botmsg = "s-a folosit comanda info";
+			}
+			else if($cmd == "simptome" || $cmd == "simptom")
+			{
+				$botmsg = "s-a folosit comanda simptome";
+			}
+			else if($cmd == "cauze" || $cmd == "cauza" || $cmd == "cauză" || $cmd == "factori")
+			{
+				$botmsg = "s-a folosit comanda cauze";
+			}
+			else if($cmd == "ultima" || $cmd == "ultimul" || $cmd == "nou" || $cmd == "noutati" || $cmd == "noutăți")
+			{
+				$botmsg = "s-a folosit comanda ultima alergie";
+			}
+			else if($cmd == "aleatoriu" || $cmd == "aleatorie" || $cmd == "random")
+			{
+				$botmsg = "s-a folosit comanda alergie aleatorie";
+			}
+			else if($cmd == "contact" || $cmd == "mesaj" || $cmd == "feedback")
+			{
+				$botmsg = "s-a folosit comanda contact";
+			}
+			else if($cmd == "curata" || $cmd == "curăță" || $cmd == "sterge" || $cmd == "șterge" || $cmd == "goleste" || $cmd == "golește")
+			{
+				$botmsg = "s-a folosit comanda curata";
+			}
+			else $botmsg = "Scuze, nu am înțeles asta... :(";
+			$sql = "INSERT INTO bot_messages SET message = '$botmsg', frombot = 1, userid = '$id', date = '".date('Y-m-d H:i:s', time())."'";
+			mysqli_query($this->db, $sql);
 		}
 		public function add_notification($id, $title, $content, $link)
 		{
@@ -1234,7 +1276,7 @@
 			echo '
 					</div>
 					<form action="" method="post" name="new_reply">
-						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required></input>
+						<input class="reply-box" type="text" name="reply" placeholder="Răspunde..." required autofocus></input>
 						<button type="submit" class="send-reply" name="new_reply"><i class="fa fa-paper-plane"></i></button>
 					</form>
 				</div>

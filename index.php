@@ -53,6 +53,12 @@
 		$user->send_reply($id, $reply, $conversation);
 		header("location:index.php?p=messages&m=".$conversation);
 	}
+	if (isset($_REQUEST['bot_reply']))
+	{
+		extract($_REQUEST);
+		$user->send_bot_reply($id, $reply);
+		header("location:index.php?p=allergybot");
+	}
 	if (isset($_GET['adda']))
 	{
 		$user->add_allergy_to_user($id, $_GET['adda']);
