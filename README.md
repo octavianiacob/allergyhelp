@@ -3,7 +3,7 @@
 ## Despre
 **AllergyHelp** este o platformă online care ajută utilizatorii în prevenirea și combaterea diferitelor alergii, prin intermediul simptomelor și cauzelor pe care acesta le selectează.
 
-**UPDATE:** Echipa **Discode** a obținut cu acest proiect **locul 1** la **FIICode 2018**, etapa finală, secțiunea **Web/Mobile**, desfășurată în Iași, în perioada 4-6 mai 2018.
+**UPDATE:** Echipa **Discode** a obținut cu acest proiect **locul 1** la [**FIICode 2018**](https://fiicode.asii.ro/), etapa finală, secțiunea **Web/Mobile**, desfășurată în Iași, în perioada 4-6 mai 2018.
 
 ## Tehnologii utilizate
 * HTML, CSS, JavaScript
@@ -13,7 +13,7 @@
 * MySQL
 
 ## Echipa
-Platforma AllergyHelp a fost creată de către echipa **Discode** în cardrul participării la concursul **FIICode 2018**.
+Platforma AllergyHelp a fost creată de către echipa **Discode** în cardrul participării la concursul [**FIICode 2018**](https://fiicode.asii.ro/).
 * [**Octavian Iacob**](https://github.com/Octavzz)
 * [**Parascheva Negru**](https://github.com/paraschevanegru)
 * [**Claudiu Scurtu**](https://github.com/isoon5)
