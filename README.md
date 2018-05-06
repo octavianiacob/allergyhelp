@@ -1,39 +1,25 @@
-# Allergyhelp
+<center><img src="https://raw.githubusercontent.com/Octavzz/allergyhelp/master/assets/img/readme/logo-green.png" width="50%" /></center>
 
-#### Despre
-AllergyHelp este o platformă online care ajută utilizatorii în prevenirea și combaterea diferitelor alergii, prin intermediul simptomelor și cauzelor pe care acesta le selectează.
+## Despre
+**AllergyHelp** este o platformă online care ajută utilizatorii în prevenirea și combaterea diferitelor alergii, prin intermediul simptomelor și cauzelor pe care acesta le selectează.
 
-### Tehnologii utilizate:
-* HTML5
-* CSS
-* Bootstrap 4
+**UPDATE:** Echipa **Discode** a obținut cu acest proiect **locul 1** la **FIICode 2018**, etapa finală, secțiunea **Web/Mobile**, desfășurată în Iași, în perioada 4-6 mai 2018.
+
+## Tehnologii utilizate
+* HTML, CSS, JavaScript
+* Bootstrap
 * jQuery
 * PHP
-* SQL
+* MySQL
 
-### Limbaje utilizate:
-*HTML5
-*CSS
-*JavaScript
-*SQL
-*PHP
+## Echipa
+Platforma AllergyHelp a fost creată de către echipa **Discode** în cardrul participării la concursul **FIICode 2018**.
+* [**Octavian Iacob**](https://github.com/Octavzz)
+* [**Parascheva Negru**](https://github.com/paraschevanegru)
+* [**Claudiu Scurtu**](https://github.com/isoon5)
+* [**Alexandru Toderică**](https://github.com/toderica)
 
-
-### Screenshots
-<a href="https://imgur.com/GFlO06m"><img src="https://i.imgur.com/GFlO06m.jpg" title="source: imgur.com" /></a>
-<a href="https://imgur.com/HGmSCEd"><img src="https://i.imgur.com/HGmSCEd.jpg" title="source: imgur.com" /></a>
-<a href="https://imgur.com/TxYKgbp"><img src="https://i.imgur.com/TxYKgbp.jpg" title="source: imgur.com" /></a>
-<a href="https://imgur.com/yiuNFnq"><img src="https://i.imgur.com/yiuNFnq.jpg" title="source: imgur.com" /></a>
-<a href="https://imgur.com/l1MkGAH"><img src="https://i.imgur.com/l1MkGAH.jpg" title="source: imgur.com" /></a>
-<a href="https://imgur.com/hie3kET"><img src="https://i.imgur.com/hie3kET.jpg" title="source: imgur.com" /></a>
-<a href="https://imgur.com/u9x5dx9"><img src="https://i.imgur.com/u9x5dx9.jpg" title="source: imgur.com" /></a>
-<a href="https://imgur.com/mdUufYe"><img src="https://i.imgur.com/mdUufYe.jpg" title="source: imgur.com" /></a>
-<a href="https://imgur.com/GJ3TW15"><img src="https://i.imgur.com/GJ3TW15.jpg" title="source: imgur.com" /></a>
-
-
-### Facilități
-* Încărcare rapidă 
-* Material Design
-* Responsive Layout
-* Foarte flexibil și ușor de utilizat
-* Notificări de eroare
+## Imagini
+![Pagina afișată înainte de logare](https://raw.githubusercontent.com/Octavzz/allergyhelp/master/assets/img/readme/landing.png "Pagina afișată înainte de logare")
+![Pagina afișată după logare](https://raw.githubusercontent.com/Octavzz/allergyhelp/master/assets/img/readme/dashboard.png "Pagina afișată după logare")
+![Panoul de administrator](https://raw.githubusercontent.com/Octavzz/allergyhelp/master/assets/img/readme/admin.png "Panoul de administrator")
