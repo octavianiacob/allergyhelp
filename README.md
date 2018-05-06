@@ -1,4 +1,4 @@
-<center><img src="https://raw.githubusercontent.com/Octavzz/allergyhelp/master/assets/img/readme/logo-green.png" width="50%" /></center>
+<div style="text-align:center"><img src="https://raw.githubusercontent.com/Octavzz/allergyhelp/master/assets/img/readme/logo-green.png" width="50%" /></div>
 
 ## Despre
 **AllergyHelp** este o platformă online care ajută utilizatorii în prevenirea și combaterea diferitelor alergii, prin intermediul simptomelor și cauzelor pe care acesta le selectează.
