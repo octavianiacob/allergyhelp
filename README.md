@@ -13,7 +13,7 @@
 * MySQL
 
 ## Echipa
-Platforma AllergyHelp a fost creată de către echipa **Discode** în cardrul participării la concursul [**FIICode 2018**](https://fiicode.asii.ro/).
+Platforma AllergyHelp a fost creată de către echipa **Discode** în cadrul participării la concursul [**FIICode 2018**](https://fiicode.asii.ro/).
 * [**Octavian Iacob**](https://github.com/Octavzz)
 * [**Parascheva Negru**](https://github.com/paraschevanegru)
 * [**Claudiu Scurtu**](https://github.com/isoon5)
