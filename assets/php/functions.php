@@ -611,6 +611,9 @@
 		}
 		public function send_message($id, $subject, $message)
 		{
+			$subject = mysqli_real_escape_string($this->db, $subject);
+			$message = mysqli_real_escape_string($this->db, $message);
+
 			$sql = "INSERT INTO conversations SET subject = '$subject', userid = '$id', date = '".date('Y-m-d H:i:s', time())."'";
 			$conv = mysqli_query($this->db, $sql);
 			if(!$conv) return 0;
@@ -624,6 +627,8 @@
 		}
 		public function send_reply($id, $message, $conversation)
 		{
+			$message = mysqli_real_escape_string($this->db, $message);
+
 			if($id !== $this->mysqli_result(mysqli_query($this->db, "SELECT userid FROM conversations WHERE id = '$conversation'")))
 				return 0;
 
@@ -728,6 +733,8 @@
 		}
 		public function send_bot_reply($id, $reply)
 		{
+			$replt = mysqli_real_escape_string($this->db, $reply);
+
 			$sql = "INSERT INTO bot_messages SET message = '$reply', frombot = 0, userid = '$id', date = '".date('Y-m-d H:i:s', time())."'";
 			mysqli_query($this->db, $sql);
 
@@ -1409,6 +1416,8 @@
 		}
 		public function send_reply($id, $message, $conversation)
 		{
+			$message = mysqli_real_escape_string($this->db, $message);
+
 			$uid = $this->mysqli_result(mysqli_query($this->db, "SELECT userid FROM conversations WHERE id = '$conversation'"));
 			$sql = "INSERT INTO messages SET message = '$message', userid = '$id', conversation = '$conversation', date = '".date('Y-m-d H:i:s', time())."'";
 			mysqli_query($this->db, $sql);

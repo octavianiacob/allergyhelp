@@ -1,32 +1,13 @@
--- phpMyAdmin SQL Dump
--- version 4.7.7
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Generation Time: May 05, 2018 at 04:15 PM
--- Server version: 10.2.14-MariaDB
--- PHP Version: 5.6.30
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `sgriasir_allergyhelp`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `actions`
---
 
 CREATE TABLE `actions` (
   `id` int(11) NOT NULL,
@@ -35,158 +16,14 @@ CREATE TABLE `actions` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `actions`
---
-
-INSERT INTO `actions` (`id`, `userid`, `action`, `date`) VALUES
-(1, 1, 'a înregistrat un utilizator', '2018-04-04 00:45:03'),
-(2, 1, 'a adăugat un administrator', '2018-04-04 00:45:21'),
-(3, 1, 'a înregistrat un utilizator', '2018-04-04 11:51:12'),
-(4, 1, 'a adăugat un administrator', '2018-04-04 12:01:04'),
-(5, 1, 'a șters un administrator', '2018-04-04 12:09:16'),
-(6, 1, 'a adăugat un administrator', '2018-04-04 12:09:22'),
-(7, 1, 'a șters un administrator', '2018-04-04 12:12:16'),
-(8, 1, 'a adăugat un administrator', '2018-04-04 12:12:20'),
-(9, 1, 'a adăugat un administrator', '2018-04-04 12:14:10'),
-(10, 1, 'a șters un administrator', '2018-04-04 12:14:18'),
-(11, 1, 'a adăugat un administrator', '2018-04-04 12:14:22'),
-(12, 1, 'a șters un administrator', '2018-04-04 12:16:23'),
-(13, 1, 'a adăugat un administrator', '2018-04-04 12:16:27'),
-(14, 1, 'a adăugat un administrator', '2018-04-04 12:16:55'),
-(15, 1, 'a șters un administrator', '2018-04-04 12:17:00'),
-(16, 1, 'a adăugat un administrator', '2018-04-04 12:17:03'),
-(17, 1, 'a înregistrat un utilizator', '2018-04-04 12:17:20'),
-(18, 1, 'a adăugat un administrator', '2018-04-04 12:18:14'),
-(19, 1, 'a șters un administrator', '2018-04-04 12:18:17'),
-(20, 1, 'a înregistrat un utilizator', '2018-04-04 12:32:35'),
-(21, 1, 'a adăugat un administrator', '2018-04-04 12:32:39'),
-(22, 1, 'a înregistrat un utilizator', '2018-04-04 12:33:49'),
-(23, 1, 'a adăugat un administrator', '2018-04-04 12:33:57'),
-(24, 1, 'a înregistrat un utilizator', '2018-04-04 12:38:33'),
-(25, 1, 'a adăugat un administrator', '2018-04-04 12:50:06'),
-(26, 6, 'a șters un administrator', '2018-04-04 12:50:29'),
-(27, 1, 'a adăugat un administrator', '2018-04-04 12:54:08'),
-(28, 6, 'a șters un administrator', '2018-04-04 12:55:11'),
-(29, 1, 'a adăugat un administrator', '2018-04-04 12:55:43'),
-(30, 6, 'a șters un administrator', '2018-04-04 12:58:53'),
-(31, 1, 'a adăugat un administrator', '2018-04-04 13:01:50'),
-(32, 6, 'a șters un administrator', '2018-04-04 13:02:07'),
-(33, 1, 'a adăugat un administrator', '2018-04-04 13:04:08'),
-(34, 6, 'a șters un administrator', '2018-04-04 13:08:06'),
-(35, 1, 'a șters un administrator', '2018-04-04 13:16:37'),
-(36, 1, 'a adăugat un administrator', '2018-04-04 13:18:45'),
-(37, 2, 'a șters un administrator', '2018-04-04 13:21:22'),
-(38, 2, 'a adăugat un administrator', '2018-04-04 13:21:49'),
-(39, 1, 'a șters un administrator', '2018-04-04 13:22:18'),
-(40, 1, 'a adăugat un administrator', '2018-04-04 13:22:45'),
-(41, 1, 'a adăugat un administrator', '2018-04-07 00:15:39'),
-(42, 6, 'a șters un administrator', '2018-04-07 00:16:32'),
-(43, 1, 'a adăugat un administrator', '2018-04-14 22:34:06'),
-(44, 1, 'a șters un administrator', '2018-04-14 22:34:18'),
-(45, 1, 'a adăugat un simptom', '2018-04-15 12:25:36'),
-(46, 1, 'a adăugat o cauză', '2018-04-15 12:25:38'),
-(47, 1, 'a adăugat un administrator', '2018-04-16 11:48:08'),
-(48, 1, 'a șters un administrator', '2018-04-16 11:48:10'),
-(49, 2, 'a adăugat un simptom', '2018-04-16 12:30:36'),
-(50, 3, 'a adăugat un simptom', '2018-04-17 18:28:13'),
-(51, 3, 'a adăugat un simptom', '2018-04-17 18:28:33'),
-(52, 3, 'a adăugat un simptom', '2018-04-17 18:28:49'),
-(53, 3, 'a adăugat un simptom', '2018-04-17 18:29:18'),
-(54, 3, 'a adăugat un simptom', '2018-04-17 18:30:11'),
-(55, 3, 'a adăugat un simptom', '2018-04-17 18:30:39'),
-(56, 3, 'a adăugat un simptom', '2018-04-17 18:30:46'),
-(57, 3, 'a adăugat un simptom', '2018-04-17 18:31:32'),
-(58, 3, 'a adăugat un simptom', '2018-04-17 18:32:05'),
-(59, 3, 'a adăugat un simptom', '2018-04-17 18:33:06'),
-(60, 3, 'a adăugat un simptom', '2018-04-17 18:33:22'),
-(61, 3, 'a adăugat un simptom', '2018-04-17 18:33:35'),
-(62, 3, 'a adăugat un simptom', '2018-04-17 18:33:58'),
-(63, 3, 'a adăugat o cauză', '2018-04-17 18:39:15'),
-(64, 3, 'a adăugat o cauză', '2018-04-17 18:39:47'),
-(65, 3, 'a adăugat o cauză', '2018-04-17 18:39:54'),
-(66, 3, 'a adăugat o cauză', '2018-04-17 18:40:34'),
-(67, 3, 'a adăugat o cauză', '2018-04-17 18:40:38'),
-(68, 3, 'a adăugat o cauză', '2018-04-17 18:40:47'),
-(69, 3, 'a adăugat o cauză', '2018-04-17 18:41:16'),
-(70, 3, 'a adăugat o cauză', '2018-04-17 18:41:24'),
-(71, 3, 'a adăugat o cauză', '2018-04-17 18:41:41'),
-(72, 3, 'a adăugat un simptom', '2018-04-17 18:41:58'),
-(73, 3, 'a adăugat un simptom', '2018-04-17 18:42:13'),
-(74, 3, 'a adăugat o alergie', '2018-04-19 19:41:01'),
-(75, 3, 'a adăugat o alergie', '2018-04-19 19:42:19'),
-(76, 4, 'a adăugat o alergie', '2018-04-19 19:45:56'),
-(77, 3, 'a adăugat o alergie', '2018-04-19 19:46:50'),
-(78, 4, 'a adăugat o cauză', '2018-04-19 19:50:15'),
-(79, 4, 'a adăugat o alergie', '2018-04-19 19:51:40'),
-(80, 4, 'a adăugat o cauză', '2018-04-19 19:51:47'),
-(81, 4, 'a adăugat o alergie', '2018-04-19 19:58:35'),
-(82, 2, 'a adăugat un simptom', '2018-04-19 19:59:50'),
-(83, 2, 'a adăugat un simptom', '2018-04-19 20:01:01'),
-(84, 2, 'a adăugat un simptom', '2018-04-19 20:01:25'),
-(85, 4, 'a adăugat o cauză', '2018-04-19 20:01:32'),
-(86, 2, 'a adăugat o alergie', '2018-04-19 20:03:05'),
-(87, 4, 'a adăugat o alergie', '2018-04-19 20:04:00'),
-(88, 4, 'a adăugat o cauză', '2018-04-19 20:08:56'),
-(89, 1, 'a adăugat o alergie', '2018-04-19 20:10:13'),
-(90, 1, 'a adăugat o alergie', '2018-04-19 20:12:47'),
-(91, 2, 'a adăugat o alergie', '2018-04-19 20:14:26'),
-(92, 2, 'a adăugat un simptom', '2018-04-19 20:14:53'),
-(93, 2, 'a adăugat un simptom', '2018-04-19 20:15:18'),
-(94, 4, 'a adăugat o alergie', '2018-04-19 20:17:05'),
-(95, 1, 'a adăugat o alergie', '2018-04-19 20:17:56'),
-(96, 1, 'a adăugat o alergie', '2018-04-19 20:18:17'),
-(97, 4, 'a adăugat o alergie', '2018-04-19 20:23:57'),
-(98, 2, 'a adăugat un simptom', '2018-04-19 20:26:08'),
-(99, 2, 'a adăugat un simptom', '2018-04-19 20:26:15'),
-(100, 2, 'a adăugat o alergie', '2018-04-19 20:29:37'),
-(101, 4, 'a adăugat o alergie', '2018-04-19 20:34:48'),
-(102, 2, 'a adăugat un simptom', '2018-04-19 20:42:32'),
-(103, 2, 'a adăugat o cauză', '2018-04-19 20:43:52'),
-(104, 2, 'a adăugat o alergie', '2018-04-19 20:44:16'),
-(105, 4, 'a adăugat o alergie', '2018-04-19 20:48:05'),
-(106, 4, 'a adăugat o cauză', '2018-04-19 20:52:57'),
-(107, 4, 'a adăugat o alergie', '2018-04-19 20:53:32'),
-(108, 3, 'a adăugat o alergie', '2018-04-19 20:59:49'),
-(109, 4, 'a adăugat o cauză', '2018-04-19 21:00:16'),
-(110, 3, 'a adăugat o alergie', '2018-04-19 21:01:26'),
-(111, 4, 'a adăugat o alergie', '2018-04-19 21:01:32'),
-(112, 3, 'a adăugat o alergie', '2018-04-19 21:15:01'),
-(113, 3, 'a adăugat o alergie', '2018-04-19 21:38:56'),
-(114, 3, 'a adăugat un simptom', '2018-04-19 21:40:30'),
-(115, 3, 'a adăugat un simptom', '2018-04-19 21:41:03'),
-(116, 3, 'a adăugat un simptom', '2018-04-19 21:41:14'),
-(117, 3, 'a adăugat un simptom', '2018-04-19 21:41:26'),
-(118, 3, 'a adăugat un simptom', '2018-04-19 21:41:41'),
-(119, 3, 'a adăugat un simptom', '2018-04-19 21:42:02'),
-(120, 3, 'a adăugat o alergie', '2018-04-19 21:45:38'),
-(121, 1, 'a adăugat o alergie', '2018-04-23 03:35:07'),
-(122, 1, 'a adăugat o alergie', '2018-04-23 03:35:35'),
-(123, 1, 'a adăugat o alergie', '2018-04-23 03:35:54'),
-(124, 2, 'a adăugat o alergie', '2018-04-23 07:29:08'),
-(125, 2, 'a adăugat o alergie', '2018-04-23 07:30:52'),
-(127, 1, 'a șters un administrator', '2018-04-26 09:09:59'),
-(129, 1, 'a șters un administrator', '2018-04-26 18:19:13'),
-(130, 1, 'a adăugat un administrator', '2018-04-29 23:25:40');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `allergies`
---
-
 CREATE TABLE `allergies` (
   `id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
   `content` longtext NOT NULL,
   `date` datetime NOT NULL,
   `author` int(11) NOT NULL,
-  `frequent` int(11) NOT NULL DEFAULT 0
+  `frequent` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `allergies`
---
 
 INSERT INTO `allergies` (`id`, `name`, `content`, `date`, `author`, `frequent`) VALUES
 (7, 'Alergie la praf', '<p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; line-height: 22px; color: rgb(72, 72, 70); font-family: Arial, Helvetica, sans-serif; font-size: 14px;\">Astazi, alergia este o problema recunoscuta, de proportii pandemice, afectand mai mult de 150 milioane de persoane numai in Europa. Tinand cont de tendinta evolutiva actuala, Academia Europeana de Alergie si Imunologie Clinica (EAACI) estimeaza ca in 15 ani mai mult de jumatate din populatia europeana va suferi de cel putin un tip de alergie.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; line-height: 22px; color: rgb(72, 72, 70); font-family: Arial, Helvetica, sans-serif; font-size: 14px;\"><strong style=\"font-weight: bold;\">Persoanele predispuse a deveni alergice, mai precis atopice, sintetizeaza un anume tip de anticorpi, (imunoglobulinele E), ca raspuns la o gama mai restransa sau mai larga de alergene din mediu. O parte din aceste alergene se afla in suspensie in aerul atmosferic, la care popular ne referim ca fiind „praf”. Astfel, termenul de alergie la praf s-a incetatenit si se foloseste pe scara larga.</strong></p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; line-height: 22px; color: rgb(72, 72, 70); font-family: Arial, Helvetica, sans-serif; font-size: 14px;\">Trebuie precizat insa ca,&nbsp;<strong style=\"font-weight: bold;\">in general, nu particule vizibile din praf produc reactiile alergice</strong>si ca, evident,&nbsp;<strong style=\"font-weight: bold;\">compozitia prafului din diverse medii e diferita</strong>.</p>', '2018-04-19 20:03:05', 2, 1),
@@ -207,21 +44,11 @@ INSERT INTO `allergies` (`id`, `name`, `content`, `date`, `author`, `frequent`) 
 (25, 'Alergia la ou', '<p><span style=\"color: rgb(119, 119, 119); font-family: HelveticaNeueLTPro-Lt; font-size: 20px;\">Alergia la ou este foarte fecvent întalnită la copii, fiind pe locul doi în topul alergiilor alimentare la vârste mici, după alergia la laptele de vacă si derivați. Aproximativ 2% dintre copii suferă de acest tip de alergie alimentară, dar din fericire, aproximativ 70 % dintre ei se vor vindeca către pubertate de această alergie.</span><br></p>', '2018-04-19 21:38:56', 3, 0),
 (26, 'Alergia la soia', '<p><span style=\"box-sizing: border-box; color: rgb(88, 88, 88); font-family: &quot;Roboto Condensed&quot;, sans-serif; background-color: rgb(253, 253, 253);\">Alergia la soia este o reacție exagerată a sistemului imunitar la consumul de soia și alimente care conțin soia. De obicei, reacția se produce ca urmare a consumului de lapte din soia&nbsp;în copilărie.</span><br></p>', '2018-04-19 21:45:38', 3, 0);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `allergy_causes`
---
-
 CREATE TABLE `allergy_causes` (
   `id` int(11) NOT NULL,
   `allergy` int(11) NOT NULL,
   `cause` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `allergy_causes`
---
 
 INSERT INTO `allergy_causes` (`id`, `allergy`, `cause`) VALUES
 (18, 15, 9),
@@ -244,21 +71,11 @@ INSERT INTO `allergy_causes` (`id`, `allergy`, `cause`) VALUES
 (28, 25, 4),
 (27, 23, 16);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `allergy_signs`
---
-
 CREATE TABLE `allergy_signs` (
   `id` int(11) NOT NULL,
   `allergy` int(11) NOT NULL,
   `sign` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `allergy_signs`
---
 
 INSERT INTO `allergy_signs` (`id`, `allergy`, `sign`) VALUES
 (26, 11, 14),
@@ -335,32 +152,16 @@ INSERT INTO `allergy_signs` (`id`, `allergy`, `sign`) VALUES
 (84, 26, 29),
 (85, 26, 30);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `bot_jokes`
---
-
 CREATE TABLE `bot_jokes` (
   `id` int(11) NOT NULL,
   `joke` longtext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `bot_jokes`
---
 
 INSERT INTO `bot_jokes` (`id`, `joke`) VALUES
 (1, 'Did you hear about the Frenchman who could only count to seven?<br />He had a huit allergy.'),
 (2, 'A man walks into a charity shop looking for a pair of trousers. The label inside declares, ‘May contain traces of nuts’.'),
 (3, '- Why did the chicken cross the road?<br />- To avoid his allergen.'),
 (4, '- Did you hear about the convict who had allergies?<br />- He broke out.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bot_messages`
---
 
 CREATE TABLE `bot_messages` (
   `id` int(11) NOT NULL,
@@ -370,39 +171,17 @@ CREATE TABLE `bot_messages` (
   `date` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `bot_messages`
---
-
 INSERT INTO `bot_messages` (`id`, `message`, `userid`, `frombot`, `date`) VALUES
-(3, 'Bună, Octavian!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 2, 1, '2018-05-05 11:09:52'),
-(4, 'Bună, Claudiu!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 3, 1, '2018-05-05 11:09:52'),
-(5, 'Bună, Parascheva!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 4, 1, '2018-05-05 11:09:52'),
-(6, 'Bună, Comisie!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 5, 1, '2018-05-05 11:09:52'),
-(7, 'Bună, Cristi!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 6, 1, '2018-05-05 11:09:52'),
-(8, 'Bună, Dani!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 7, 1, '2018-05-05 11:09:52'),
-(9, 'Bună, Dănilă!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 8, 1, '2018-05-05 11:09:52'),
-(10, 'Bună, lamoe!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 9, 1, '2018-05-05 11:09:53'),
-(11, 'Bună, David!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 10, 1, '2018-05-05 11:09:53'),
-(12, 'Bună, Adrian!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 11, 1, '2018-05-05 11:09:53'),
-(13, 'Bună, Adrian!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 12, 1, '2018-05-05 11:09:53'),
-(14, 'Bună, Liviu!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 13, 1, '2018-05-05 11:09:53'),
-(2, 'Bună, Alexandru!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 1, 1, '2018-05-05 16:12:50');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `causes`
---
+(1, 'Bună, Alexandru!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 1, 1, '2018-05-06 22:07:30'),
+(2, 'Bună, Octavian!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 2, 1, '2018-05-05 11:09:52'),
+(3, 'Bună, Claudiu!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 3, 1, '2018-05-06 21:48:04'),
+(4, 'Bună, Parascheva!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 4, 1, '2018-05-05 11:09:52'),
+(5, 'Bună, Comisie!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 5, 1, '2018-05-05 11:09:52');
 
 CREATE TABLE `causes` (
   `id` int(11) NOT NULL,
   `cause` varchar(128) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `causes`
---
 
 INSERT INTO `causes` (`id`, `cause`) VALUES
 (1, 'Fum de țigară'),
@@ -422,25 +201,13 @@ INSERT INTO `causes` (`id`, `cause`) VALUES
 (15, 'Expunerea la soare'),
 (16, 'Compoziția chimică');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `conversations`
---
-
 CREATE TABLE `conversations` (
   `id` int(11) NOT NULL,
   `subject` varchar(128) NOT NULL,
   `userid` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `unread` int(11) NOT NULL DEFAULT 0
+  `unread` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `logins`
---
 
 CREATE TABLE `logins` (
   `id` int(11) NOT NULL,
@@ -448,12 +215,6 @@ CREATE TABLE `logins` (
   `date` datetime NOT NULL,
   `ip` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `messages`
---
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
@@ -463,12 +224,6 @@ CREATE TABLE `messages` (
   `date` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `notifications`
---
-
 CREATE TABLE `notifications` (
   `id` int(11) NOT NULL,
   `user` int(11) NOT NULL,
@@ -476,42 +231,20 @@ CREATE TABLE `notifications` (
   `content` varchar(256) NOT NULL,
   `link` varchar(32) DEFAULT NULL,
   `date` datetime NOT NULL,
-  `dismissed` int(11) NOT NULL DEFAULT 0
+  `dismissed` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `notifications`
---
-
 INSERT INTO `notifications` (`id`, `user`, `title`, `content`, `link`, `date`, `dismissed`) VALUES
-(1, 1, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 1),
-(2, 2, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 1),
-(3, 3, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 1),
-(4, 4, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 1),
-(5, 5, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 0),
-(6, 6, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 0),
-(8, 7, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-23 10:36:23', 1),
-(9, 8, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-23 18:54:47', 1),
-(10, 9, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-23 20:50:04', 0),
-(11, 10, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-25 14:23:42', 1),
-(12, 11, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-25 19:17:15', 1),
-(13, 12, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-26 22:06:14', 0),
-(14, 13, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-29 22:37:00', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `signs`
---
+(1, 1, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 0),
+(2, 2, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 0),
+(3, 3, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 0),
+(4, 4, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 0),
+(5, 5, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 0);
 
 CREATE TABLE `signs` (
   `id` int(11) NOT NULL,
   `sign` varchar(128) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `signs`
---
 
 INSERT INTO `signs` (`id`, `sign`) VALUES
 (17, 'Strănuturi'),
@@ -544,46 +277,22 @@ INSERT INTO `signs` (`id`, `sign`) VALUES
 (29, 'Anafilaxie'),
 (30, 'Stări de leșin');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `lastname` varchar(64) NOT NULL,
   `firstname` varchar(64) NOT NULL,
-  `admin` tinyint(1) NOT NULL DEFAULT 0,
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
   `email` varchar(64) NOT NULL,
   `password` varchar(64) NOT NULL,
   `regtime` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `users`
---
-
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `admin`, `email`, `password`, `regtime`) VALUES
-(1, 'Toderică', 'Alexandru', 1, 'a.toderica.2013@gmail.com', 'b6961d30ae4013e346219f0f8c6e8f7ba414dfb2', '2018-03-20 10:51:05'),
-(2, 'Iacob', 'Octavian', 1, 'octavzz1999@gmail.com', '8d133082166837b2663e58b13b9ee42aea48d497', '2018-04-04 00:45:03'),
-(3, 'Scurtu', 'Claudiu', 1, 'scurtu.claudyu@gmail.com', '002f331de04fc5413bd19437f84a29fdaf443f13', '2018-04-04 11:51:12'),
-(4, 'Negru', 'Parascheva', 1, 'parascheva.negru@gmail.com', '9a7380ea9b7479a7944244b41d8eaec0bb393209', '2018-04-04 12:32:35'),
-(5, 'FIICode', 'Comisie', 1, 'fiicode', '9cc02838891b6d0e41122f672fd3cadacf1074a1', '2018-04-04 12:33:49'),
-(6, 'Cristi', 'Cristi', 0, 'crysty.cristian97@yahoo.com', '725f9fc01622c7ae42abfec8ece5ac094ebdb0e8', '2018-04-22 19:32:01'),
-(7, 'Croitoriu', 'Dan', 0, 'dan.croitoriu@yahoo.com', '82faee10612d9c77a38968bf48e385d58b269e91', '2018-04-23 10:36:23'),
-(8, 'Burohanu', 'Dănilă', 0, 'danielbuhaianu99@gmail.com', 'da92a68ca83741f1976c0acec84fdbcdafd5437a', '2018-04-23 18:54:47'),
-(9, 'soyao', 'lamoe', 0, 'emailfakelol@kabaddi.com', '691fa15ad830d6fd018ab33034c3dc8a929f5bdd', '2018-04-23 20:50:04'),
-(10, 'Vultur', 'David', 0, 'david1989mail@yahoo.com', '645b8fbaef16c732ce0d5d1b18e228ae871a51ce', '2018-04-25 14:23:42'),
-(11, 'Ursaciuc', 'Adrian', 0, 'vxmtw@eth2btc.info', '83592796bc17705662dc9a750c8b6d0a4fd93396', '2018-04-25 19:17:15'),
-(12, 'Ursaciuc', 'Adrian', 0, '4p2x9@uemail99.com', '812c6ee4b7183af9a46bd39764245427c0d98b6b', '2018-04-26 22:06:14'),
-(13, 'Bouruc', 'Liviu', 1, 'Liviu@liviu.liviu', '9980c14d7863b83ce8a5a70d8ffd17cde2bd495f', '2018-04-29 22:37:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_allergies`
---
+(1, 'Toderică', 'Alexandru', 1, 'a.toderica.2013@gmail.com', '9cc02838891b6d0e41122f672fd3cadacf1074a1', '2018-03-20 10:51:05'),
+(2, 'Iacob', 'Octavian', 1, 'octavzz1999@gmail.com', '9cc02838891b6d0e41122f672fd3cadacf1074a1', '2018-04-04 00:45:03'),
+(3, 'Scurtu', 'Claudiu', 1, 'scurtu.claudyu@gmail.com', '9cc02838891b6d0e41122f672fd3cadacf1074a1', '2018-04-04 11:51:12'),
+(4, 'Negru', 'Parascheva', 1, 'parascheva.negru@gmail.com', '9cc02838891b6d0e41122f672fd3cadacf1074a1', '2018-04-04 12:32:35'),
+(5, 'FIICode', 'Comisie', 1, 'fiicode', '9cc02838891b6d0e41122f672fd3cadacf1074a1', '2018-04-04 12:33:49');
 
 CREATE TABLE `user_allergies` (
   `id` int(11) NOT NULL,
@@ -591,65 +300,11 @@ CREATE TABLE `user_allergies` (
   `allergy` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `user_allergies`
---
-
-INSERT INTO `user_allergies` (`id`, `user`, `allergy`) VALUES
-(12, 5, 16),
-(13, 2, 7),
-(14, 8, 25),
-(15, 9, 25),
-(16, 4, 7),
-(17, 10, 25),
-(18, 11, 26);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_causes`
---
-
 CREATE TABLE `user_causes` (
   `id` int(11) NOT NULL,
   `user` int(11) NOT NULL,
   `cause` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `user_causes`
---
-
-INSERT INTO `user_causes` (`id`, `user`, `cause`) VALUES
-(6, 5, 9),
-(7, 1, 10),
-(28, 2, 8),
-(8, 1, 3),
-(9, 1, 4),
-(10, 1, 12),
-(11, 1, 14),
-(12, 1, 16),
-(13, 1, 15),
-(14, 1, 6),
-(15, 1, 1),
-(16, 1, 2),
-(17, 1, 13),
-(18, 1, 7),
-(19, 1, 8),
-(20, 1, 9),
-(21, 1, 5),
-(22, 1, 11),
-(23, 7, 3),
-(24, 7, 7),
-(25, 4, 10),
-(26, 10, 7),
-(27, 11, 7);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_signs`
---
 
 CREATE TABLE `user_signs` (
   `id` int(11) NOT NULL,
@@ -657,264 +312,106 @@ CREATE TABLE `user_signs` (
   `sign` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `user_signs`
---
 
-INSERT INTO `user_signs` (`id`, `user`, `sign`) VALUES
-(58, 2, 4),
-(13, 5, 2),
-(14, 5, 20),
-(56, 3, 8),
-(15, 1, 11),
-(16, 1, 29),
-(17, 1, 23),
-(18, 1, 6),
-(19, 1, 27),
-(20, 1, 28),
-(21, 1, 20),
-(22, 1, 8),
-(23, 1, 13),
-(24, 1, 4),
-(25, 1, 15),
-(26, 1, 14),
-(27, 1, 19),
-(28, 1, 18),
-(29, 1, 2),
-(30, 1, 21),
-(31, 1, 25),
-(32, 1, 12),
-(33, 1, 26),
-(34, 1, 3),
-(35, 1, 5),
-(36, 1, 24),
-(37, 1, 10),
-(38, 1, 30),
-(39, 1, 17),
-(40, 1, 16),
-(41, 1, 9),
-(42, 1, 22),
-(43, 1, 7),
-(44, 7, 29),
-(45, 9, 27),
-(46, 9, 10),
-(47, 9, 24),
-(48, 4, 2),
-(49, 4, 16),
-(50, 10, 16),
-(51, 10, 17),
-(52, 11, 18),
-(53, 11, 2),
-(54, 12, 6),
-(55, 12, 27),
-(57, 3, 4),
-(59, 2, 28),
-(60, 2, 7),
-(61, 3, 18),
-(62, 3, 2);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `actions`
---
 ALTER TABLE `actions`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `allergies`
---
 ALTER TABLE `allergies`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `allergy_causes`
---
 ALTER TABLE `allergy_causes`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `allergy_signs`
---
 ALTER TABLE `allergy_signs`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `bot_jokes`
---
 ALTER TABLE `bot_jokes`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `bot_messages`
---
 ALTER TABLE `bot_messages`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `causes`
---
 ALTER TABLE `causes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `cause` (`cause`);
 
---
--- Indexes for table `conversations`
---
 ALTER TABLE `conversations`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `logins`
---
 ALTER TABLE `logins`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `messages`
---
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `notifications`
---
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `signs`
---
 ALTER TABLE `signs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `sign` (`sign`);
 
---
--- Indexes for table `users`
---
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`email`);
 
---
--- Indexes for table `user_allergies`
---
 ALTER TABLE `user_allergies`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `user_causes`
---
 ALTER TABLE `user_causes`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `user_signs`
---
 ALTER TABLE `user_signs`
   ADD PRIMARY KEY (`id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
 
---
--- AUTO_INCREMENT for table `actions`
---
 ALTER TABLE `actions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `allergies`
---
 ALTER TABLE `allergies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
---
--- AUTO_INCREMENT for table `allergy_causes`
---
 ALTER TABLE `allergy_causes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
---
--- AUTO_INCREMENT for table `allergy_signs`
---
 ALTER TABLE `allergy_signs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
---
--- AUTO_INCREMENT for table `bot_jokes`
---
 ALTER TABLE `bot_jokes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT for table `bot_messages`
---
 ALTER TABLE `bot_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- AUTO_INCREMENT for table `causes`
---
 ALTER TABLE `causes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
---
--- AUTO_INCREMENT for table `conversations`
---
 ALTER TABLE `conversations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `logins`
---
 ALTER TABLE `logins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `messages`
---
 ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `notifications`
---
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- AUTO_INCREMENT for table `signs`
---
 ALTER TABLE `signs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
---
--- AUTO_INCREMENT for table `users`
---
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
---
--- AUTO_INCREMENT for table `user_allergies`
---
 ALTER TABLE `user_allergies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `user_causes`
---
 ALTER TABLE `user_causes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `user_signs`
---
 ALTER TABLE `user_signs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
