@@ -891,7 +891,7 @@
 								<h4 class="card-title"><?php echo $user->get_firstname(3)." ".$user->get_lastname(3); ?></h4>
 							</div>
 							<div class="card-footer justify-content-center">
-								<a href="https://www.facebook.com/claudiu.scurtu" target="_blank" rel="noopener"><i class="fab fa-facebook-square"></i></a>
+								<a href="https://www.facebook.com/claudiu.scurtu.3" target="_blank" rel="noopener"><i class="fab fa-facebook-square"></i></a>
 								<a href="https://www.instagram.com/claudiuscurtu" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
 								<a href="https://github.com/isoon5" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
 							</div>
