@@ -14,7 +14,7 @@ CREATE TABLE `actions` (
   `userid` int(11) NOT NULL,
   `action` varchar(128) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `allergies` (
   `id` int(11) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE `allergies` (
   `date` datetime NOT NULL,
   `author` int(11) NOT NULL,
   `frequent` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `allergies` (`id`, `name`, `content`, `date`, `author`, `frequent`) VALUES
 (7, 'Alergie la praf', '<p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; line-height: 22px; color: rgb(72, 72, 70); font-family: Arial, Helvetica, sans-serif; font-size: 14px;\">Astazi, alergia este o problema recunoscuta, de proportii pandemice, afectand mai mult de 150 milioane de persoane numai in Europa. Tinand cont de tendinta evolutiva actuala, Academia Europeana de Alergie si Imunologie Clinica (EAACI) estimeaza ca in 15 ani mai mult de jumatate din populatia europeana va suferi de cel putin un tip de alergie.</p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; line-height: 22px; color: rgb(72, 72, 70); font-family: Arial, Helvetica, sans-serif; font-size: 14px;\"><strong style=\"font-weight: bold;\">Persoanele predispuse a deveni alergice, mai precis atopice, sintetizeaza un anume tip de anticorpi, (imunoglobulinele E), ca raspuns la o gama mai restransa sau mai larga de alergene din mediu. O parte din aceste alergene se afla in suspensie in aerul atmosferic, la care popular ne referim ca fiind „praf”. Astfel, termenul de alergie la praf s-a incetatenit si se foloseste pe scara larga.</strong></p><p style=\"margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; line-height: 22px; color: rgb(72, 72, 70); font-family: Arial, Helvetica, sans-serif; font-size: 14px;\">Trebuie precizat insa ca,&nbsp;<strong style=\"font-weight: bold;\">in general, nu particule vizibile din praf produc reactiile alergice</strong>si ca, evident,&nbsp;<strong style=\"font-weight: bold;\">compozitia prafului din diverse medii e diferita</strong>.</p>', '2018-04-19 20:03:05', 2, 1),
@@ -48,7 +48,7 @@ CREATE TABLE `allergy_causes` (
   `id` int(11) NOT NULL,
   `allergy` int(11) NOT NULL,
   `cause` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `allergy_causes` (`id`, `allergy`, `cause`) VALUES
 (18, 15, 9),
@@ -75,7 +75,7 @@ CREATE TABLE `allergy_signs` (
   `id` int(11) NOT NULL,
   `allergy` int(11) NOT NULL,
   `sign` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `allergy_signs` (`id`, `allergy`, `sign`) VALUES
 (26, 11, 14),
@@ -155,7 +155,7 @@ INSERT INTO `allergy_signs` (`id`, `allergy`, `sign`) VALUES
 CREATE TABLE `bot_jokes` (
   `id` int(11) NOT NULL,
   `joke` longtext NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `bot_jokes` (`id`, `joke`) VALUES
 (1, 'Did you hear about the Frenchman who could only count to seven?<br />He had a huit allergy.'),
@@ -169,7 +169,7 @@ CREATE TABLE `bot_messages` (
   `userid` int(11) NOT NULL,
   `frombot` int(11) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `bot_messages` (`id`, `message`, `userid`, `frombot`, `date`) VALUES
 (1, 'Bună, Alexandru!<br />Eu sunt AllergyBot, dar poți să-mi spui și Botzică! :)<br />Scrie <strong>ajutor</strong> pentru a afla ce pot să fac!', 1, 1, '2018-05-06 22:07:30'),
@@ -181,7 +181,7 @@ INSERT INTO `bot_messages` (`id`, `message`, `userid`, `frombot`, `date`) VALUES
 CREATE TABLE `causes` (
   `id` int(11) NOT NULL,
   `cause` varchar(128) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `causes` (`id`, `cause`) VALUES
 (1, 'Fum de țigară'),
@@ -207,14 +207,14 @@ CREATE TABLE `conversations` (
   `userid` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `unread` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `logins` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `ip` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
@@ -222,7 +222,7 @@ CREATE TABLE `messages` (
   `userid` int(11) NOT NULL,
   `conversation` int(11) NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `notifications` (
   `id` int(11) NOT NULL,
@@ -232,7 +232,7 @@ CREATE TABLE `notifications` (
   `link` varchar(32) DEFAULT NULL,
   `date` datetime NOT NULL,
   `dismissed` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `notifications` (`id`, `user`, `title`, `content`, `link`, `date`, `dismissed`) VALUES
 (1, 1, 'Bine ai venit pe AllergyHelp!', 'Ți-ai creat contul cu succes. Acum ai acces la tot conținutul site-ului. Pentru a primi notificări cu privire la anumite alergii, îți recomandăm să îți alegi simptomele și cauzele.', '?p=profile', '2018-04-22 23:00:00', 0),
@@ -244,7 +244,7 @@ INSERT INTO `notifications` (`id`, `user`, `title`, `content`, `link`, `date`, `
 CREATE TABLE `signs` (
   `id` int(11) NOT NULL,
   `sign` varchar(128) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `signs` (`id`, `sign`) VALUES
 (17, 'Strănuturi'),
