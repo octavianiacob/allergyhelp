@@ -27,7 +27,7 @@
 				echo "Nu s-a putut face conexiunea la baza de date!";
 				exit;
 			}
-			mysqli_set_charset($this->db, 'utf8');
+			mysqli_set_charset($this->db, 'utf8mb4');
 		}
 		public function get_ip_address()
 		{
@@ -753,7 +753,7 @@
 				<br /><br /><i>simptom</i> <strong>&lt;nume simptom&gt;</strong>
 				<br />Îți enumăr alergiile ce au un anumit simptom.
 				<br /><br /><i>cauza</i> <strong>&lt;nume cauză&gt;</strong>
-				<br />Îți enumăr alergiile ce au un anumit cauză.
+				<br />Îți enumăr alergiile ce au o anumită cauză.
 				<br /><br /><i>ultima</i>
 				<br />Îți ofer linkul către ultima alergie publicată.
 				<br /><br /><i>oarecare</i>
@@ -810,7 +810,7 @@
 					$sid = $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM signs WHERE sign LIKE '%$cmd[1]%' ORDER BY id DESC LIMIT 1"));
 					if($sid)
 					{
-						$sql = "SELECT DISTINCT allergies.id, allergies.name FROM allergies INNER JOIN allergy_signs ON allergy_signs.allergy = allergies.id WHERE allergy_signs.sign = '$sid' ORDER BY date DESC";
+						$sql = "SELECT DISTINCT allergies.id, allergies.name, allergies.date FROM allergies INNER JOIN allergy_signs ON allergy_signs.allergy = allergies.id WHERE allergy_signs.sign = '$sid' ORDER BY date DESC";
 						$result = mysqli_query($this->db, $sql);
 						if(mysqli_num_rows($result))
 						{
@@ -854,7 +854,7 @@
 					$sid = $this->mysqli_result(mysqli_query($this->db, "SELECT id FROM causes WHERE cause LIKE '%$cmd[1]%' ORDER BY id DESC LIMIT 1"));
 					if($sid)
 					{
-						$sql = "SELECT DISTINCT allergies.id, allergies.name FROM allergies INNER JOIN allergy_causes ON allergy_causes.allergy = allergies.id WHERE allergy_causes.cause = '$sid' ORDER BY date DESC";
+						$sql = "SELECT DISTINCT allergies.id, allergies.name, allergies.date FROM allergies INNER JOIN allergy_causes ON allergy_causes.allergy = allergies.id WHERE allergy_causes.cause = '$sid' ORDER BY date DESC";
 						$result = mysqli_query($this->db, $sql);
 						if(mysqli_num_rows($result))
 						{
